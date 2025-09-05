@@ -1,0 +1,4 @@
+".\Objects\main.obj",
+".\Objects\WATCH.obj" 
+TO ".\Objects\WATCH" 
+PRINT(".\Listings\WATCH.m51") RAMSIZE(256) 

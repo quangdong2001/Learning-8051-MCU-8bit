@@ -1,0 +1,4 @@
+".\Objects\Mach_Dong_Ho.obj",
+".\Objects\main.obj" 
+TO ".\Objects\Mach_Dong_Ho" 
+PRINT(".\Listings\Mach_Dong_Ho.m51") RAMSIZE(256) 
