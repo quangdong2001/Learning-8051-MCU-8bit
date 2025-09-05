@@ -1,0 +1,4 @@
+".\Objects\main.obj",
+".\Objects\Den_Cau_Thang.obj" 
+TO ".\Objects\Den_Cau_Thang" 
+PRINT(".\Listings\Den_Cau_Thang.m51") RAMSIZE(256) 
