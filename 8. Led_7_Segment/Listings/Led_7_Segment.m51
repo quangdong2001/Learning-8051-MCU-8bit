@@ -1,0 +1,137 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    05/17/2021  14:28:07  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\Led_7_Segment.obj TO .\Objects\Led_7_Segment PRINT (.\Listings
+>> \Led_7_Segment.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\Led_7_Segment.obj (LED_7_SEGMENT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\Led_7_Segment (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         _DATA_GROUP_
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0038H     UNIT         ?PR?LED_7_SEGMENT?LED_7_SEGMENT
+            CODE    003BH     0020H     UNIT         ?PR?_DELAY?LED_7_SEGMENT
+            CODE    005BH     000CH     UNIT         ?C_C51STARTUP
+            CODE    0067H     000AH     UNIT         ?CO?MAIN
+            CODE    0071H     000AH     UNIT         ?CO?LED_7_SEGMENT
+            CODE    007BH     0005H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Led_7_Segment (MAIN)
+
+
+SEGMENT                                   DATA_GROUP 
+  +--> CALLED SEGMENT                   START    LENGTH
+-------------------------------------------------------
+?C_C51STARTUP                           -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                           -----    -----
+  +--> ?PR?LED_7_SEGMENT?LED_7_SEGMENT
+
+?PR?LED_7_SEGMENT?LED_7_SEGMENT         0008H    0001H
+  +--> ?CO?LED_7_SEGMENT
+  +--> ?PR?_DELAY?LED_7_SEGMENT
+
+
+
+IGNORED SYMBOLS:
+   LED
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/17/2021  14:28:07  PAGE 2
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Led_7_Segment (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:007BH         PUBLIC        main
+  C:0067H         PUBLIC        LED
+  -------         PROC          MAIN
+  C:007BH         LINE#         4
+  C:007BH         LINE#         5
+  C:007BH         LINE#         6
+  C:007BH         LINE#         7
+  C:007BH         LINE#         8
+  C:007EH         LINE#         9
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        LED_7_SEGMENT
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  C:0071H         PUBLIC        LED
+  C:0003H         PUBLIC        LED_7_SEGMENT
+  C:003BH         PUBLIC        _Delay
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        a
+  D:0002H         SYMBOL        b
+  -------         ENDDO         
+  C:003BH         LINE#         5
+  C:003BH         LINE#         6
+  C:003BH         LINE#         8
+  C:0045H         LINE#         9
+  C:0045H         LINE#         10
+  C:0053H         LINE#         11
+  C:005AH         LINE#         12
+  -------         ENDPROC       _DELAY
+  -------         PROC          LED_7_SEGMENT
+  -------         DO            
+  D:0008H         SYMBOL        i
+  D:0001H         SYMBOL        j
+  -------         ENDDO         
+  C:0003H         LINE#         14
+  C:0003H         LINE#         15
+  C:0003H         LINE#         17
+  C:0011H         LINE#         18
+  C:0011H         LINE#         19
+  C:0019H         LINE#         20
+  C:0025H         LINE#         21
+  C:0025H         LINE#         22
+  C:002CH         LINE#         23
+  C:0033H         LINE#         24
+  C:0036H         LINE#         25
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/17/2021  14:28:07  PAGE 3
+
+
+  C:003AH         LINE#         26
+  -------         ENDPROC       LED_7_SEGMENT
+  -------         ENDMOD        LED_7_SEGMENT
+
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  LED
+    MODULE:  .\Objects\Led_7_Segment.obj (LED_7_SEGMENT)
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?CO?MAIN
+
+Program Size: data=10.0 xdata=0 code=128
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  1 ERROR(S)

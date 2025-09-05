@@ -1,0 +1,4 @@
+".\Objects\main.obj",
+".\Objects\Led_7_Segment.obj" 
+TO ".\Objects\Led_7_Segment" 
+PRINT(".\Listings\Led_7_Segment.m51") RAMSIZE(256) 
