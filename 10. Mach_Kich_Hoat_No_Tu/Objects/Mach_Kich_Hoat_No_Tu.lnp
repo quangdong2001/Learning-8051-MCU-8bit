@@ -1,0 +1,4 @@
+".\Objects\Mach_Kich_Hoat_No_Tu.obj",
+".\Objects\main.obj" 
+TO ".\Objects\Mach_Kich_Hoat_No_Tu" 
+PRINT(".\Listings\Mach_Kich_Hoat_No_Tu.m51") RAMSIZE(256) 

@@ -1,0 +1,160 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    05/18/2021  10:03:53  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\Mach_Kich_Hoat_No_Tu.obj, .\Objects\main.obj TO .\Objects\Mach_Kich_Hoat_No_Tu PRI
+>> NT (.\Listings\Mach_Kich_Hoat_No_Tu.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\Mach_Kich_Hoat_No_Tu.obj (MACH_KICH_HOAT_NO_TU)
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\Mach_Kich_Hoat_No_Tu (MACH_KICH_HOAT_NO_TU)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         _DATA_GROUP_
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     00A7H     UNIT         ?PR?KICH_HOAT?MACH_KICH_HOAT_NO_TU
+            CODE    00AAH     0037H     UNIT         ?PR?_SLEEP_MS?MACH_KICH_HOAT_NO_TU
+            CODE    00E1H     000CH     UNIT         ?C_C51STARTUP
+            CODE    00EDH     000AH     UNIT         ?CO?MACH_KICH_HOAT_NO_TU
+            CODE    00F7H     0005H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Mach_Kich_Hoat_No_Tu (MACH_KICH_HOAT_NO_TU)
+
+
+SEGMENT                                      DATA_GROUP 
+  +--> CALLED SEGMENT                      START    LENGTH
+----------------------------------------------------------
+?C_C51STARTUP                              -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                              -----    -----
+  +--> ?PR?KICH_HOAT?MACH_KICH_HOAT_NO_TU
+
+?PR?KICH_HOAT?MACH_KICH_HOAT_NO_TU         0008H    0002H
+  +--> ?CO?MACH_KICH_HOAT_NO_TU
+  +--> ?PR?_SLEEP_MS?MACH_KICH_HOAT_NO_TU
+
+?PR?_SLEEP_MS?MACH_KICH_HOAT_NO_TU         -----    -----
+  +--> ?CO?MACH_KICH_HOAT_NO_TU
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Mach_Kich_Hoat_No_Tu (MACH_KICH_HOAT_NO_TU)
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/18/2021  10:03:53  PAGE 2
+
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MACH_KICH_HOAT_NO_TU
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:0090H.0       PUBLIC        Button
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:0080H.0       PUBLIC        Activate
+  C:00C1H         PUBLIC        _Sleep_ms
+  C:00EDH         PUBLIC        LED
+  C:0003H         PUBLIC        Kich_Hoat
+  C:00AAH         SYMBOL        L?0030
+  -------         PROC          L?0029
+  -------         ENDPROC       L?0029
+  C:00AAH         SYMBOL        L?0030
+  -------         PROC          _SLEEP_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        a
+  D:0002H         SYMBOL        b
+  -------         ENDDO         
+  C:00C1H         LINE#         5
+  C:00C1H         LINE#         6
+  C:00C1H         LINE#         8
+  C:00CBH         LINE#         9
+  C:00CBH         LINE#         10
+  C:00D9H         LINE#         11
+  C:00E0H         LINE#         12
+  -------         ENDPROC       _SLEEP_MS
+  -------         PROC          KICH_HOAT
+  -------         DO            
+  D:0008H         SYMBOL        i
+  D:0009H         SYMBOL        j
+  -------         ENDDO         
+  C:0003H         LINE#         14
+  C:0003H         LINE#         15
+  C:0003H         LINE#         16
+  C:0009H         LINE#         17
+  C:0009H         LINE#         19
+  C:0019H         LINE#         20
+  C:0019H         LINE#         21
+  C:002CH         LINE#         22
+  C:003CH         LINE#         23
+  C:003CH         LINE#         24
+  C:003CH         LINE#         25
+  C:003FH         LINE#         26
+  C:0043H         LINE#         27
+  C:0047H         LINE#         28
+  C:0049H         LINE#         29
+  C:005AH         LINE#         30
+  C:005AH         LINE#         31
+  C:006FH         LINE#         32
+  C:0075H         LINE#         33
+  C:0075H         LINE#         34
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/18/2021  10:03:53  PAGE 3
+
+
+  C:0084H         LINE#         35
+  C:0084H         LINE#         36
+  C:0084H         LINE#         37
+  C:0087H         LINE#         38
+  C:008BH         LINE#         39
+  C:008BH         LINE#         41
+  C:008BH         LINE#         42
+  C:009BH         LINE#         43
+  C:009BH         LINE#         44
+  C:009BH         LINE#         45
+  C:009EH         LINE#         46
+  C:00A2H         LINE#         47
+  C:00A2H         LINE#         48
+  C:00A7H         LINE#         49
+  C:00A9H         LINE#         50
+  C:00A9H         LINE#         51
+  -------         ENDPROC       KICH_HOAT
+  -------         ENDMOD        MACH_KICH_HOAT_NO_TU
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  C:00F7H         PUBLIC        main
+  -------         PROC          MAIN
+  C:00F7H         LINE#         4
+  C:00F7H         LINE#         5
+  C:00F7H         LINE#         6
+  C:00F7H         LINE#         7
+  C:00F7H         LINE#         8
+  C:00FAH         LINE#         9
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=11.0 xdata=0 code=252
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
