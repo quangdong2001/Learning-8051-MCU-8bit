@@ -1,0 +1,4 @@
+".\Objects\Giao_Tiep_Voi_Relay.obj",
+".\Objects\main.obj" 
+TO ".\Objects\Giao_Tiep_Voi_Relay" 
+PRINT(".\Listings\Giao_Tiep_Voi_Relay.m51") RAMSIZE(256) 
