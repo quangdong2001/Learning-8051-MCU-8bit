@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\Mach_Random" 
+PRINT(".\Listings\Mach_Random.m51") RAMSIZE(256) 
