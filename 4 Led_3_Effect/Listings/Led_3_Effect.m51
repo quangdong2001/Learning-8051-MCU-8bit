@@ -1,0 +1,188 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    05/17/2021  14:57:47  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\Led_3_Effect.obj TO .\Objects\Led_3_Effect PRINT (.\Listings\L
+>> ed_3_Effect.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\Led_3_Effect.obj (LED_3_EFFECT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\Led_3_Effect (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         _DATA_GROUP_
+            IDATA   000CH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     00B6H     UNIT         ?PR?LED_3_EFFECT?LED_3_EFFECT
+            CODE    00B9H     0020H     UNIT         ?PR?_DELAY?LED_3_EFFECT
+            CODE    00D9H     001FH     UNIT         ?PR?DELAY_TEST?LED_3_EFFECT
+            CODE    00F8H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0104H     0005H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Led_3_Effect (MAIN)
+
+
+SEGMENT                                 DATA_GROUP 
+  +--> CALLED SEGMENT                 START    LENGTH
+-----------------------------------------------------
+?C_C51STARTUP                         -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                         -----    -----
+  +--> ?PR?LED_3_EFFECT?LED_3_EFFECT
+
+?PR?LED_3_EFFECT?LED_3_EFFECT         0008H    0004H
+  +--> ?PR?DELAY_TEST?LED_3_EFFECT
+
+?PR?DELAY_TEST?LED_3_EFFECT           -----    -----
+  +--> ?PR?_DELAY?LED_3_EFFECT
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Led_3_Effect (MAIN)
+
+  VALUE           TYPE          NAME
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/17/2021  14:57:47  PAGE 2
+
+
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00B0H         PUBLIC        P3
+  C:0104H         PUBLIC        main
+  -------         PROC          MAIN
+  C:0104H         LINE#         3
+  C:0104H         LINE#         4
+  C:0104H         LINE#         5
+  C:0104H         LINE#         6
+  C:0104H         LINE#         7
+  C:0107H         LINE#         8
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        LED_3_EFFECT
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00B0H         PUBLIC        P3
+  B:00B0H.0       PUBLIC        START
+  B:00B0H.1       PUBLIC        NEXT
+  C:0003H         PUBLIC        Led_3_Effect
+  C:00B9H         PUBLIC        _Delay
+  C:00D9H         PUBLIC        Delay_Test
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:00B9H         LINE#         5
+  C:00B9H         LINE#         6
+  C:00B9H         LINE#         8
+  C:00C3H         LINE#         9
+  C:00C3H         LINE#         10
+  C:00D1H         LINE#         11
+  C:00D8H         LINE#         12
+  -------         ENDPROC       _DELAY
+  -------         PROC          DELAY_TEST
+  -------         DO            
+  D:0001H         SYMBOL        i
+  -------         ENDDO         
+  C:00D9H         LINE#         40
+  C:00D9H         LINE#         41
+  C:00D9H         LINE#         43
+  C:00E5H         LINE#         44
+  C:00E5H         LINE#         46
+  C:00ECH         LINE#         47
+  C:00EFH         LINE#         48
+  C:00F2H         LINE#         49
+  C:00F5H         LINE#         50
+  C:00F7H         LINE#         51
+  -------         ENDPROC       DELAY_TEST
+  -------         PROC          LED_3_EFFECT
+  -------         DO            
+  D:0008H         SYMBOL        i
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/17/2021  14:57:47  PAGE 3
+
+
+  D:0009H         SYMBOL        j
+  D:000AH         SYMBOL        k
+  -------         DO            
+  D:000BH         SYMBOL        flag
+  -------         ENDDO         
+  -------         ENDDO         
+  C:0003H         LINE#         54
+  C:0003H         LINE#         55
+  C:0003H         LINE#         57
+  C:0006H         LINE#         58
+  C:0006H         LINE#         59
+  C:0006H         LINE#         60
+  C:0009H         LINE#         61
+  C:0009H         LINE#         62
+  C:0009H         LINE#         63
+  C:0009H         LINE#         64
+  C:000CH         LINE#         65
+  C:000FH         LINE#         66
+  C:001CH         LINE#         67
+  C:001CH         LINE#         68
+  C:0022H         LINE#         69
+  C:0025H         LINE#         70
+  C:0029H         LINE#         71
+  C:002CH         LINE#         72
+  C:002FH         LINE#         73
+  C:003CH         LINE#         74
+  C:003CH         LINE#         75
+  C:003FH         LINE#         76
+  C:004CH         LINE#         77
+  C:004CH         LINE#         78
+  C:0052H         LINE#         79
+  C:0055H         LINE#         80
+  C:005BH         LINE#         81
+  C:005BH         LINE#         82
+  C:005EH         LINE#         83
+  C:0060H         LINE#         84
+  C:0060H         LINE#         85
+  C:0064H         LINE#         86
+  C:0068H         LINE#         87
+  C:0075H         LINE#         88
+  C:0075H         LINE#         89
+  C:007BH         LINE#         90
+  C:0081H         LINE#         91
+  C:0081H         LINE#         92
+  C:0084H         LINE#         93
+  C:0086H         LINE#         94
+  C:0086H         LINE#         95
+  C:008AH         LINE#         96
+  C:008EH         LINE#         97
+  C:0092H         LINE#         98
+  C:0095H         LINE#         99
+  C:0098H         LINE#         100
+  C:00A9H         LINE#         101
+  C:00A9H         LINE#         102
+  C:00B2H         LINE#         103
+  C:00B5H         LINE#         104
+  -------         ENDPROC       LED_3_EFFECT
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/17/2021  14:57:47  PAGE 4
+
+
+  -------         ENDMOD        LED_3_EFFECT
+
+Program Size: data=13.0 xdata=0 code=265
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
