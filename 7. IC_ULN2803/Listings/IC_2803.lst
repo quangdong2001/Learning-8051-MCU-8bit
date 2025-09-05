@@ -1,0 +1,43 @@
+C51 COMPILER V9.60.0.0   IC_2803                                                           05/16/2021 14:22:02 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE IC_2803
+OBJECT MODULE PLACED IN .\Objects\IC_2803.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE IC_2803.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\I
+                    -C_2803.lst) TABS(2) OBJECT(.\Objects\IC_2803.obj)
+
+line level    source
+
+   1          #include "IC_2803.h"
+   2          
+   3          void Delay(unsigned int t)
+   4          {
+   5   1        unsigned char i,j;
+   6   1        for(i = 0; i < t; i++)
+   7   1        {
+   8   2          for(j = 0; j < 123; j++);
+   9   2        }
+  10   1      }
+  11          
+  12          void IC_ULN2803()
+  13          {
+  14   1        if(ON_OFF == 0)
+  15   1        {
+  16   2          LED = !LED;
+  17   2        }
+  18   1        while(ON_OFF == 0);
+  19   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     37    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
