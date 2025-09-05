@@ -1,0 +1,74 @@
+C51 COMPILER V9.60.0.0   KIEM_TRA_DELAY                                                    05/13/2021 23:27:23 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE KIEM_TRA_DELAY
+OBJECT MODULE PLACED IN .\Objects\Kiem_Tra_Delay.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Kiem_Tra_Delay.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Lis
+                    -tings\Kiem_Tra_Delay.lst) TABS(2) OBJECT(.\Objects\Kiem_Tra_Delay.obj)
+
+line level    source
+
+   1          #include "Kiem_Tra_Delay.h"
+   2          
+   3          #if(FREQ_OSC == 12000000)
+   4          
+   5            void Delay(unsigned int t)
+   6            {
+   7   1          unsigned int i,j;
+   8   1          for(i = 0;i < t ;i++)
+   9   1          {
+  10   2              for(j = 0;j < 123 ;j++);
+  11   2          }
+  12   1        }
+  13          #else
+                #error "KHONG TON TAI HAM DELAY THOA MAN !!!"
+                
+              #endif
+  17            
+  18          
+  19            
+  20          void Kiem_Tra_Delay()
+  21          {
+  22   1        unsigned char i;
+  23   1        unsigned char flag;
+  24   1        LED = 0x00;
+  25   1        while(1)
+  26   1        {
+  27   2          if(START == 0)
+  28   2          {
+  29   3            while(1)
+  30   3            {
+  31   4              flag = 0;
+  32   4              LED = ~LED;
+  33   4              for(i = 0;i < 100;i++)
+  34   4              {
+  35   5                Delay(10);
+  36   5                if(STOP == 0)
+  37   5                {
+  38   6                  LED = 0x00;
+  39   6                  flag = 1;
+  40   6                  break;
+  41   6                } 
+  42   5              }
+  43   4              if(flag == 1)
+  44   4                break;
+  45   4            }
+  46   3          }
+  47   2        }
+  48   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     84    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V9.60.0.0   KIEM_TRA_DELAY                                                    05/13/2021 23:27:23 PAGE 2   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
