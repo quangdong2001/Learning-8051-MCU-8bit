@@ -1,0 +1,116 @@
+C51 COMPILER V9.60.0.0   MACH_DONG_HO                                                      05/19/2021 14:41:30 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MACH_DONG_HO
+OBJECT MODULE PLACED IN .\Objects\Mach_Dong_Ho.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Mach_Dong_Ho.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listi
+                    -ngs\Mach_Dong_Ho.lst) TABS(2) OBJECT(.\Objects\Mach_Dong_Ho.obj)
+
+line level    source
+
+   1          #include "Mach_Dong_Ho.h"
+   2          unsigned char code LED[] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
+   3          
+   4          void Sleep_ms(unsigned int t)
+   5          {
+   6   1        unsigned int a,b;
+   7   1        for(a = 0; a < t; a++)
+   8   1        {
+   9   2          for(b = 0; b < 123; b++);
+  10   2        }
+  11   1      }
+  12          
+  13          void Mach_Dong_Ho()
+  14          {
+  15   1        if(Button == 0)
+  16   1        {
+  17   2          unsigned char Hour, Minute, Second;
+  18   2          unsigned char Chuc,Don_Vi;
+  19   2          Hour = 0;
+  20   2          Minute= 0;
+  21   2          Second = 0;
+  22   2          while(1)
+  23   2          {
+  24   3            unsigned int i;
+  25   3            for(i = 0; i < 167; i++)
+  26   3            {
+  27   4            // HIEN THI GIO 
+  28   4            Chuc = Hour / 10;
+  29   4            Don_Vi = Hour % 10; 
+  30   4            // Hien Thi Hang Chuc 
+  31   4            LED_PORT = LED[Chuc];
+  32   4            A1 = 0;
+  33   4            Sleep_ms(1);
+  34   4            A1 = 1;
+  35   4            //Hien Thi Hang Don Vi 
+  36   4            LED_PORT = LED[Don_Vi];
+  37   4            B1 = 0;
+  38   4            Sleep_ms(1);
+  39   4            B1 = 1;
+  40   4            
+  41   4            // HIEN THI PHUT
+  42   4            Chuc = Minute / 10;
+  43   4            Don_Vi = Minute % 10;
+  44   4            //Hien Thi Hang Chuc 
+  45   4            LED_PORT = LED[Chuc];
+  46   4            A2 = 0;
+  47   4            Sleep_ms(1);
+  48   4            A2 = 1;
+  49   4            //Hien Thi Hang Don Vi 
+  50   4            LED_PORT = LED[Don_Vi];
+  51   4            B2 = 0;
+  52   4            Sleep_ms(1);
+  53   4            B2 = 1;
+  54   4            
+C51 COMPILER V9.60.0.0   MACH_DONG_HO                                                      05/19/2021 14:41:30 PAGE 2   
+
+  55   4            // HIEN THI GIAY 
+  56   4              
+  57   4            Chuc = Second / 10;
+  58   4            Don_Vi = Second % 10;
+  59   4            // Hien Thi Hang Chuc 
+  60   4            LED_PORT = LED[Chuc];
+  61   4            A3 = 0;
+  62   4            Sleep_ms(1);
+  63   4            A3 = 1;
+  64   4            
+  65   4            // Hien Thi Hang Don Vi 
+  66   4            LED_PORT = LED[Don_Vi];
+  67   4            B3 = 0;
+  68   4            Sleep_ms(1);
+  69   4            B3 = 1;
+  70   4            }
+  71   3            Second++;
+  72   3            if(Second == 60)
+  73   3            {
+  74   4              Second = 0;
+  75   4              Minute++;
+  76   4              if(Minute == 60)
+  77   4              {
+  78   5                Minute = 0;
+  79   5                Hour++;
+  80   5                if(Hour == 24)
+  81   5                {
+  82   6                  Hour = 0;
+  83   6                  Second = 0;
+  84   6                  Minute = 0;
+  85   6                }
+  86   5              }
+  87   4            }
+  88   3          }
+  89   2        }
+  90   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    257    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
