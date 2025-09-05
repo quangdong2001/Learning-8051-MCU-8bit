@@ -1,0 +1,4 @@
+".\Objects\Kiem_Tra_Delay.obj",
+".\Objects\main.obj" 
+TO ".\Objects\Kiem_Tra_Delay" 
+PRINT(".\Listings\Kiem_Tra_Delay.m51") RAMSIZE(256) 

@@ -1,0 +1,131 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    05/13/2021  23:27:23  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\Kiem_Tra_Delay.obj, .\Objects\main.obj TO .\Objects\Kiem_Tra_Delay PRINT (.\Listin
+>> gs\Kiem_Tra_Delay.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\Kiem_Tra_Delay.obj (KIEM_TRA_DELAY)
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\Kiem_Tra_Delay (KIEM_TRA_DELAY)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         _DATA_GROUP_
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0034H     UNIT         ?PR?KIEM_TRA_DELAY?KIEM_TRA_DELAY
+            CODE    0037H     0020H     UNIT         ?PR?_DELAY?KIEM_TRA_DELAY
+            CODE    0057H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0063H     0003H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Kiem_Tra_Delay (KIEM_TRA_DELAY)
+
+
+SEGMENT                                     DATA_GROUP 
+  +--> CALLED SEGMENT                     START    LENGTH
+---------------------------------------------------------
+?C_C51STARTUP                             -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                             -----    -----
+  +--> ?PR?KIEM_TRA_DELAY?KIEM_TRA_DELAY
+
+?PR?KIEM_TRA_DELAY?KIEM_TRA_DELAY         0008H    0001H
+  +--> ?PR?_DELAY?KIEM_TRA_DELAY
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Kiem_Tra_Delay (KIEM_TRA_DELAY)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        KIEM_TRA_DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/13/2021  23:27:23  PAGE 2
+
+
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  B:0090H.0       PUBLIC        START
+  B:0090H.1       PUBLIC        STOP
+  C:0003H         PUBLIC        Kiem_Tra_Delay
+  C:0037H         PUBLIC        _Delay
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0037H         LINE#         5
+  C:0037H         LINE#         6
+  C:0037H         LINE#         8
+  C:0041H         LINE#         9
+  C:0041H         LINE#         10
+  C:004FH         LINE#         11
+  C:0056H         LINE#         12
+  -------         ENDPROC       _DELAY
+  -------         PROC          KIEM_TRA_DELAY
+  -------         DO            
+  D:0001H         SYMBOL        i
+  D:0008H         SYMBOL        flag
+  -------         ENDDO         
+  C:0003H         LINE#         20
+  C:0003H         LINE#         21
+  C:0003H         LINE#         24
+  C:0006H         LINE#         25
+  C:0006H         LINE#         26
+  C:0006H         LINE#         27
+  C:0009H         LINE#         28
+  C:0009H         LINE#         29
+  C:0009H         LINE#         30
+  C:0009H         LINE#         31
+  C:000CH         LINE#         32
+  C:000FH         LINE#         33
+  C:001AH         LINE#         34
+  C:001AH         LINE#         35
+  C:0021H         LINE#         36
+  C:0024H         LINE#         37
+  C:0024H         LINE#         38
+  C:0027H         LINE#         39
+  C:002AH         LINE#         40
+  C:002CH         LINE#         41
+  C:002CH         LINE#         42
+  C:002FH         LINE#         43
+  C:0035H         LINE#         44
+  -------         ENDPROC       KIEM_TRA_DELAY
+  -------         ENDMOD        KIEM_TRA_DELAY
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  C:0063H         PUBLIC        main
+  -------         PROC          MAIN
+  C:0063H         LINE#         4
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/13/2021  23:27:23  PAGE 3
+
+
+  C:0063H         LINE#         5
+  C:0063H         LINE#         6
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=10.0 xdata=0 code=102
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
