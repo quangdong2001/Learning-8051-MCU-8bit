@@ -1,0 +1,4 @@
+".\Objects\main.obj",
+".\Objects\Led_3_Effect.obj" 
+TO ".\Objects\Led_3_Effect" 
+PRINT(".\Listings\Led_3_Effect.m51") RAMSIZE(256) 
