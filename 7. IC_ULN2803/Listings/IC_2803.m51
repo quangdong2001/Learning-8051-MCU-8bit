@@ -1,0 +1,112 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    05/16/2021  14:22:02  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\IC_2803.obj TO .\Objects\IC_2803 PRINT (.\Listings\IC_2803.m51
+>> ) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\IC_2803.obj (IC_2803)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\IC_2803 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     001CH     UNIT         ?PR?_DELAY?IC_2803
+            CODE    001FH     000CH     UNIT         ?C_C51STARTUP
+            CODE    002BH     0009H     UNIT         ?PR?IC_ULN2803?IC_2803
+            CODE    0034H     0005H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\IC_2803 (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?IC_ULN2803?IC_2803
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\IC_2803 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  C:0034H         PUBLIC        main
+  -------         PROC          MAIN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/16/2021  14:22:02  PAGE 2
+
+
+  C:0034H         LINE#         3
+  C:0034H         LINE#         4
+  C:0034H         LINE#         6
+  C:0034H         LINE#         7
+  C:0034H         LINE#         8
+  C:0037H         LINE#         9
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        IC_2803
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  C:002BH         PUBLIC        IC_ULN2803
+  B:0080H.0       PUBLIC        LED
+  B:00A0H.0       PUBLIC        ON_OFF
+  C:0003H         PUBLIC        _Delay
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:0003H         LINE#         3
+  C:0003H         LINE#         4
+  C:0003H         LINE#         6
+  C:000CH         LINE#         7
+  C:000CH         LINE#         8
+  C:001BH         LINE#         9
+  C:001EH         LINE#         10
+  -------         ENDPROC       _DELAY
+  -------         PROC          IC_ULN2803
+  C:002BH         LINE#         12
+  C:002BH         LINE#         13
+  C:002BH         LINE#         14
+  C:002EH         LINE#         15
+  C:002EH         LINE#         16
+  C:0030H         LINE#         17
+  C:0030H         LINE#         18
+  C:0033H         LINE#         19
+  -------         ENDPROC       IC_ULN2803
+  -------         ENDMOD        IC_2803
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?IC_2803
+
+Program Size: data=9.0 xdata=0 code=57
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
