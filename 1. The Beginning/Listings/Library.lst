@@ -1,0 +1,101 @@
+C51 COMPILER V9.60.0.0   LIBRARY                                                           05/12/2021 22:43:03 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LIBRARY
+OBJECT MODULE PLACED IN .\Objects\Library.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\Lib\Library.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Lis
+                    -tings\Library.lst) TABS(2) OBJECT(.\Objects\Library.obj)
+
+line level    source
+
+   1          #include "Library.h"
+   2          
+   3          
+   4          void ChopTatLed()
+   5          {
+   6   1        unsigned int i,j;
+   7   1        PORT_0 = 0x00;
+   8   1        for(i = 0; i < 8; i++)
+   9   1        {
+  10   2          Delay(300);
+  11   2          PORT_0 = PORT_0 << 1;
+  12   2          PORT_0 = PORT_0 | (1 << 0);
+  13   2        }
+  14   1        Delay(300);
+  15   1        PORT_0=0x00;
+  16   1        for(j = 0; j < 8; j++)
+  17   1        {
+  18   2          Delay(300);
+  19   2          PORT_0 = PORT_0 >> 1;
+  20   2          PORT_0 = PORT_0 | (1 << 7);
+  21   2        }
+  22   1        Delay(300);
+  23   1      }
+  24              
+  25          
+  26          
+  27          #if(FREQ_OSC == 12000000)
+  28            void Delay(unsigned int t)
+  29            {
+  30   1          unsigned int i,j;
+  31   1          for(i = 0; i < t; i++)
+  32   1          {
+  33   2              for(j = 0; j < 123; j++);
+  34   2          }
+  35   1        }
+  36          
+  37          #elif(FREQ_OSC == 11059200)
+                void Delay(unsigned int t)
+                {
+                  unsigned int i,j;
+                  for(i = 0; i < t; i++)
+                  {
+                    for(j = 0; j < 113; j++);
+                  } 
+                }   
+              
+              #elif(FREQ_OSC == 40000000)
+                  void Delay(unsigned int t)
+                  {
+                    unsigned int i,j;
+                    for(i = 0; i < t; i++)
+                    {
+                      for(j = 0; j < 620; j++);
+                    }
+C51 COMPILER V9.60.0.0   LIBRARY                                                           05/12/2021 22:43:03 PAGE 2   
+
+                  }
+                  
+              #elif(FREQ_OSC == 4000000)
+                  void Delay(unsigned int t)
+                  {
+                    unsigned int i,j;
+                    for(i = 0; i < t; i++)
+                    {
+                      for(j = 0; j < 40; j++);
+                    }
+                  }
+                  
+              #else 
+                  
+                  #error "Khong Ton Tai Ham Delay Nao Tuong Ung"
+                  
+              #endif
+  72              
+  73              
+  74          
+  75          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    118    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
