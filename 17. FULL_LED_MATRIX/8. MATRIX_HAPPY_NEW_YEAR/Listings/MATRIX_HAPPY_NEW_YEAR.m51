@@ -1,0 +1,156 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/06/2021  16:31:00  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\MATRIX_HAPPY_NEW_YEAR PRINT (.\Listings\MATRIX_HAPPY_NEW_YEA
+>> R.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\MATRIX_HAPPY_NEW_YEAR (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0006H     UNIT         _DATA_GROUP_
+            IDATA   000EH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0108H     UNIT         ?PR?HAPPY_NEW_YEAR?MAIN
+            CODE    010BH     00E8H     UNIT         ?CO?MAIN
+            CODE    01F3H     003CH     UNIT         ?PR?_SEND_DATA?MAIN
+            CODE    022FH     0020H     UNIT         ?PR?_SLEEP_MS?MAIN
+            CODE    024FH     000CH     UNIT         ?C_C51STARTUP
+            CODE    025BH     0003H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\MATRIX_HAPPY_NEW_YEAR (MAIN)
+
+
+SEGMENT                           DATA_GROUP 
+  +--> CALLED SEGMENT           START    LENGTH
+-----------------------------------------------
+?C_C51STARTUP                   -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                   -----    -----
+  +--> ?PR?HAPPY_NEW_YEAR?MAIN
+
+?PR?HAPPY_NEW_YEAR?MAIN         0008H    0006H
+  +--> ?CO?MAIN
+  +--> ?PR?_SEND_DATA?MAIN
+  +--> ?PR?_SLEEP_MS?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\MATRIX_HAPPY_NEW_YEAR (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/06/2021  16:31:00  PAGE 2
+
+
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  B:00A0H.0       PUBLIC        SH_CP
+  B:00A0H.1       PUBLIC        DS
+  B:00A0H.3       PUBLIC        ST_CP
+  C:025BH         PUBLIC        main
+  C:01F9H         PUBLIC        _SEND_DATA
+  C:010BH         PUBLIC        Cot
+  C:022FH         PUBLIC        _Sleep_ms
+  C:0003H         PUBLIC        HAPPY_NEW_YEAR
+  C:0113H         PUBLIC        Data
+  -------         PROC          _SLEEP_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:022FH         LINE#         41
+  C:022FH         LINE#         42
+  C:022FH         LINE#         44
+  C:0239H         LINE#         45
+  C:0239H         LINE#         46
+  C:0247H         LINE#         47
+  C:024EH         LINE#         48
+  -------         ENDPROC       _SLEEP_MS
+  C:01F3H         SYMBOL        L?0033
+  -------         PROC          L?0032
+  -------         ENDPROC       L?0032
+  C:01F3H         SYMBOL        L?0033
+  -------         PROC          _SEND_DATA
+  D:0005H         SYMBOL        a
+  -------         DO            
+  D:0003H         SYMBOL        i
+  -------         ENDDO         
+  C:01F9H         LINE#         51
+  C:01FBH         LINE#         52
+  C:01FBH         LINE#         54
+  C:0207H         LINE#         55
+  C:0207H         LINE#         56
+  C:0223H         LINE#         58
+  C:0225H         LINE#         59
+  C:0227H         LINE#         60
+  C:022AH         LINE#         61
+  C:022CH         LINE#         62
+  C:022EH         LINE#         63
+  -------         ENDPROC       _SEND_DATA
+  -------         PROC          HAPPY_NEW_YEAR
+  -------         DO            
+  D:0008H         SYMBOL        i
+  D:000AH         SYMBOL        j
+  D:000CH         SYMBOL        k
+  -------         ENDDO         
+  C:0003H         LINE#         66
+  C:0003H         LINE#         67
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/06/2021  16:31:00  PAGE 3
+
+
+  C:0003H         LINE#         68
+  C:0003H         LINE#         69
+  C:0003H         LINE#         71
+  C:0008H         LINE#         72
+  C:0008H         LINE#         73
+  C:000DH         LINE#         74
+  C:000DH         LINE#         75
+  C:0012H         LINE#         76
+  C:0012H         LINE#         77
+  C:0026H         LINE#         78
+  C:003AH         LINE#         79
+  C:004EH         LINE#         80
+  C:0062H         LINE#         81
+  C:0076H         LINE#         82
+  C:008AH         LINE#         83
+  C:009EH         LINE#         84
+  C:00B2H         LINE#         87
+  C:00C2H         LINE#         88
+  C:00C9H         LINE#         89
+  C:00CCH         LINE#         90
+  C:00E0H         LINE#         91
+  C:00F4H         LINE#         92
+  -------         ENDPROC       HAPPY_NEW_YEAR
+  -------         PROC          MAIN
+  C:025BH         LINE#         97
+  C:025BH         LINE#         98
+  C:025BH         LINE#         99
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=15.0 xdata=0 code=606
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

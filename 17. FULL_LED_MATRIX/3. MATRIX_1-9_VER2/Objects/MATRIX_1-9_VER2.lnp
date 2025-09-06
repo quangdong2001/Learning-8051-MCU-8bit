@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\MATRIX_1-9_VER2" 
+PRINT(".\Listings\MATRIX_1-9_VER2.m51") RAMSIZE(256) 
