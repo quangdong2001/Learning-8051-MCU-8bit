@@ -1,0 +1,175 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    05/22/2021  15:30:15  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\Ma_Tran_Phim.obj TO .\Objects\Ma_Tran_Phim PRINT (.\Listings\M
+>> a_Tran_Phim.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\Ma_Tran_Phim.obj (MA_TRAN_PHIM)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\Ma_Tran_Phim (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0062H     UNIT         ?PR?KEY_BOARD?MA_TRAN_PHIM
+            CODE    0065H     0032H     UNIT         ?PR?BOARD?MA_TRAN_PHIM
+            CODE    0097H     0020H     UNIT         ?PR?_SLEEP_MS?MA_TRAN_PHIM
+            CODE    00B7H     000CH     UNIT         ?C_C51STARTUP
+            CODE    00C3H     000AH     UNIT         ?CO?MA_TRAN_PHIM
+            CODE    00CDH     0003H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Ma_Tran_Phim (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?BOARD?MA_TRAN_PHIM
+
+?PR?BOARD?MA_TRAN_PHIM
+  +--> ?PR?KEY_BOARD?MA_TRAN_PHIM
+  +--> ?CO?MA_TRAN_PHIM
+  +--> ?PR?_SLEEP_MS?MA_TRAN_PHIM
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Ma_Tran_Phim (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/22/2021  15:30:15  PAGE 2
+
+
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  C:00CDH         PUBLIC        main
+  -------         PROC          MAIN
+  C:00CDH         LINE#         3
+  C:00CDH         LINE#         4
+  C:00CDH         LINE#         5
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        MA_TRAN_PHIM
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  B:00B0H.0       PUBLIC        LED1
+  B:00B0H.1       PUBLIC        LED2
+  C:0097H         PUBLIC        _Sleep_ms
+  B:0090H.0       PUBLIC        Col1
+  B:0090H.1       PUBLIC        Col2
+  B:0090H.2       PUBLIC        Col3
+  B:0090H.3       PUBLIC        Col4
+  C:00C3H         PUBLIC        LED
+  C:0065H         PUBLIC        Board
+  B:0090H.4       PUBLIC        Row1
+  B:0090H.5       PUBLIC        Row2
+  B:0090H.6       PUBLIC        Row3
+  B:0090H.7       PUBLIC        Row4
+  C:0003H         PUBLIC        Key_Board
+  -------         PROC          _SLEEP_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        a
+  D:0002H         SYMBOL        b
+  -------         ENDDO         
+  C:0097H         LINE#         6
+  C:0097H         LINE#         7
+  C:0097H         LINE#         9
+  C:00A1H         LINE#         10
+  C:00A1H         LINE#         11
+  C:00AFH         LINE#         12
+  C:00B6H         LINE#         13
+  -------         ENDPROC       _SLEEP_MS
+  -------         PROC          KEY_BOARD
+  -------         DO            
+  D:0007H         SYMBOL        key
+  -------         ENDDO         
+  C:0003H         LINE#         15
+  C:0003H         LINE#         16
+  C:0003H         LINE#         17
+  C:0005H         LINE#         20
+  C:0007H         LINE#         21
+  C:000BH         LINE#         22
+  C:0010H         LINE#         23
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/22/2021  15:30:15  PAGE 3
+
+
+  C:0015H         LINE#         24
+  C:001AH         LINE#         25
+  C:001CH         LINE#         28
+  C:001EH         LINE#         29
+  C:0023H         LINE#         30
+  C:0028H         LINE#         31
+  C:002DH         LINE#         32
+  C:0032H         LINE#         33
+  C:0034H         LINE#         36
+  C:0036H         LINE#         37
+  C:003BH         LINE#         38
+  C:0040H         LINE#         39
+  C:0045H         LINE#         40
+  C:004AH         LINE#         41
+  C:004CH         LINE#         44
+  C:004EH         LINE#         45
+  C:0053H         LINE#         46
+  C:0058H         LINE#         47
+  C:005DH         LINE#         48
+  C:0062H         LINE#         49
+  C:0064H         LINE#         51
+  C:0064H         LINE#         52
+  -------         ENDPROC       KEY_BOARD
+  -------         PROC          BOARD
+  -------         DO            
+  D:0007H         SYMBOL        key
+  D:0001H         SYMBOL        tmp
+  -------         ENDDO         
+  C:0065H         LINE#         56
+  C:0065H         LINE#         57
+  C:0065H         LINE#         59
+  C:0065H         LINE#         60
+  C:0065H         LINE#         61
+  C:0068H         LINE#         62
+  C:006BH         LINE#         63
+  C:006BH         LINE#         64
+  C:006CH         LINE#         65
+  C:006CH         LINE#         67
+  C:0077H         LINE#         68
+  C:0079H         LINE#         69
+  C:0080H         LINE#         70
+  C:0082H         LINE#         72
+  C:008CH         LINE#         73
+  C:008EH         LINE#         74
+  C:0093H         LINE#         75
+  C:0095H         LINE#         76
+  -------         ENDPROC       BOARD
+  -------         ENDMOD        MA_TRAN_PHIM
+
+Program Size: data=9.0 xdata=0 code=208
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
