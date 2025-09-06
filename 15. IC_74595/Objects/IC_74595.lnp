@@ -1,0 +1,4 @@
+".\Objects\IC_74595.obj",
+".\Objects\main.obj" 
+TO ".\Objects\IC_74595" 
+PRINT(".\Listings\IC_74595.m51") RAMSIZE(256) 

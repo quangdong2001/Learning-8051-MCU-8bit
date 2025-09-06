@@ -1,0 +1,159 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    05/27/2021  15:57:27  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\IC_74595_DEM_100.obj, .\Objects\main.obj TO .\Objects\IC_74595_DEM_100 PRINT (.\Li
+>> stings\IC_74595_DEM_100.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\IC_74595_DEM_100.obj (IC_74595_DEM_100)
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ILDPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\IC_74595_DEM_100 (IC_74595_DEM_100)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000AH     UNIT         _DATA_GROUP_
+            IDATA   0012H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0076H     UNIT         ?PR?_TRANSMIT?IC_74595_DEM_100
+            CODE    0079H     0042H     UNIT         ?PR?IC_74595_DEM_100?IC_74595_DEM_100
+            CODE    00BBH     002BH     UNIT         ?C?LIB_CODE
+            CODE    00E6H     0020H     UNIT         ?PR?_SLEEP_MS?IC_74595_DEM_100
+            CODE    0106H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0112H     000AH     UNIT         ?CO?IC_74595_DEM_100
+            CODE    011CH     0005H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\IC_74595_DEM_100 (IC_74595_DEM_100)
+
+
+SEGMENT                                         DATA_GROUP 
+  +--> CALLED SEGMENT                         START    LENGTH
+-------------------------------------------------------------
+?C_C51STARTUP                                 -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                                 -----    -----
+  +--> ?PR?IC_74595_DEM_100?IC_74595_DEM_100
+
+?PR?IC_74595_DEM_100?IC_74595_DEM_100         0008H    0005H
+  +--> ?CO?IC_74595_DEM_100
+  +--> ?PR?_TRANSMIT?IC_74595_DEM_100
+  +--> ?PR?_SLEEP_MS?IC_74595_DEM_100
+
+?PR?_TRANSMIT?IC_74595_DEM_100                000DH    0005H
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/27/2021  15:57:27  PAGE 2
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\IC_74595_DEM_100 (IC_74595_DEM_100)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        IC_74595_DEM_100
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  B:0080H.0       PUBLIC        SH_CP
+  B:0080H.1       PUBLIC        DS
+  B:0080H.3       PUBLIC        ST_CP
+  C:0079H         PUBLIC        IC_74595_DEM_100
+  C:00E6H         PUBLIC        _Sleep_ms
+  C:0112H         PUBLIC        LED
+  C:0003H         PUBLIC        _Transmit
+  -------         PROC          _TRANSMIT
+  D:000DH         SYMBOL        p
+  D:0010H         SYMBOL        size
+  -------         DO            
+  D:0005H         SYMBOL        b
+  D:0011H         SYMBOL        i
+  D:0003H         SYMBOL        j
+  -------         ENDDO         
+  C:0003H         LINE#         4
+  C:000BH         LINE#         5
+  C:000BH         LINE#         8
+  C:0015H         LINE#         9
+  C:0015H         LINE#         10
+  C:0041H         LINE#         11
+  C:004DH         LINE#         12
+  C:004DH         LINE#         13
+  C:0069H         LINE#         15
+  C:006BH         LINE#         16
+  C:006DH         LINE#         17
+  C:0070H         LINE#         18
+  C:0074H         LINE#         19
+  C:0076H         LINE#         20
+  C:0078H         LINE#         21
+  -------         ENDPROC       _TRANSMIT
+  -------         PROC          IC_74595_DEM_100
+  -------         DO            
+  D:0008H         SYMBOL        i
+  D:0009H         SYMBOL        arr
+  -------         ENDDO         
+  C:0079H         LINE#         23
+  C:0079H         LINE#         24
+  C:0079H         LINE#         27
+  C:0087H         LINE#         28
+  C:0087H         LINE#         29
+  C:0096H         LINE#         30
+  C:00A4H         LINE#         32
+  C:00AFH         LINE#         33
+  C:00B6H         LINE#         34
+  C:00BAH         LINE#         35
+  -------         ENDPROC       IC_74595_DEM_100
+  -------         PROC          _SLEEP_MS
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/27/2021  15:57:27  PAGE 3
+
+
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        a
+  D:0002H         SYMBOL        b
+  -------         ENDDO         
+  C:00E6H         LINE#         39
+  C:00E6H         LINE#         40
+  C:00E6H         LINE#         42
+  C:00F0H         LINE#         43
+  C:00F0H         LINE#         44
+  C:00FEH         LINE#         45
+  C:0105H         LINE#         46
+  -------         ENDPROC       _SLEEP_MS
+  -------         ENDMOD        IC_74595_DEM_100
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  C:011CH         PUBLIC        main
+  -------         PROC          MAIN
+  C:011CH         LINE#         4
+  C:011CH         LINE#         5
+  C:011CH         LINE#         7
+  C:011CH         LINE#         9
+  C:011CH         LINE#         10
+  C:011FH         LINE#         11
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?ILDPTR
+  C:00BBH         PUBLIC        ?C?ILDPTR
+  -------         ENDMOD        ?C?ILDPTR
+
+Program Size: data=19.0 xdata=0 code=289
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
