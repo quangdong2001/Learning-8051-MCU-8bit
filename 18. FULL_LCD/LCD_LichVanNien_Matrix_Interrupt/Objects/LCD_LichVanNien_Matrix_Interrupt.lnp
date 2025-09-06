@@ -1,0 +1,4 @@
+".\Objects\LCD_LichVanNien_Matrix_Interrupt.obj",
+".\Objects\main.obj" 
+TO ".\Objects\LCD_LichVanNien_Matrix_Interrupt" 
+PRINT(".\Listings\LCD_LichVanNien_Matrix_Interrupt.m51") RAMSIZE(256) 

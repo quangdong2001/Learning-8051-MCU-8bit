@@ -1,0 +1,253 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              08/03/2021 20:30:46 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          
+   3          // define LCD 
+   4          #define Data P2
+   5          sbit RS = P0^0;
+   6          sbit E = P0^1;
+   7          
+   8          // define DS1307
+   9          sbit SDA = P1^0;
+  10          sbit SCL = P1^1;
+  11          
+  12          #define SEC 0x00
+  13          #define MIN 0x01
+  14          #define HOUR 0x02
+  15          #define DAY 0x03
+  16          #define DATE 0x04
+  17          #define MONTH 0x05
+  18          #define YEAR 0x06
+  19          
+  20          unsigned char * code Day[] = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
+  21          
+  22          
+  23          // FUNCTION LCD 
+  24          void Sleep_ms(unsigned int t)
+  25          {
+  26   1        unsigned int i,j;
+  27   1        for(i = 0; i < t; i++)
+  28   1        {
+  29   2          for(j = 0; j < 123; j++);
+  30   2        }
+  31   1      }
+  32          // Gui Lenh 
+  33          void Send_Cmd(unsigned char a)
+  34          {
+  35   1        RS = 0;
+  36   1        Data = a; 
+  37   1        E = 1;
+  38   1        E = 0;
+  39   1        if(a <= 0x02)
+  40   1          Sleep_ms(2);
+  41   1        else
+  42   1          Sleep_ms(1);
+  43   1      }
+  44            
+  45          // Gui 1 ki tu 
+  46          void Send_Data(unsigned char a)
+  47          {
+  48   1        RS = 1;
+  49   1        Data = a;
+  50   1        E = 1;
+  51   1        E = 0;
+  52   1        Sleep_ms(1);
+  53   1      }
+  54          
+C51 COMPILER V9.60.0.0   MAIN                                                              08/03/2021 20:30:46 PAGE 2   
+
+  55          // Gui 1 chuoi ki tu 
+  56          void Send_String(unsigned char *str)
+  57          {
+  58   1        unsigned char i = 0;
+  59   1        while(str[i] != 0)
+  60   1        {
+  61   2          Send_Data(str[i]);
+  62   2          i++;
+  63   2        }
+  64   1      }
+  65          
+  66          // Gui ki tu ra hang row cot col 
+  67          void Send_1(unsigned char row, unsigned char col, unsigned char Data)
+  68          {
+  69   1        unsigned char Locate;
+  70   1        Locate = (row == 1? 0x80:0xC0) + col - 1;
+  71   1        Send_Cmd(Locate);
+  72   1        Send_Data(Data);
+  73   1        
+  74   1      }
+  75          
+  76          
+  77          // Gui chuoi ki tu ra hang row cot col 
+  78          void Send_2(unsigned char row, unsigned char col, unsigned char* Data)
+  79          {
+  80   1        unsigned char Locate;
+  81   1        Locate = (row == 1? 0x80:0xC0) + col - 1;
+  82   1        Send_Cmd(Locate);
+  83   1        Send_String(Data);
+  84   1      
+  85   1      }
+  86          void Initialize_LCD()
+  87          {
+  88   1        Sleep_ms(100);
+  89   1        Send_Cmd(0x30);
+  90   1        Sleep_ms(5);
+  91   1        Send_Cmd(0x30);
+  92   1        Sleep_ms(1);
+  93   1        Send_Cmd(0x30);
+  94   1        Send_Cmd(0x38);
+  95   1        Send_Cmd(0x01);
+  96   1        Sleep_ms(2);
+  97   1        Send_Cmd(0x0C);
+  98   1        Sleep_ms(1);
+  99   1      }
+ 100          
+ 101          
+ 102          
+ 103          // FUNCTION DS1307
+ 104          void Start()
+ 105          {
+ 106   1        SCL = 1;
+ 107   1        SDA = 1;
+ 108   1        SDA = 0;
+ 109   1        SCL = 0;
+ 110   1      }
+ 111          
+ 112          void Stop()
+ 113          {
+ 114   1        SCL = 1;
+ 115   1        SDA = 0;
+ 116   1        SDA = 1;
+C51 COMPILER V9.60.0.0   MAIN                                                              08/03/2021 20:30:46 PAGE 3   
+
+ 117   1        SCL = 1;
+ 118   1      }
+ 119          
+ 120          void Write(unsigned char Data)
+ 121          {
+ 122   1        unsigned char i;
+ 123   1        for(i = 0; i < 8; i++)
+ 124   1        {
+ 125   2          SDA = Data & (0x80 >> i);
+ 126   2          SCL = 1;
+ 127   2          SCL = 0;
+ 128   2        }
+ 129   1        SCL = 1;
+ 130   1        SCL = 0;
+ 131   1      }
+ 132          
+ 133          unsigned char Read(void)
+ 134          {
+ 135   1        bit _rdata;
+ 136   1        unsigned char i, Data;
+ 137   1        Data = 0x00; 
+ 138   1        for(i = 0; i < 8; i++)
+ 139   1        {
+ 140   2          SCL = 1;
+ 141   2          _rdata = SDA;
+ 142   2          Data <<= 1;
+ 143   2          Data |= _rdata;
+ 144   2          SCL = 0;
+ 145   2        }
+ 146   1        return Data;
+ 147   1      }
+ 148          
+ 149          void DS1307_Write(unsigned char Address, unsigned char Data)
+ 150          {
+ 151   1        unsigned char _rdata;
+ 152   1        _rdata = (Data / 10)*16 + (Data % 10);
+ 153   1        Start();
+ 154   1        Write(0xD0);
+ 155   1        Write(Address);
+ 156   1        Write(_rdata);
+ 157   1        Stop();
+ 158   1      }
+ 159          
+ 160          unsigned char DS1307_Read(unsigned char Address)
+ 161          {
+ 162   1          unsigned char Data;
+ 163   1          Start();
+ 164   1          Write(0xD0);
+ 165   1          Write(Address);
+ 166   1          Start();
+ 167   1          Write(0xD1);
+ 168   1          Data = Read();
+ 169   1          Stop();
+ 170   1          Data = (Data/16)*10 + (Data%16);
+ 171   1        return Data;
+ 172   1      }
+ 173          
+ 174          
+ 175          
+ 176          void main()
+ 177          {
+ 178   1        
+C51 COMPILER V9.60.0.0   MAIN                                                              08/03/2021 20:30:46 PAGE 4   
+
+ 179   1        unsigned char _Second, _Minute, _Hour, Old_Second, _Day, _Date, _Month, _Year;
+ 180   1        Initialize_LCD();
+ 181   1        DS1307_Write(0x00, 0);
+ 182   1        DS1307_Write(0x01, 19);
+ 183   1        DS1307_Write(0x02, 14);
+ 184   1        DS1307_Write(0x03, 1);
+ 185   1        DS1307_Write(0x04, 11);
+ 186   1        DS1307_Write(0x05, 7);
+ 187   1        DS1307_Write(0x06, 21);
+ 188   1        
+ 189   1        while(1)
+ 190   1        {
+ 191   2          _Second = DS1307_Read(SEC);
+ 192   2          _Minute = DS1307_Read(MIN);
+ 193   2          _Hour = DS1307_Read(HOUR);
+ 194   2          _Day = DS1307_Read(DAY);
+ 195   2          _Date = DS1307_Read(DATE);
+ 196   2          _Month = DS1307_Read(MONTH);
+ 197   2          _Year = DS1307_Read(YEAR);
+ 198   2          if(Old_Second != _Second)
+ 199   2            {
+ 200   3              Old_Second = _Second;
+ 201   3              
+ 202   3              Send_2(1, 1, "TIME ");
+ 203   3              Send_1(1, 7, _Hour / 10 + 0x30);
+ 204   3              Send_Data(_Hour % 10 + 0x30);
+ 205   3              Send_Data(':');
+ 206   3              Send_Data(_Minute / 10 + 0x30);
+ 207   3              Send_Data(_Minute % 10 + 0x30);
+ 208   3              Send_Data(':');
+ 209   3              Send_Data(_Second / 10 + 0x30);
+ 210   3              Send_Data(_Second % 10 + 0x30);
+ 211   3              Send_2(2, 1, Day[_Day - 1]);
+ 212   3              Send_String("  ");
+ 213   3              Send_Data((_Date / 10) + 0x30);
+ 214   3              Send_Data((_Date % 10) + 0x30);
+ 215   3              Send_Data('/');
+ 216   3              Send_Data((_Month / 10) + 0x30);
+ 217   3              Send_Data((_Month % 10) + 0x30);
+ 218   3              Send_String("/20");
+ 219   3              Send_Data((_Year / 10) + 0x30);
+ 220   3              Send_Data((_Year % 10) + 0x30);
+ 221   3            }
+ 222   2        }
+ 223   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    711    ----
+   CONSTANT SIZE    =     62    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      15
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

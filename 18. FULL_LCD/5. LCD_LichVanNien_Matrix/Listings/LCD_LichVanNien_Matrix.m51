@@ -1,0 +1,431 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/30/2021  01:57:02  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\LichVanNien_LedMatrix.obj TO .\Objects\LCD_LichVanNien_Matrix 
+>> PRINT (.\Listings\LCD_LichVanNien_Matrix.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\LichVanNien_LedMatrix.obj (LICHVANNIEN_LEDMATRIX)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\LCD_LichVanNien_Matrix (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0005H     UNIT         _DATA_GROUP_
+                    000DH     0013H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         _BIT_GROUP_
+                    0020H.1   0000H.7                *** GAP ***
+            DATA    0021H     0030H     UNIT         ?DT?LICHVANNIEN_LEDMATRIX
+            IDATA   0051H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     00C3H     UNIT         ?PR?PERPOSE?LICHVANNIEN_LEDMATRIX
+            CODE    00C6H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0152H     0044H     UNIT         ?CO?LICHVANNIEN_LEDMATRIX
+            CODE    0196H     0040H     UNIT         ?PR?_WRITE?LICHVANNIEN_LEDMATRIX
+            CODE    01D6H     003BH     UNIT         ?PR?_SEND_DATA?LICHVANNIEN_LEDMATRIX
+            CODE    0211H     0034H     UNIT         ?C_INITSEG
+            CODE    0245H     0031H     UNIT         ?PR?_CONVERT_GIO_CHUC?LICHVANNIEN_LEDMATRIX
+            CODE    0276H     0031H     UNIT         ?PR?_CONVERT_GIO_DONVI?LICHVANNIEN_LEDMATRIX
+            CODE    02A7H     0031H     UNIT         ?PR?_CONVERT_PHUT_CHUC?LICHVANNIEN_LEDMATRIX
+            CODE    02D8H     0031H     UNIT         ?PR?_CONVERT_PHUT_DONVI?LICHVANNIEN_LEDMATRIX
+            CODE    0309H     0031H     UNIT         ?PR?_CONVERT_GIAY_CHUC?LICHVANNIEN_LEDMATRIX
+            CODE    033AH     0031H     UNIT         ?PR?_CONVERT_GIAY_DONVI?LICHVANNIEN_LEDMATRIX
+            CODE    036BH     0023H     UNIT         ?PR?READ?LICHVANNIEN_LEDMATRIX
+            CODE    038EH     0022H     UNIT         ?PR?_READ_DS1307?LICHVANNIEN_LEDMATRIX
+            CODE    03B0H     0020H     UNIT         ?PR?_SLEEP_MS?LICHVANNIEN_LEDMATRIX
+            CODE    03D0H     001FH     UNIT         ?PR?_WRITE_DS1307?LICHVANNIEN_LEDMATRIX
+            CODE    03EFH     0009H     UNIT         ?PR?START?LICHVANNIEN_LEDMATRIX
+            CODE    03F8H     0007H     UNIT         ?PR?STOP?LICHVANNIEN_LEDMATRIX
+            CODE    03FFH     0003H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\LCD_LichVanNien_Matrix (MAIN)
+
+
+SEGMENT                                             BIT_GROUP          DATA_GROUP 
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/30/2021  01:57:02  PAGE 2
+
+
+  +--> CALLED SEGMENT                            START    LENGTH     START    LENGTH
+------------------------------------------------------------------------------------
+?C_C51STARTUP                                    -----    -----      -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                                    -----    -----      -----    -----
+  +--> ?PR?PERPOSE?LICHVANNIEN_LEDMATRIX
+
+?PR?PERPOSE?LICHVANNIEN_LEDMATRIX                -----    -----      0008H    0005H
+  +--> ?PR?_READ_DS1307?LICHVANNIEN_LEDMATRIX
+  +--> ?PR?_CONVERT_GIO_CHUC?LICHVANNIEN_LED...
+  +--> ?PR?_CONVERT_GIO_DONVI?LICHVANNIEN_LE...
+  +--> ?PR?_CONVERT_PHUT_CHUC?LICHVANNIEN_LE...
+  +--> ?PR?_CONVERT_PHUT_DONVI?LICHVANNIEN_L...
+  +--> ?PR?_CONVERT_GIAY_CHUC?LICHVANNIEN_LE...
+  +--> ?PR?_CONVERT_GIAY_DONVI?LICHVANNIEN_L...
+  +--> ?PR?_SEND_DATA?LICHVANNIEN_LEDMATRIX
+  +--> ?CO?LICHVANNIEN_LEDMATRIX
+  +--> ?PR?_SLEEP_MS?LICHVANNIEN_LEDMATRIX
+
+?PR?_READ_DS1307?LICHVANNIEN_LEDMATRIX           -----    -----      -----    -----
+  +--> ?PR?_WRITE?LICHVANNIEN_LEDMATRIX
+  +--> ?PR?START?LICHVANNIEN_LEDMATRIX
+  +--> ?PR?READ?LICHVANNIEN_LEDMATRIX
+  +--> ?PR?STOP?LICHVANNIEN_LEDMATRIX
+
+?PR?_WRITE?LICHVANNIEN_LEDMATRIX                 -----    -----      -----    -----
+  +--> ?PR?START?LICHVANNIEN_LEDMATRIX
+
+?PR?READ?LICHVANNIEN_LEDMATRIX                   0020H.0  0000H.1    -----    -----
+
+?PR?_CONVERT_GIO_CHUC?LICHVANNIEN_LED...         -----    -----      -----    -----
+  +--> ?CO?LICHVANNIEN_LEDMATRIX
+
+?PR?_CONVERT_GIO_DONVI?LICHVANNIEN_LE...         -----    -----      -----    -----
+  +--> ?CO?LICHVANNIEN_LEDMATRIX
+
+?PR?_CONVERT_PHUT_CHUC?LICHVANNIEN_LE...         -----    -----      -----    -----
+  +--> ?CO?LICHVANNIEN_LEDMATRIX
+
+?PR?_CONVERT_PHUT_DONVI?LICHVANNIEN_L...         -----    -----      -----    -----
+  +--> ?CO?LICHVANNIEN_LEDMATRIX
+
+?PR?_CONVERT_GIAY_CHUC?LICHVANNIEN_LE...         -----    -----      -----    -----
+  +--> ?CO?LICHVANNIEN_LEDMATRIX
+
+?PR?_CONVERT_GIAY_DONVI?LICHVANNIEN_L...         -----    -----      -----    -----
+  +--> ?CO?LICHVANNIEN_LEDMATRIX
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\LCD_LichVanNien_Matrix (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/30/2021  01:57:02  PAGE 3
+
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  C:03FFH         PUBLIC        main
+  -------         PROC          MAIN
+  C:03FFH         LINE#         4
+  C:03FFH         LINE#         5
+  C:03FFH         LINE#         6
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        LICHVANNIEN_LEDMATRIX
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  C:01A0H         PUBLIC        _Write
+  B:00B0H.0       PUBLIC        SH_CP
+  C:03EFH         PUBLIC        Start
+  B:00B0H.1       PUBLIC        DS
+  B:00B0H.3       PUBLIC        ST_CP
+  C:0152H         PUBLIC        Cot
+  C:03F8H         PUBLIC        Stop
+  C:033AH         PUBLIC        _Convert_Giay_Donvi
+  C:0309H         PUBLIC        _Convert_Giay_Chuc
+  C:03B0H         PUBLIC        _Sleep_ms
+  C:038EH         PUBLIC        _Read_DS1307
+  C:0276H         PUBLIC        _Convert_Gio_Donvi
+  C:0245H         PUBLIC        _Convert_Gio_Chuc
+  C:02D8H         PUBLIC        _Convert_Phut_Donvi
+  C:02A7H         PUBLIC        _Convert_Phut_Chuc
+  C:03D0H         PUBLIC        _Write_DS1307
+  B:0090H.0       PUBLIC        SDA
+  C:0003H         PUBLIC        Perpose
+  B:0090H.1       PUBLIC        SCL
+  C:01DBH         PUBLIC        _Send_Data
+  C:015AH         PUBLIC        Number
+  D:0021H         PUBLIC        Data
+  C:036BH         PUBLIC        Read
+  -------         PROC          _CONVERT_GIO_CHUC
+  D:0007H         SYMBOL        a
+  -------         DO            
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:0245H         LINE#         44
+  C:0245H         LINE#         45
+  C:0245H         LINE#         47
+  C:0251H         LINE#         48
+  C:0251H         LINE#         49
+  C:0272H         LINE#         50
+  C:0275H         LINE#         51
+  -------         ENDPROC       _CONVERT_GIO_CHUC
+  -------         PROC          _CONVERT_GIO_DONVI
+  D:0007H         SYMBOL        a
+  -------         DO            
+  D:0006H         SYMBOL        i
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/30/2021  01:57:02  PAGE 4
+
+
+  -------         ENDDO         
+  C:0276H         LINE#         53
+  C:0276H         LINE#         54
+  C:0276H         LINE#         56
+  C:0282H         LINE#         57
+  C:0282H         LINE#         58
+  C:02A3H         LINE#         59
+  C:02A6H         LINE#         60
+  -------         ENDPROC       _CONVERT_GIO_DONVI
+  -------         PROC          _CONVERT_PHUT_CHUC
+  D:0007H         SYMBOL        a
+  -------         DO            
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:02A7H         LINE#         62
+  C:02A7H         LINE#         63
+  C:02A7H         LINE#         65
+  C:02B3H         LINE#         66
+  C:02B3H         LINE#         67
+  C:02D4H         LINE#         68
+  C:02D7H         LINE#         69
+  -------         ENDPROC       _CONVERT_PHUT_CHUC
+  -------         PROC          _CONVERT_PHUT_DONVI
+  D:0007H         SYMBOL        a
+  -------         DO            
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:02D8H         LINE#         71
+  C:02D8H         LINE#         72
+  C:02D8H         LINE#         74
+  C:02E4H         LINE#         75
+  C:02E4H         LINE#         76
+  C:0305H         LINE#         77
+  C:0308H         LINE#         78
+  -------         ENDPROC       _CONVERT_PHUT_DONVI
+  -------         PROC          _CONVERT_GIAY_CHUC
+  D:0007H         SYMBOL        a
+  -------         DO            
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:0309H         LINE#         80
+  C:0309H         LINE#         81
+  C:0309H         LINE#         83
+  C:0315H         LINE#         84
+  C:0315H         LINE#         85
+  C:0336H         LINE#         86
+  C:0339H         LINE#         87
+  -------         ENDPROC       _CONVERT_GIAY_CHUC
+  -------         PROC          _CONVERT_GIAY_DONVI
+  D:0007H         SYMBOL        a
+  -------         DO            
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:033AH         LINE#         89
+  C:033AH         LINE#         90
+  C:033AH         LINE#         92
+  C:0346H         LINE#         93
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/30/2021  01:57:02  PAGE 5
+
+
+  C:0346H         LINE#         94
+  C:0367H         LINE#         95
+  C:036AH         LINE#         96
+  -------         ENDPROC       _CONVERT_GIAY_DONVI
+  -------         PROC          _SLEEP_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:03B0H         LINE#         100
+  C:03B0H         LINE#         101
+  C:03B0H         LINE#         103
+  C:03BAH         LINE#         104
+  C:03BAH         LINE#         105
+  C:03C8H         LINE#         106
+  C:03CFH         LINE#         107
+  -------         ENDPROC       _SLEEP_MS
+  -------         PROC          START
+  C:03EFH         LINE#         110
+  C:03EFH         LINE#         111
+  C:03EFH         LINE#         112
+  C:03F1H         LINE#         113
+  C:03F3H         LINE#         114
+  C:03F5H         LINE#         115
+  C:03F7H         LINE#         116
+  -------         ENDPROC       START
+  -------         PROC          STOP
+  C:03F8H         LINE#         118
+  C:03F8H         LINE#         119
+  C:03F8H         LINE#         120
+  C:03FAH         LINE#         121
+  C:03FCH         LINE#         122
+  C:03FEH         LINE#         123
+  -------         ENDPROC       STOP
+  -------         PROC          L?0065
+  -------         ENDPROC       L?0065
+  -------         PROC          _WRITE
+  D:0005H         SYMBOL        _data
+  -------         DO            
+  D:0003H         SYMBOL        i
+  -------         ENDDO         
+  C:01A0H         LINE#         125
+  C:01A2H         LINE#         126
+  C:01A2H         LINE#         128
+  C:01AEH         LINE#         129
+  C:01AEH         LINE#         130
+  C:01CAH         LINE#         131
+  C:01CCH         LINE#         132
+  C:01CEH         LINE#         133
+  C:01D1H         LINE#         134
+  C:01D3H         LINE#         135
+  C:01D5H         LINE#         136
+  -------         ENDPROC       _WRITE
+  -------         PROC          READ
+  -------         DO            
+  B:0020H.0       SYMBOL        _rdata
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/30/2021  01:57:02  PAGE 6
+
+
+  D:0006H         SYMBOL        i
+  D:0007H         SYMBOL        _data
+  -------         ENDDO         
+  C:036BH         LINE#         137
+  C:036BH         LINE#         138
+  C:036BH         LINE#         141
+  C:036DH         LINE#         142
+  C:0378H         LINE#         143
+  C:0378H         LINE#         144
+  C:037AH         LINE#         145
+  C:037EH         LINE#         146
+  C:0382H         LINE#         147
+  C:0388H         LINE#         148
+  C:038AH         LINE#         149
+  C:038DH         LINE#         150
+  C:038DH         LINE#         151
+  -------         ENDPROC       READ
+  -------         PROC          _WRITE_DS1307
+  D:0004H         SYMBOL        _address
+  D:0005H         SYMBOL        _data
+  -------         DO            
+  D:0002H         SYMBOL        _rdata
+  -------         ENDDO         
+  C:03D0H         LINE#         152
+  C:03D2H         LINE#         153
+  C:03D2H         LINE#         155
+  C:03E4H         LINE#         156
+  C:03E4H         LINE#         157
+  C:03E4H         LINE#         158
+  C:03E7H         LINE#         159
+  C:03ECH         LINE#         160
+  -------         ENDPROC       _WRITE_DS1307
+  -------         PROC          _READ_DS1307
+  D:0004H         SYMBOL        _address
+  -------         DO            
+  D:0007H         SYMBOL        _data
+  -------         ENDDO         
+  C:038EH         LINE#         162
+  C:0390H         LINE#         163
+  C:0390H         LINE#         165
+  C:0390H         LINE#         166
+  C:0390H         LINE#         167
+  C:0393H         LINE#         168
+  C:0396H         LINE#         169
+  C:039BH         LINE#         170
+  C:039EH         LINE#         171
+  C:03A1H         LINE#         172
+  C:03AFH         LINE#         173
+  C:03AFH         LINE#         174
+  -------         ENDPROC       _READ_DS1307
+  C:01D6H         SYMBOL        L?0064
+  -------         PROC          L?0063
+  -------         ENDPROC       L?0063
+  C:01D6H         SYMBOL        L?0064
+  -------         PROC          _SEND_DATA
+  D:0005H         SYMBOL        _data
+  -------         DO            
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/30/2021  01:57:02  PAGE 7
+
+
+  D:0003H         SYMBOL        i
+  -------         ENDDO         
+  C:01DBH         LINE#         180
+  C:01DDH         LINE#         181
+  C:01DDH         LINE#         183
+  C:01E9H         LINE#         184
+  C:01E9H         LINE#         185
+  C:0205H         LINE#         186
+  C:0207H         LINE#         187
+  C:0209H         LINE#         188
+  C:020CH         LINE#         189
+  C:020EH         LINE#         190
+  C:0210H         LINE#         191
+  -------         ENDPROC       _SEND_DATA
+  -------         PROC          PERPOSE
+  -------         DO            
+  D:0001H         SYMBOL        _second
+  D:0008H         SYMBOL        _minute
+  D:0009H         SYMBOL        _hour
+  D:000AH         SYMBOL        old_second
+  D:000BH         SYMBOL        i
+  -------         ENDDO         
+  C:0003H         LINE#         196
+  C:0003H         LINE#         197
+  C:0003H         LINE#         200
+  C:000AH         LINE#         201
+  C:0011H         LINE#         202
+  C:0018H         LINE#         203
+  C:001AH         LINE#         204
+  C:001AH         LINE#         205
+  C:001AH         LINE#         206
+  C:0024H         LINE#         207
+  C:002FH         LINE#         208
+  C:0039H         LINE#         209
+  C:0044H         LINE#         210
+  C:004DH         LINE#         211
+  C:0057H         LINE#         212
+  C:005CH         LINE#         213
+  C:005CH         LINE#         214
+  C:0060H         LINE#         215
+  C:0060H         LINE#         216
+  C:0065H         LINE#         217
+  C:006AH         LINE#         218
+  C:006FH         LINE#         219
+  C:0074H         LINE#         220
+  C:0079H         LINE#         221
+  C:007EH         LINE#         222
+  C:008EH         LINE#         223
+  C:0095H         LINE#         224
+  C:0098H         LINE#         225
+  C:00A9H         LINE#         226
+  C:00B0H         LINE#         227
+  C:00B7H         LINE#         228
+  C:00BEH         LINE#         229
+  C:00C1H         LINE#         230
+  C:00C3H         LINE#         231
+  -------         ENDPROC       PERPOSE
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/30/2021  01:57:02  PAGE 8
+
+
+  -------         ENDMOD        LICHVANNIEN_LEDMATRIX
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WRITE_DS1307?LICHVANNIEN_LEDMATRIX
+
+Program Size: data=62.1 xdata=0 code=1026
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

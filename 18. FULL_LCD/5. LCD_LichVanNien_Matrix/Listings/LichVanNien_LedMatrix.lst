@@ -1,0 +1,286 @@
+C51 COMPILER V9.60.0.0   LICHVANNIEN_LEDMATRIX                                             06/30/2021 01:57:02 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LICHVANNIEN_LEDMATRIX
+OBJECT MODULE PLACED IN .\Objects\LichVanNien_LedMatrix.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE LichVanNien_LedMatrix.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRIN
+                    -T(.\Listings\LichVanNien_LedMatrix.lst) TABS(2) OBJECT(.\Objects\LichVanNien_LedMatrix.obj)
+
+line level    source
+
+   1          #include "LichVanNien_LedMatrix.h"
+   2          
+   3          #define SEC 0x00
+   4          #define MIN 0x01
+   5          #define HOUR 0x02
+   6          #define DAY 0x03
+   7          #define DATE 0x04
+   8          #define MONTH 0x05
+   9          #define YEAR 0x06
+  10          
+  11          unsigned char code Cot[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
+  12          unsigned char code Number [10][6] = {
+  13                                        0xC1, 0x80, 0xAE, 0xB6, 0x80, 0xC1,     // 0
+  14                                        0xFE, 0xEE, 0x80, 0x80, 0xFE, 0xFE,     // 1
+  15                                        0xDC, 0x98, 0xBA, 0xB6, 0x86, 0xCE,     // 2
+  16                                        0xDD, 0x9C, 0xB6, 0xB6, 0x80, 0xC9,     // 3
+  17                                        0xF3, 0xEB, 0xDB, 0x80, 0x80, 0xFB,     // 4
+  18                                        0x8D, 0x8C, 0xAE, 0xAE, 0xA0, 0xB1,     // 5
+  19                                        0xC1, 0x80, 0xB6, 0xB6, 0x90, 0xD9,     // 6
+  20                                        0x9F, 0x9F, 0xB8, 0xA0, 0x87, 0x9F,     // 7
+  21                                        0xC9, 0x80, 0xB6, 0xB6, 0x80, 0xC9,     // 8
+  22                                        0xCD, 0x84, 0xB6, 0xB6, 0x80, 0xC1,     // 9
+  23                                  };  
+  24          
+  25          unsigned char Data[] = 
+  26                       { 
+  27                         0xFF, 0xFF, 0xFF, 
+  28                         0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+  29                         0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, // 14
+  30                         0xFF, 
+  31                         0xEB,
+  32                         0xFF,
+  33                         0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+  34                         0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, // 29
+  35                         0xFF,
+  36                         0xEB,
+  37                         0xFF,
+  38                         0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+  39                         0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+  40                         0xFF, 0xFF, 0xFF
+  41                       };
+  42                       
+  43                       
+  44          void Convert_Gio_Chuc(unsigned char a)
+  45          {
+  46   1        unsigned char i;
+  47   1        for(i = 3; i <= 8; i++)
+  48   1        {
+  49   2          Data[i] = Number[a][i-3];
+  50   2        }
+  51   1      }
+  52          
+  53          void Convert_Gio_Donvi(unsigned char a)
+  54          {
+C51 COMPILER V9.60.0.0   LICHVANNIEN_LEDMATRIX                                             06/30/2021 01:57:02 PAGE 2   
+
+  55   1        unsigned char i;
+  56   1        for(i = 9; i <= 14; i++)
+  57   1        {
+  58   2          Data[i] = Number[a][i-9];
+  59   2        }
+  60   1      }
+  61          
+  62          void Convert_Phut_Chuc(unsigned char a)
+  63          {
+  64   1        unsigned char i;
+  65   1        for(i = 18; i <= 23; i++)
+  66   1        {
+  67   2          Data[i] = Number[a][i-18];
+  68   2        }
+  69   1      }
+  70          
+  71          void Convert_Phut_Donvi(unsigned char a)
+  72          {
+  73   1        unsigned char i;
+  74   1        for(i = 24; i <= 29; i++)
+  75   1        {
+  76   2          Data[i] = Number[a][i-24];
+  77   2        }
+  78   1      }
+  79          
+  80          void Convert_Giay_Chuc(unsigned char a)
+  81          {
+  82   1        unsigned char i;
+  83   1        for(i = 33; i <= 38; i++)
+  84   1        {
+  85   2          Data[i] = Number[a][i-33];
+  86   2        }
+  87   1      }
+  88          
+  89          void Convert_Giay_Donvi(unsigned char a)
+  90          {
+  91   1        unsigned char i;
+  92   1        for(i = 39; i <= 44; i++)
+  93   1        {
+  94   2          Data[i] = Number[a][i-39];
+  95   2        }
+  96   1      }
+  97          
+  98          // Ham Sleep_ms
+  99          
+ 100          void Sleep_ms(unsigned int t)
+ 101          {
+ 102   1        unsigned int i, j;
+ 103   1       for(i = 0; i < t; i++)
+ 104   1       {
+ 105   2        for(j = 0; j < 123; j++);
+ 106   2       }
+ 107   1      }
+ 108          // DS1307 
+ 109          
+ 110          void Start()
+ 111          {
+ 112   1        SCL = 1;
+ 113   1        SDA = 1;
+ 114   1        SDA = 0;
+ 115   1        SCL = 0;
+ 116   1      }
+C51 COMPILER V9.60.0.0   LICHVANNIEN_LEDMATRIX                                             06/30/2021 01:57:02 PAGE 3   
+
+ 117          
+ 118          void Stop()
+ 119          {
+ 120   1        SCL = 1;
+ 121   1        SDA = 0;
+ 122   1        SDA = 1;
+ 123   1      }
+ 124          
+ 125          void Write(unsigned char _data)
+ 126          {
+ 127   1        unsigned char i;
+ 128   1        for(i = 0; i < 8; i++)
+ 129   1        {
+ 130   2          SDA = _data & (0x80  >> i);
+ 131   2          SCL = 1;
+ 132   2          SCL = 0;
+ 133   2        }
+ 134   1        SCL = 1;
+ 135   1        SCL = 0;
+ 136   1      }
+ 137          unsigned char Read()
+ 138          {
+ 139   1        bit _rdata;
+ 140   1        unsigned char i, _data;
+ 141   1        _data = 0x00;
+ 142   1        for(i = 0; i < 8; i++)
+ 143   1        {
+ 144   2          SCL = 1;
+ 145   2          _rdata = SDA;
+ 146   2          _data <<= 1;
+ 147   2          _data |= _rdata;
+ 148   2          SCL = 0;
+ 149   2        }
+ 150   1        return _data;
+ 151   1      }
+ 152          void Write_DS1307(unsigned char _address, unsigned char _data)
+ 153          {
+ 154   1        unsigned char _rdata;
+ 155   1        _rdata = (_data / 10) * 16 + (_data % 10);
+ 156   1        Start();
+ 157   1        Write(0xD0);
+ 158   1        Write(_address);
+ 159   1        Write(_rdata);
+ 160   1        Stop();
+ 161   1      }
+ 162          unsigned char Read_DS1307(unsigned char _address)
+ 163          {
+ 164   1          unsigned char _data;
+ 165   1          Start();
+ 166   1          Write(0xD0);
+ 167   1          Write(_address);
+ 168   1          Start();
+ 169   1          Write(0xD1);
+ 170   1          _data = Read();
+ 171   1          Stop();
+ 172   1          _data = (_data / 16) * 10 + (_data % 16);
+ 173   1        return _data;
+ 174   1      } 
+ 175                    
+ 176          
+ 177          
+ 178          
+C51 COMPILER V9.60.0.0   LICHVANNIEN_LEDMATRIX                                             06/30/2021 01:57:02 PAGE 4   
+
+ 179          // 74HC595
+ 180          void Send_Data(unsigned char _data)
+ 181          {
+ 182   1        unsigned char i;
+ 183   1        for(i = 0; i < 8; i++)
+ 184   1        {
+ 185   2          DS = _data & (0x80 >> i);
+ 186   2          SH_CP = 0;
+ 187   2          SH_CP = 1;
+ 188   2        }
+ 189   1        ST_CP = 0;
+ 190   1        ST_CP = 1;
+ 191   1      }
+ 192          
+ 193          
+ 194          // Perpose
+ 195          
+ 196          void Perpose()
+ 197          {
+ 198   1        unsigned char _second, _minute, _hour, old_second;
+ 199   1        unsigned int i;
+ 200   1        _second = Read_DS1307(0x00);
+ 201   1        _minute = Read_DS1307(0x01);
+ 202   1        _hour = Read_DS1307(0x02);
+ 203   1        old_second = _second;
+ 204   1        while(1)
+ 205   1          {
+ 206   2                Convert_Gio_Chuc(_hour/10);
+ 207   2                Convert_Gio_Donvi(_hour%10);
+ 208   2                Convert_Phut_Chuc(_minute/10);
+ 209   2                Convert_Phut_Donvi(_minute%10);
+ 210   2                Convert_Giay_Chuc(_second/10);
+ 211   2                Convert_Giay_Donvi(_second%10);
+ 212   2            while(old_second == _second)
+ 213   2            {
+ 214   3                for(i = 0; i < 8; i++)
+ 215   3                {
+ 216   4                  Send_Data(Data[i+0]);
+ 217   4                  Send_Data(Data[i+8]);
+ 218   4                  Send_Data(Data[i+16]);
+ 219   4                  Send_Data(Data[i+24]);
+ 220   4                  Send_Data(Data[i+32]);
+ 221   4                  Send_Data(Data[i+40]);
+ 222   4                  P0 = Cot[i];
+ 223   4                  Sleep_ms(1);
+ 224   4                  P0 = 0x00;
+ 225   4                }
+ 226   3                _second = Read_DS1307(0x00);
+ 227   3                _minute = Read_DS1307(0x01);
+ 228   3                _hour = Read_DS1307(0x02);
+ 229   3            }
+ 230   2            old_second = _second;
+ 231   2          }
+ 232   1      }
+ 233          
+ 234          
+ 235          
+ 236          
+ 237          
+ 238          
+ 239          
+ 240          
+C51 COMPILER V9.60.0.0   LICHVANNIEN_LEDMATRIX                                             06/30/2021 01:57:02 PAGE 5   
+
+ 241          
+ 242          
+ 243          
+ 244          
+ 245          
+ 246          
+ 247          
+ 248          
+ 249          
+ 250          
+ 251          
+ 252          
+ 253          
+ 254                        
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    760    ----
+   CONSTANT SIZE    =     68    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     48       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
