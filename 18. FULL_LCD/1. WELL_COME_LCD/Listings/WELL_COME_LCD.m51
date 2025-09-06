@@ -1,0 +1,176 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/18/2021  14:34:24  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\WELL_COME_LCD PRINT (.\Listings\WELL_COME_LCD.m51) RAMSIZE (
+>> 256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\WELL_COME_LCD (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         _DATA_GROUP_
+            IDATA   000CH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     002DH     UNIT         ?C?LIB_CODE
+            CODE    0030H     0028H     UNIT         ?PR?_SEND_8BIT?MAIN
+            CODE    0058H     0025H     UNIT         ?PR?_SEND_LENH?MAIN
+            CODE    007DH     0020H     UNIT         ?PR?_SLEEP_MS?MAIN
+            CODE    009DH     001EH     UNIT         ?PR?BEGINNING?MAIN
+            CODE    00BBH     000FH     UNIT         ?PR?_SEND_KITU_8BIT?MAIN
+            CODE    00CAH     000EH     UNIT         ?PR?MAIN?MAIN
+            CODE    00D8H     000CH     UNIT         ?CO?MAIN
+            CODE    00E4H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\WELL_COME_LCD (MAIN)
+
+
+SEGMENT                            DATA_GROUP 
+  +--> CALLED SEGMENT            START    LENGTH
+------------------------------------------------
+?C_C51STARTUP                    -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                    -----    -----
+  +--> ?PR?BEGINNING?MAIN
+  +--> ?CO?MAIN
+  +--> ?PR?_SEND_8BIT?MAIN
+
+?PR?BEGINNING?MAIN               -----    -----
+  +--> ?PR?_SEND_LENH?MAIN
+
+?PR?_SEND_LENH?MAIN              -----    -----
+  +--> ?PR?_SLEEP_MS?MAIN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/18/2021  14:34:24  PAGE 2
+
+
+
+?PR?_SEND_8BIT?MAIN              0008H    0004H
+  +--> ?PR?_SEND_KITU_8BIT?MAIN
+
+?PR?_SEND_KITU_8BIT?MAIN         -----    -----
+  +--> ?PR?_SLEEP_MS?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\WELL_COME_LCD (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:009DH         PUBLIC        Beginning
+  B:00A0H.0       PUBLIC        RS
+  C:00CAH         PUBLIC        main
+  C:007DH         PUBLIC        _Sleep_ms
+  B:00A0H.2       PUBLIC        E
+  C:0030H         PUBLIC        _Send_8bit
+  C:00BBH         PUBLIC        _Send_Kitu_8bit
+  C:005FH         PUBLIC        _Send_Lenh
+  -------         PROC          _SLEEP_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:007DH         LINE#         8
+  C:007DH         LINE#         9
+  C:007DH         LINE#         11
+  C:0087H         LINE#         12
+  C:0087H         LINE#         13
+  C:0095H         LINE#         14
+  C:009CH         LINE#         15
+  -------         ENDPROC       _SLEEP_MS
+  -------         PROC          L?0022
+  -------         ENDPROC       L?0022
+  -------         PROC          _SEND_LENH
+  D:0007H         SYMBOL        a
+  C:005FH         LINE#         17
+  C:005FH         LINE#         18
+  C:005FH         LINE#         19
+  C:0061H         LINE#         20
+  C:0063H         LINE#         21
+  C:0065H         LINE#         22
+  C:0067H         LINE#         23
+  C:0071H         LINE#         24
+  C:0075H         LINE#         26
+  C:007CH         LINE#         27
+  -------         ENDPROC       _SEND_LENH
+  -------         PROC          _SEND_KITU_8BIT
+  D:0007H         SYMBOL        a
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/18/2021  14:34:24  PAGE 3
+
+
+  C:00BBH         LINE#         30
+  C:00BBH         LINE#         31
+  C:00BBH         LINE#         32
+  C:00BDH         LINE#         33
+  C:00BFH         LINE#         34
+  C:00C1H         LINE#         35
+  C:00C3H         LINE#         36
+  -------         ENDPROC       _SEND_KITU_8BIT
+  -------         PROC          _SEND_8BIT
+  D:0008H         SYMBOL        p
+  -------         DO            
+  D:000BH         SYMBOL        i
+  -------         ENDDO         
+  C:0030H         LINE#         41
+  C:0036H         LINE#         42
+  C:0036H         LINE#         43
+  C:0039H         LINE#         44
+  C:0050H         LINE#         45
+  C:0050H         LINE#         46
+  C:0053H         LINE#         47
+  C:0055H         LINE#         48
+  C:0057H         LINE#         49
+  -------         ENDPROC       _SEND_8BIT
+  -------         PROC          BEGINNING
+  C:009DH         LINE#         51
+  C:009DH         LINE#         52
+  C:009DH         LINE#         53
+  C:00A2H         LINE#         54
+  C:00A4H         LINE#         55
+  C:00A7H         LINE#         56
+  C:00A9H         LINE#         57
+  C:00ACH         LINE#         59
+  C:00B1H         LINE#         61
+  C:00B6H         LINE#         62
+  -------         ENDPROC       BEGINNING
+  -------         PROC          MAIN
+  C:00CAH         LINE#         66
+  C:00CAH         LINE#         67
+  C:00CAH         LINE#         68
+  C:00CDH         LINE#         69
+  C:00D6H         LINE#         70
+  C:00D6H         LINE#         71
+  C:00D6H         LINE#         72
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0003H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+Program Size: data=13.0 xdata=0 code=240
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

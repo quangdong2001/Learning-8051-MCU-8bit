@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\WELL_COME_LCD" 
+PRINT(".\Listings\WELL_COME_LCD.m51") RAMSIZE(256) 

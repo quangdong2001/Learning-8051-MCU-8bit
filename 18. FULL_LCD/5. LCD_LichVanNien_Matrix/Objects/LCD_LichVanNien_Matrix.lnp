@@ -1,0 +1,4 @@
+".\Objects\main.obj",
+".\Objects\LichVanNien_LedMatrix.obj" 
+TO ".\Objects\LCD_LichVanNien_Matrix" 
+PRINT(".\Listings\LCD_LichVanNien_Matrix.m51") RAMSIZE(256) 

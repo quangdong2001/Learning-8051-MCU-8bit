@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\LCD_GiaoTiep_4Bit" 
+PRINT(".\Listings\LCD_GiaoTiep_4Bit.m51") RAMSIZE(256) 

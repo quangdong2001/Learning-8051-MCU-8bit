@@ -1,0 +1,93 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/22/2021  16:23:13  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\LCD_GiaoTiep_4Bit PRINT (.\Listings\LCD_GiaoTiep_4Bit.m51) R
+>> AMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\LCD_GiaoTiep_4Bit (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0036H     UNIT         ?PR?_SEND_DATA?MAIN
+            CODE    0039H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0045H     0007H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\LCD_GiaoTiep_4Bit (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?_SEND_DATA?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\LCD_GiaoTiep_4Bit (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  B:00A0H.0       PUBLIC        SH_CP
+  B:00A0H.1       PUBLIC        DS
+  B:00A0H.3       PUBLIC        ST_CP
+  C:0045H         PUBLIC        main
+  C:0003H         PUBLIC        _Send_Data
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/22/2021  16:23:13  PAGE 2
+
+
+  -------         PROC          _SEND_DATA
+  D:0005H         SYMBOL        a
+  -------         DO            
+  D:0003H         SYMBOL        i
+  -------         ENDDO         
+  C:0003H         LINE#         6
+  C:0005H         LINE#         7
+  C:0005H         LINE#         9
+  C:0011H         LINE#         10
+  C:0011H         LINE#         11
+  C:002DH         LINE#         12
+  C:002FH         LINE#         13
+  C:0031H         LINE#         14
+  C:0034H         LINE#         15
+  C:0036H         LINE#         16
+  C:0038H         LINE#         17
+  -------         ENDPROC       _SEND_DATA
+  -------         PROC          MAIN
+  C:0045H         LINE#         18
+  C:0045H         LINE#         19
+  C:0045H         LINE#         20
+  C:0045H         LINE#         21
+  C:0045H         LINE#         22
+  C:004AH         LINE#         23
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=9.0 xdata=0 code=76
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
