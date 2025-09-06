@@ -1,0 +1,5 @@
+".\Objects\UART_MODE_1_MATRIX.obj",
+".\Objects\main.obj" 
+TO ".\Objects\UART_MODE_1_Matrix" 
+
+PRINT(".\Listings\UART_MODE_1_Matrix.map") ru 

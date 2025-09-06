@@ -1,0 +1,156 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    07/27/2021  14:21:25  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\UART_MODE_1_Led PRINT (.\Listings\UART_MODE_1_Led.m51) RAMSI
+>> ZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\UART_MODE_1_Led (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0020H     UNIT         ?PR?_SLEEP_MS?MAIN
+            CODE    0023H     0018H     UNIT         ?PR?MAIN?MAIN
+            CODE    003BH     0014H     UNIT         ?PR?INIT_MODE1?MAIN
+            CODE    004FH     000CH     UNIT         ?C_C51STARTUP
+            CODE    005BH     0008H     UNIT         ?PR?_WRITE?MAIN
+            CODE    0063H     0006H     UNIT         ?PR?UART_DATA_READY?MAIN
+            CODE    0069H     0006H     UNIT         ?PR?READ?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\UART_MODE_1_Led (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?INIT_MODE1?MAIN
+  +--> ?PR?_WRITE?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\UART_MODE_1_Led (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:005BH         PUBLIC        _Write
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/27/2021  14:21:25  PAGE 2
+
+
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  C:0023H         PUBLIC        main
+  C:003BH         PUBLIC        Init_Mode1
+  D:0099H         PUBLIC        SBUF
+  D:0089H         PUBLIC        TMOD
+  C:0003H         PUBLIC        _Sleep_ms
+  D:008DH         PUBLIC        TH1
+  B:0098H.7       PUBLIC        SM0
+  B:0098H.6       PUBLIC        SM1
+  C:0063H         PUBLIC        Uart_Data_Ready
+  B:0088H.6       PUBLIC        TR1
+  B:0098H.4       PUBLIC        REN
+  C:0069H         PUBLIC        Read
+  -------         PROC          _SLEEP_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0003H         LINE#         4
+  C:0003H         LINE#         5
+  C:0003H         LINE#         7
+  C:000DH         LINE#         8
+  C:000DH         LINE#         9
+  C:001BH         LINE#         10
+  C:0022H         LINE#         11
+  -------         ENDPROC       _SLEEP_MS
+  -------         PROC          INIT_MODE1
+  C:003BH         LINE#         14
+  C:003BH         LINE#         15
+  C:003BH         LINE#         17
+  C:003EH         LINE#         18
+  C:0041H         LINE#         20
+  C:0043H         LINE#         21
+  C:0045H         LINE#         23
+  C:0048H         LINE#         24
+  C:004AH         LINE#         25
+  C:004CH         LINE#         26
+  C:004EH         LINE#         27
+  -------         ENDPROC       INIT_MODE1
+  -------         PROC          _WRITE
+  D:0007H         SYMBOL        a
+  C:005BH         LINE#         30
+  C:005BH         LINE#         31
+  C:005BH         LINE#         32
+  C:005EH         LINE#         33
+  C:0060H         LINE#         34
+  C:0062H         LINE#         35
+  -------         ENDPROC       _WRITE
+  -------         PROC          UART_DATA_READY
+  C:0063H         LINE#         39
+  C:0063H         LINE#         40
+  C:0063H         LINE#         41
+  C:0068H         LINE#         42
+  -------         ENDPROC       UART_DATA_READY
+  -------         PROC          READ
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/27/2021  14:21:25  PAGE 3
+
+
+  C:0069H         LINE#         45
+  C:0069H         LINE#         46
+  C:0069H         LINE#         47
+  C:006CH         LINE#         48
+  C:006EH         LINE#         49
+  -------         ENDPROC       READ
+  -------         PROC          MAIN
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:0023H         LINE#         52
+  C:0023H         LINE#         53
+  C:0023H         LINE#         55
+  C:0026H         LINE#         56
+  C:002AH         LINE#         57
+  C:002AH         LINE#         58
+  C:002FH         LINE#         59
+  C:003AH         LINE#         60
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SLEEP_MS?MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?UART_DATA_READY?MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READ?MAIN
+
+Program Size: data=9.0 xdata=0 code=111
+LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)

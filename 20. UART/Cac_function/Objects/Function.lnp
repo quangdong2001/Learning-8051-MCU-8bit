@@ -1,0 +1,4 @@
+".\Objects\main.obj" 
+TO ".\Objects\Function" 
+
+PRINT(".\Listings\Function.map") ru 

@@ -1,0 +1,4 @@
+".\Objects\main.obj" 
+TO ".\Objects\Real_Circuit" 
+
+PRINT(".\Listings\Real_Circuit.map") ru 

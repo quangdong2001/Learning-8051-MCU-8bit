@@ -1,0 +1,48 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              07/28/2021 01:25:02 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OMF2 OPTIMIZE(8,SPEED) BROWSE DEBUG PRINT(.\Listings\main.lst) TA
+                    -BS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          #include "D:\8051\The_Media_Lib\Media_Lib.h"
+   3          
+   4          void Sleep_ms(unsigned int t)
+   5          {
+   6   1        unsigned int i, j;
+   7   1        for(i = 0; i < t; i++)
+   8   1        {
+   9   2          for(j = 0; j < 123; j++);
+  10   2        }
+  11   1      }
+  12          
+  13          void main()
+  14          {
+  15   1        Init_Uart();
+  16   1        Uart_Write_Text("Em Chao Anh Dong");
+  17   1        while(1)
+  18   1        {
+  19   2        }
+  20   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     46    ----
+   CONSTANT SIZE    =     17    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

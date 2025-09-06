@@ -1,0 +1,5 @@
+".\Objects\Uart_Virtual_Com.obj",
+".\Objects\main.obj" 
+TO ".\Objects\Uart_Virtual_Com" 
+
+PRINT(".\Listings\Uart_Virtual_Com.map") ru 

@@ -1,0 +1,84 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              07/28/2021 13:53:10 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          
+   3          sbit LED = P1^0;
+   4          
+   5          void Uart_Init()
+   6          {
+   7   1        // chon timer1 che do 2 8bit tu nap lai 
+   8   1        TMOD &= 0x0F;
+   9   1        TMOD |= 0x20;
+  10   1        
+  11   1        // chon turyen che do 1 8bit toc do baud duoc cai dat qua timer1 
+  12   1        SM0 = 0;
+  13   1        SM1 = 1;
+  14   1        
+  15   1        // cai dat toc do baud boi cac nap thanh ghi TH1 
+  16   1        TH1 = 0xFD;
+  17   1        
+  18   1        // chon che do nhan gu lieu thong qua bit REN cua thanh ghi SCON
+  19   1        REN = 1;
+  20   1        
+  21   1        // Khoi dong timer 1
+  22   1        TR1 = 1;
+  23   1      }
+  24          
+  25          // Ham kiem tra xem co du lieu duoc gui vao hay khong 
+  26          unsigned char Uart_Ready()
+  27          {
+  28   1        return RI;
+  29   1      }
+  30          
+  31          unsigned char Uart_Read()
+  32          {
+  33   1        RI = 0;
+  34   1        return SBUF;
+  35   1      }
+  36          
+  37           
+  38          
+  39          void main()
+  40          {
+  41   1        LED = 0;
+  42   1        Uart_Init();
+  43   1        while(1)
+  44   1        {
+  45   2          if(Uart_Ready() == 1)
+  46   2          {
+  47   3            if(Uart_Read() == 0x01)
+  48   3            {
+  49   4              LED = 1;
+  50   4            }
+  51   3            else if(Uart_Read() == 0x02)
+  52   3            {
+  53   4              LED = 0;
+  54   4            }
+C51 COMPILER V9.60.0.0   MAIN                                                              07/28/2021 13:53:10 PAGE 2   
+
+  55   3            while(Uart_Ready() == 0);
+  56   3          }
+  57   2        }
+  58   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     72    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

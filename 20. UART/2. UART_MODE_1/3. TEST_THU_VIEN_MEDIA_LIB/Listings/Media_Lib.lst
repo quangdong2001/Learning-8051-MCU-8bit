@@ -1,0 +1,101 @@
+C51 COMPILER V9.60.0.0   MEDIA_LIB                                                         07/28/2021 01:25:02 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MEDIA_LIB
+OBJECT MODULE PLACED IN .\Objects\Media_Lib.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\..\..\The_Media_Lib\Media_Lib.c OMF2 OPTIMIZE(8,SPEED) BROWSE DEBUG P
+                    -RINT(.\Listings\Media_Lib.lst) TABS(2) OBJECT(.\Objects\Media_Lib.obj)
+
+line level    source
+
+   1          #include "Media_Lib.h"
+   2          
+   3          // Neu Tan so thach anh khac 11059200 thi thong bao thay doi thach anh 
+   4          #if(FREQ_OSC != 11059200)
+                error "Chi ap dung voi tan so thach anh 11059200"
+              #endif
+   7            
+   8          // Ham Initialize truyen thong che do 1 8bit toc do baud cau boi timer 1
+   9          void Init_Uart()
+  10          {
+  11   1        // Thiet lap chon timer 1 che do 8bit tu nap lai 
+  12   1        TMOD &= 0x0F;
+  13   1        TMOD |= 0x20;
+  14   1        
+  15   1        // Chon che do truyen 1 8bit toc do baud cai boi timer 1
+  16   1        SM0 = 0;
+  17   1        SM1 = 1;
+  18   1        
+  19   1        // Thiet lap che do Baud
+  20   1        #if(BAUD_RATE == 9600)
+  21   1          TH1 = 0xFD;
+  22   1        #elif(BAUD_RATE == 2400)
+                  TH1 = 0xF4;
+                #elif(BAUD_RATE == 1200)
+                  TH1 = 0xE8;
+                #elif(BAUD_RATR == 19200)
+                  PCON |= 0x80;
+                  TH1 = 0xFD;
+                #else
+                  error"BAUD_RATE Chi Nam Trong Cac Gia Tri 9600, 2400, 1200, 19200"
+                #endif
+  32   1        
+  33   1        // Thiet Lap Che Do Nhan Du Lieu 
+  34   1        REN = 1;
+  35   1        // Thiet Lap Co Truyen = 1
+  36   1        TI = 1;
+  37   1        // Khoi Dong Timer 1;
+  38   1        TR1 = 1;
+  39   1      }
+  40          
+  41          // Ham gui du lieu tu vi dieu khien ra ngoai
+  42          void Uart_Write(unsigned char _data)
+  43          {
+  44   1        while(TI == 0);
+  45   1        TI = 0;
+  46   1        SBUF = _data;
+  47   1      }
+  48          
+  49          // Ham gui chuoi du lieu tu vi dieu khien ra ngoai vi 
+  50          void Uart_Write_Text(unsigned char *p)
+  51          {
+  52   1        unsigned char i = 0;
+  53   1        while(p[i] != 0)
+  54   1        {
+C51 COMPILER V9.60.0.0   MEDIA_LIB                                                         07/28/2021 01:25:02 PAGE 2   
+
+  55   2          Uart_Write(p[i]);
+  56   2          i++;
+  57   2        }
+  58   1      }
+  59          
+  60          // Ham kiem tra xem co phat hien du lieu ngoai gui vao khong
+  61          unsigned char Uart_Ready()
+  62          {
+  63   1        return RI;
+  64   1      }
+  65          
+  66          // Ham lay du lieu tu ngoai vao cho vi dieu khien 
+  67          unsigned char Uart_Read()
+  68          {
+  69   1        RI = 0;
+  70   1        return SBUF;
+  71   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     71    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

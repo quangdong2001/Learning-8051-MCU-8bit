@@ -1,0 +1,114 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              07/27/2021 14:35:49 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OMF2 OPTIMIZE(8,SPEED) BROWSE DEBUG PRINT(.\Listings\main.lst) TA
+                    -BS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          
+   3          // Ham dung thoi gian 
+   4          void Sleep_ms(unsigned int t)
+   5          {
+   6   1        unsigned int i, j;
+   7   1        for(i = 0; i < t; i++)
+   8   1        {
+   9   2          for(j = 0; j < 123; j++);
+  10   2        }
+  11   1      }
+  12          
+  13          // Thiet Lap Modul truyen du lieu 
+  14          void Init_Mode1()
+  15          {
+  16   1        // Chon Timer 1 Che do 8 bit tu dong nap lai 
+  17   1        TMOD = TMOD & 0x0F;
+  18   1        TMOD = TMOD | 0x20;
+  19   1        // Chon che do 1 
+  20   1        SM0 = 0;
+  21   1        SM1 = 1;
+  22   1        // Nhap Thanh Ghi TH1
+  23   1        TH1 = 0xFD; // 9600  Baud
+  24   1        TI = 1;
+  25   1        REN = 1;   // Cho phep nhan
+  26   1        TR1 = 1;   // Khoi Dong Bo dem 
+  27   1      }
+  28          
+  29          // Gui du lieu tu VDK ra ngoai 
+  30          void Write(unsigned char a)
+  31          {
+  32   1        while(TI == 0);
+  33   1        TI = 0;
+  34   1        SBUF = a;
+  35   1      }
+  36          \
+  37          
+  38          // Kiem tra xem du lieu co duoc gui tu ben ngoai vao khong;
+  39          unsigned char Uart_Data_Ready()
+  40          {
+  41   1        return RI;
+  42   1      }
+  43          
+  44          // Doc du lieu khi tin hieu ngoai gui vao VDK
+  45          unsigned char Read()
+  46          {
+  47   1        while(RI == 0);
+  48   1        RI = 0;
+  49   1        return SBUF;
+  50   1      }
+  51          
+  52          
+  53          void main()
+  54          {
+C51 COMPILER V9.60.0.0   MAIN                                                              07/27/2021 14:35:49 PAGE 2   
+
+  55   1      //  unsigned int i;
+  56   1        P0 = 0x00;
+  57   1        Init_Mode1();
+  58   1      //  Gui ki tu tu` a den z 
+  59   1      //  for(i = 97; i <= 122; i++)
+  60   1      //  {
+  61   1      //    Write(i);
+  62   1      //  }
+  63   1        
+  64   1      
+  65   1        while(1)
+  66   1        {
+  67   2          if(Uart_Data_Ready() == 1)
+  68   2          {
+  69   3            P0 = Read();
+  70   3          }
+  71   2        }
+  72   1      }
+  73          
+  74          
+  75          
+  76          
+  77          
+  78          
+  79          
+  80          
+  81          
+  82          
+  83          
+  84          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     95    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
