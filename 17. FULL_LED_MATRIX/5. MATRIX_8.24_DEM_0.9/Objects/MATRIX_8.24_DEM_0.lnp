@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\MATRIX_8.24_DEM_0.9" 
+PRINT(".\Listings\MATRIX_8.24_DEM_0.m51") RAMSIZE(256) 

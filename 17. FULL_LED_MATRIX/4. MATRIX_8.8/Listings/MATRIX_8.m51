@@ -1,0 +1,118 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/04/2021  16:51:49  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\MATRIX_8.8 PRINT (.\Listings\MATRIX_8.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\MATRIX_8.8 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0006H     UNIT         _DATA_GROUP_
+            IDATA   000EH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0077H     UNIT         ?PR?MOVE_ONE?MAIN
+            CODE    007AH     0020H     UNIT         ?PR?_SLEEP_MS?MAIN
+            CODE    009AH     0020H     UNIT         ?CO?MAIN
+            CODE    00BAH     000CH     UNIT         ?C_C51STARTUP
+            CODE    00C6H     0003H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\MATRIX_8.8 (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                  -----    -----
+  +--> ?PR?MOVE_ONE?MAIN
+
+?PR?MOVE_ONE?MAIN              0008H    0006H
+  +--> ?CO?MAIN
+  +--> ?PR?_SLEEP_MS?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\MATRIX_8.8 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/04/2021  16:51:49  PAGE 2
+
+
+  D:0080H         PUBLIC        P0
+  D:00B0H         PUBLIC        P3
+  C:00C6H         PUBLIC        main
+  C:007AH         PUBLIC        _Sleep_ms
+  C:009AH         PUBLIC        cot
+  C:0003H         PUBLIC        Move_ONE
+  C:00A2H         PUBLIC        Data
+  -------         PROC          _SLEEP_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:007AH         LINE#         22
+  C:007AH         LINE#         23
+  C:007AH         LINE#         25
+  C:0084H         LINE#         26
+  C:0084H         LINE#         27
+  C:0092H         LINE#         28
+  C:0099H         LINE#         29
+  -------         ENDPROC       _SLEEP_MS
+  -------         PROC          MOVE_ONE
+  -------         DO            
+  D:0008H         SYMBOL        i
+  D:000AH         SYMBOL        j
+  D:000CH         SYMBOL        k
+  -------         ENDDO         
+  C:0003H         LINE#         32
+  C:0003H         LINE#         33
+  C:0003H         LINE#         34
+  C:0003H         LINE#         35
+  C:0003H         LINE#         37
+  C:0008H         LINE#         38
+  C:0008H         LINE#         39
+  C:000DH         LINE#         40
+  C:000DH         LINE#         41
+  C:0012H         LINE#         42
+  C:0012H         LINE#         43
+  C:002BH         LINE#         44
+  C:003BH         LINE#         45
+  C:0042H         LINE#         46
+  C:0045H         LINE#         47
+  C:0056H         LINE#         48
+  C:0067H         LINE#         49
+  -------         ENDPROC       MOVE_ONE
+  -------         PROC          MAIN
+  C:00C6H         LINE#         57
+  C:00C6H         LINE#         58
+  C:00C6H         LINE#         59
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=15.0 xdata=0 code=201
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

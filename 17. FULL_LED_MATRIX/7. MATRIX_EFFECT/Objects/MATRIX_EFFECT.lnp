@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\MATRIX_EFFECT" 
+PRINT(".\Listings\MATRIX_EFFECT.m51") RAMSIZE(256) 

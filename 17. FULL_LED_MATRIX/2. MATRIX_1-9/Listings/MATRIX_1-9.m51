@@ -1,0 +1,118 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/05/2021  01:08:00  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\MATRIX_1-9 PRINT (.\Listings\MATRIX_1-9.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\MATRIX_1-9 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0006H     UNIT         _DATA_GROUP_
+            IDATA   000EH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     00B0H     UNIT         ?CO?MAIN
+            CODE    00B3H     0076H     UNIT         ?PR?MATRIX_0_9?MAIN
+            CODE    0129H     0020H     UNIT         ?PR?_SLEEP_MS?MAIN
+            CODE    0149H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0155H     0003H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\MATRIX_1-9 (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                  -----    -----
+  +--> ?PR?MATRIX_0_9?MAIN
+
+?PR?MATRIX_0_9?MAIN            0008H    0006H
+  +--> ?CO?MAIN
+  +--> ?PR?_SLEEP_MS?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\MATRIX_1-9 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/05/2021  01:08:00  PAGE 2
+
+
+  D:0080H         PUBLIC        P0
+  C:00B3H         PUBLIC        MATRIX_0_9
+  D:00B0H         PUBLIC        P3
+  C:0155H         PUBLIC        main
+  C:0003H         PUBLIC        Cot
+  C:0129H         PUBLIC        _Sleep_ms
+  C:000BH         PUBLIC        Data
+  -------         PROC          _SLEEP_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0129H         LINE#         29
+  C:0129H         LINE#         30
+  C:0129H         LINE#         32
+  C:0133H         LINE#         33
+  C:0133H         LINE#         34
+  C:0141H         LINE#         35
+  C:0148H         LINE#         36
+  -------         ENDPROC       _SLEEP_MS
+  -------         PROC          MATRIX_0_9
+  -------         DO            
+  D:0008H         SYMBOL        i
+  D:000AH         SYMBOL        j
+  D:000CH         SYMBOL        k
+  -------         ENDDO         
+  C:00B3H         LINE#         38
+  C:00B3H         LINE#         39
+  C:00B3H         LINE#         40
+  C:00B3H         LINE#         41
+  C:00B3H         LINE#         43
+  C:00B8H         LINE#         44
+  C:00B8H         LINE#         45
+  C:00BDH         LINE#         46
+  C:00BDH         LINE#         47
+  C:00C2H         LINE#         48
+  C:00C2H         LINE#         49
+  C:00DAH         LINE#         50
+  C:00EAH         LINE#         51
+  C:00F1H         LINE#         52
+  C:00F4H         LINE#         53
+  C:0105H         LINE#         54
+  C:0116H         LINE#         55
+  -------         ENDPROC       MATRIX_0_9
+  -------         PROC          MAIN
+  C:0155H         LINE#         59
+  C:0155H         LINE#         60
+  C:0155H         LINE#         61
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=15.0 xdata=0 code=344
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

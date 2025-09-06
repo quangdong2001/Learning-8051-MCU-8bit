@@ -1,0 +1,160 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              06/05/2021 14:53:39 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          
+   3          sbit SH_CP = P2^0;
+   4          sbit DS = P2^1;
+   5          sbit ST_CP = P2^3;
+   6          
+   7          
+   8          
+   9          unsigned char code Cot[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
+  10          unsigned char code Data[] = { 
+  11                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  12                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  13                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  14                                       0xFF, 0xC3, 0x81, 0x7E, 0x7E, 0x81, 0xC3, 0xFF,  // So 0
+  15                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  16                                       0xFF, 0xFF, 0xDE, 0xBE, 0x00, 0xFE, 0xFE, 0xFF,  // So 1 
+  17                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  18                                       0xFF, 0x9E, 0x3C, 0x78, 0x72, 0x26, 0x8E, 0xFF,  // So 2
+  19                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  20                                       0xFF, 0x24, 0x24, 0x24, 0x24, 0x00, 0x00, 0xFF,  // So 3
+  21                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  22                                       0xF3, 0xE3, 0xC3, 0x93, 0x33, 0x00, 0x00, 0xFF,  // So 4 
+  23                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  24                                       0xFF, 0x04, 0x04, 0x24, 0x24, 0x20, 0x20, 0xFF,  // So 5
+  25                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  26                                       0xFF, 0x00, 0x00, 0x66, 0x66, 0x20, 0x20, 0xFF,  // So 6
+  27                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  28                                       0xFF, 0x3F, 0x3C, 0x38, 0x31, 0x03, 0x07, 0xFF,  // So 7
+  29                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  30                                       0xFF, 0x00, 0x00, 0x24, 0x24, 0x00, 0x00, 0xFF,  // So 8 
+  31                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,   // Delay
+  32                                       0xFF, 0x04, 0x04, 0x24, 0x24, 0x00, 0x00, 0xFF,  // So 9 
+  33                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  34                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  35                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  36                                       0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Delay
+  37                                      };
+  38          
+  39                                      
+  40                                      
+  41          void Sleep_ms(unsigned int t)
+  42          {
+  43   1        unsigned int i,j;
+  44   1        for(i = 0; i < t; i++)
+  45   1          {
+  46   2            for(j = 0; j < 123; j++);
+  47   2          }
+  48   1      }
+  49          
+  50          void Send_Data(unsigned char a)
+  51          {
+  52   1        unsigned char i;
+  53   1        for( i = 0; i < 8; i++)
+  54   1          {
+C51 COMPILER V9.60.0.0   MAIN                                                              06/05/2021 14:53:39 PAGE 2   
+
+  55   2            DS = a & (0x80 >> i);
+  56   2            
+  57   2            SH_CP = 0;
+  58   2            SH_CP = 1;
+  59   2          }
+  60   1          
+  61   1          ST_CP = 0;
+  62   1          ST_CP = 1;
+  63   1      }
+  64          
+  65          
+  66          void MATRIX_1_9_VER2()
+  67          {
+  68   1        while(1)
+  69   1        {
+  70   2        unsigned int i,j,k;
+  71   2        for(i = 0; i < 192; i++)
+  72   2        {
+  73   3          for(k = 0; k < 5; k++)
+  74   3          {
+  75   4            for(j = 0; j < 8; j++)
+  76   4            {
+  77   5              Send_Data(Data[i+j+0]);
+  78   5              Send_Data(Data[i+j+8]);
+  79   5              P0 = Cot[j];
+  80   5              Sleep_ms(1);
+  81   5              P0 = 0x00;
+  82   5            }
+  83   4              
+  84   4          }
+  85   3        }
+  86   2      }
+  87   1      }
+  88          
+  89          void main()
+  90          {
+  91   1        
+  92   1        MATRIX_1_9_VER2();
+  93   1      }
+  94          
+  95          
+  96          
+  97          
+  98          
+  99          
+ 100          
+ 101          
+ 102          
+ 103          
+ 104          
+ 105          
+ 106          
+ 107          
+ 108          
+ 109          
+ 110          
+ 111          
+ 112          
+ 113          
+ 114          
+ 115          
+ 116          
+C51 COMPILER V9.60.0.0   MAIN                                                              06/05/2021 14:53:39 PAGE 3   
+
+ 117          
+ 118          
+ 119          
+ 120          
+ 121          
+ 122          
+ 123          
+ 124          
+ 125          
+ 126          
+ 127          
+ 128          
+ 129          
+ 130          
+ 131          
+ 132          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    230    ----
+   CONSTANT SIZE    =    216    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

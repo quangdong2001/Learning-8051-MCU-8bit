@@ -1,0 +1,129 @@
+#include <regx52.h>
+// khai bao chan su dung de quet ma cua hang;
+
+sbit SH_CP = P3^0;
+sbit DS = P3^1;
+sbit ST_CP = P3^3;
+
+unsigned char code Cot[]={0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
+
+unsigned char code Led[] = {
+						0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
+						0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
+						0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
+						0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
+					
+						0xff,0x81,0xfe,0xfe,0xfe,0xfe,0x81,0xff,//u
+						0x8f,0x77,0x7b,0xbd,0x7b,0x77,0x8f,0xff,// trai tim		
+						0xff,0xbe,0xbe,0x80,0xbe,0xbe,0xff,0xff,//i
+											
+						0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
+						0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,		
+						0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
+						0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff
+						};
+
+void Sleep_ms(unsigned int t)
+{
+	unsigned int i,j;
+	for(i = 0; i < t; i++)
+	{
+		for(j = 0; j < 123; j++);
+	}
+}
+
+
+// dung de xuat 1 byte de dieu khien hang.
+
+void Send_Data(unsigned char a)
+{
+	unsigned char i;
+	for(i = 0; i < 8; i++)
+	{
+		DS = a & (0x80 >> i);
+		SH_CP = 0;
+		SH_CP = 1;
+	}
+	ST_CP = 0;
+	ST_CP = 1;
+}
+
+
+//void dichma(unsigned char a){
+//	int i;
+//	for(i=0; i<8; i++){
+//		//b1: truyen du lieu vao chan ds;
+//		ds=a&(0x80>>i);	// lay tung bit cua byte a gui qua chan ds,
+//						// lay bit cao nhat truoc.
+//		//b2: tao xung dich du lieu.
+//		shcp=0; shcp=1;
+//	} /*
+//		ket thuc vong for thì ta da dich duoc 8 bit cua byte a
+//		qua chan ds
+//	*/
+//	//b3: tao xung xuat du lieu.
+//	stcp=0; stcp=1;
+//}
+
+/*
+	quet led ma tran co 8x32
+	su dung phuong phap quet led theo cot;
+	8 hang 32 cot
+*/
+
+void main()
+{
+	P0 = 0x00;
+	while(1)
+	{
+		unsigned int i, j, k;
+		for(i = 0; i < 56; i++)
+		{
+			for(k = 0; k < 5; k++)
+			{
+				for(j = 0; j < 8; j++)
+				{
+					Send_Data(Led[i+j+0]);
+					Send_Data(Led[i+j+8]);
+					Send_Data(Led[i+j+16]);
+					Send_Data(Led[i+j+24]);
+					P0 = Cot[j];
+					Sleep_ms(1);
+					P0 = 0x00;
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

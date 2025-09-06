@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\MATRIX_HAPPY_NEW_YEAR" 
+PRINT(".\Listings\MATRIX_HAPPY_NEW_YEAR.m51") RAMSIZE(256) 
