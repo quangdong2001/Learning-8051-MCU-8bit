@@ -1,0 +1,70 @@
+C51 COMPILER V9.60.0.0   IC_74595                                                          05/25/2021 16:42:22 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE IC_74595
+OBJECT MODULE PLACED IN .\Objects\IC_74595.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE IC_74595.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -IC_74595.lst) TABS(2) OBJECT(.\Objects\IC_74595.obj)
+
+line level    source
+
+   1          #include "IC_74595.h"
+   2          unsigned char code LED[] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
+   3          
+   4          void Sleep_ms(unsigned int t)
+   5          {
+   6   1        unsigned int a,b;
+   7   1        for(a = 0; a < t; a++)
+   8   1        {
+   9   2          for(b = 0; b < 123; b++);
+  10   2        }
+  11   1      }
+  12          
+  13          void Transmit(unsigned int a)
+  14          {
+  15   1        unsigned char i;
+  16   1        for(i = 0; i < 8; i++)
+  17   1        {
+  18   2          DS = a & (0x80 >> i);
+  19   2          SH_CP = 0;
+  20   2          SH_CP = 1;
+  21   2        }
+  22   1        ST_CP = 0;
+  23   1        ST_CP =1;
+  24   1      }
+  25          
+  26          
+  27          void IC_74595()
+  28          {
+  29   1        if(Button == 0)
+  30   1        {
+  31   2          // P0_0 = 0;
+  32   2          while(1)
+  33   2          {
+  34   3            unsigned int i;
+  35   3            for(i = 0; i < 10; i++)
+  36   3            {
+  37   4              Transmit(0x55);
+  38   4              Sleep_ms(1000);
+  39   4              Transmit(0xAA);
+  40   4              Sleep_ms(1000);
+  41   4            }
+  42   3          }
+  43   2        }
+  44   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    135    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+C51 COMPILER V9.60.0.0   IC_74595                                                          05/25/2021 16:42:22 PAGE 2   
+
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

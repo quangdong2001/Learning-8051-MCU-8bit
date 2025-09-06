@@ -1,0 +1,4 @@
+".\Objects\IC_74595_DEM_100.obj",
+".\Objects\main.obj" 
+TO ".\Objects\IC_74595_DEM_100" 
+PRINT(".\Listings\IC_74595_DEM_100.m51") RAMSIZE(256) 
