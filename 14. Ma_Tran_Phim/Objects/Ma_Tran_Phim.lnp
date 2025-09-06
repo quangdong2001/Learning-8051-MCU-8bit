@@ -1,0 +1,4 @@
+".\Objects\main.obj",
+".\Objects\Ma_Tran_Phim.obj" 
+TO ".\Objects\Ma_Tran_Phim" 
+PRINT(".\Listings\Ma_Tran_Phim.m51") RAMSIZE(256) 
