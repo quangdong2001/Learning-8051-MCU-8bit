@@ -1,0 +1,130 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/06/2021  13:43:52  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\74_573_VER2.obj TO .\Objects\74_573_VER2 PRINT (.\Listings\74_
+>> 573_VER2.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\74_573_VER2.obj (74_573_VER2)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  .\Objects\74_573_VER2 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         _DATA_GROUP_
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0059H     UNIT         ?PR?IC_74_573_VER2?74_573_VER2
+            CODE    005CH     0055H     UNIT         ?C?LIB_CODE
+            CODE    00B1H     0020H     UNIT         ?PR?_SLEEP_MS?74_573_VER2
+            CODE    00D1H     000CH     UNIT         ?C_C51STARTUP
+            CODE    00DDH     000AH     UNIT         ?CO?74_573_VER2
+            CODE    00E7H     0003H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\74_573_VER2 (MAIN)
+
+
+SEGMENT                                  DATA_GROUP 
+  +--> CALLED SEGMENT                  START    LENGTH
+------------------------------------------------------
+?C_C51STARTUP                          -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                          -----    -----
+  +--> ?PR?IC_74_573_VER2?74_573_VER2
+
+?PR?IC_74_573_VER2?74_573_VER2         0008H    0002H
+  +--> ?CO?74_573_VER2
+  +--> ?PR?_SLEEP_MS?74_573_VER2
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\74_573_VER2 (MAIN)
+
+  VALUE           TYPE          NAME
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/06/2021  13:43:52  PAGE 2
+
+
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  C:00E7H         PUBLIC        main
+  -------         PROC          MAIN
+  C:00E7H         LINE#         3
+  C:00E7H         LINE#         4
+  C:00E7H         LINE#         5
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        74_573_VER2
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  B:00A0H.0       PUBLIC        LED1
+  B:00A0H.1       PUBLIC        LED2
+  C:00B1H         PUBLIC        _Sleep_ms
+  C:00DDH         PUBLIC        LED
+  C:0003H         PUBLIC        IC_74_573_VER2
+  -------         PROC          _SLEEP_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:00B1H         LINE#         5
+  C:00B1H         LINE#         6
+  C:00B1H         LINE#         8
+  C:00BBH         LINE#         9
+  C:00BBH         LINE#         10
+  C:00C9H         LINE#         11
+  C:00D0H         LINE#         12
+  -------         ENDPROC       _SLEEP_MS
+  -------         PROC          IC_74_573_VER2
+  -------         DO            
+  D:0008H         SYMBOL        i
+  -------         ENDDO         
+  C:0003H         LINE#         15
+  C:0003H         LINE#         16
+  C:0003H         LINE#         17
+  C:0003H         LINE#         18
+  C:0003H         LINE#         20
+  C:0008H         LINE#         21
+  C:0008H         LINE#         24
+  C:0021H         LINE#         25
+  C:0023H         LINE#         26
+  C:0025H         LINE#         29
+  C:003EH         LINE#         31
+  C:0040H         LINE#         32
+  C:0042H         LINE#         33
+  C:0049H         LINE#         35
+  -------         ENDPROC       IC_74_573_VER2
+  -------         ENDMOD        74_573_VER2
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/06/2021  13:43:52  PAGE 3
+
+
+  -------         MODULE        ?C?UIDIV
+  C:005CH         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+Program Size: data=11.0 xdata=0 code=234
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

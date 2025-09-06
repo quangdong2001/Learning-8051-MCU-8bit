@@ -1,0 +1,4 @@
+".\Objects\main.obj",
+".\Objects\74_573_VER2.obj" 
+TO ".\Objects\74_573_VER2" 
+PRINT(".\Listings\74_573_VER2.m51") RAMSIZE(256) 

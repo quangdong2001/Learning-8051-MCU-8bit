@@ -1,0 +1,135 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    05/26/2021  10:13:09  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\IC_74573.obj, .\Objects\main.obj TO .\Objects\IC_74573 PRINT (.\Listings\IC_74573.
+>> m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\IC_74573.obj (IC_74573)
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  .\Objects\IC_74573 (IC_74573)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         _DATA_GROUP_
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0084H     UNIT         ?PR?IC_74573?IC_74573
+            CODE    0087H     0055H     UNIT         ?C?LIB_CODE
+            CODE    00DCH     0020H     UNIT         ?PR?_SLEEP_MS?IC_74573
+            CODE    00FCH     000CH     UNIT         ?C_C51STARTUP
+            CODE    0108H     000AH     UNIT         ?CO?IC_74573
+            CODE    0112H     0003H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\IC_74573 (IC_74573)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                  -----    -----
+  +--> ?PR?IC_74573?IC_74573
+
+?PR?IC_74573?IC_74573          0008H    0002H
+  +--> ?CO?IC_74573
+  +--> ?PR?_SLEEP_MS?IC_74573
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\IC_74573 (IC_74573)
+
+  VALUE           TYPE          NAME
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/26/2021  10:13:09  PAGE 2
+
+
+  ----------------------------------
+
+  -------         MODULE        IC_74573
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  B:00A0H.0       PUBLIC        LED1
+  B:00A0H.1       PUBLIC        LED2
+  B:00A0H.2       PUBLIC        LED3
+  C:00DCH         PUBLIC        _Sleep_ms
+  C:0108H         PUBLIC        LED
+  C:0003H         PUBLIC        IC_74573
+  -------         PROC          IC_74573
+  -------         DO            
+  D:0008H         SYMBOL        i
+  -------         ENDDO         
+  C:0003H         LINE#         4
+  C:0003H         LINE#         5
+  C:0003H         LINE#         6
+  C:0003H         LINE#         7
+  C:0003H         LINE#         9
+  C:0009H         LINE#         10
+  C:000EH         LINE#         11
+  C:000EH         LINE#         12
+  C:0027H         LINE#         13
+  C:0029H         LINE#         14
+  C:002BH         LINE#         15
+  C:004BH         LINE#         16
+  C:004DH         LINE#         17
+  C:004FH         LINE#         18
+  C:0068H         LINE#         19
+  C:006AH         LINE#         20
+  C:006CH         LINE#         21
+  C:0073H         LINE#         22
+  -------         ENDPROC       IC_74573
+  -------         PROC          _SLEEP_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        a
+  D:0002H         SYMBOL        b
+  -------         ENDDO         
+  C:00DCH         LINE#         28
+  C:00DCH         LINE#         29
+  C:00DCH         LINE#         31
+  C:00E6H         LINE#         32
+  C:00E6H         LINE#         33
+  C:00F4H         LINE#         34
+  C:00FBH         LINE#         35
+  -------         ENDPROC       _SLEEP_MS
+  -------         ENDMOD        IC_74573
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  C:0112H         PUBLIC        main
+  -------         PROC          MAIN
+  C:0112H         LINE#         3
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/26/2021  10:13:09  PAGE 3
+
+
+  C:0112H         LINE#         4
+  C:0112H         LINE#         5
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?UIDIV
+  C:0087H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+Program Size: data=11.0 xdata=0 code=277
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

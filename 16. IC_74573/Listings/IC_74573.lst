@@ -1,0 +1,86 @@
+C51 COMPILER V9.60.0.0   IC_74573                                                          05/26/2021 10:13:08 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE IC_74573
+OBJECT MODULE PLACED IN .\Objects\IC_74573.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE IC_74573.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -IC_74573.lst) TABS(2) OBJECT(.\Objects\IC_74573.obj)
+
+line level    source
+
+   1          #include "IC_74573.h"
+   2          unsigned char code LED[] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
+   3          
+   4          void IC_74573()
+   5          {
+   6   1        while(1)
+   7   1        {
+   8   2          unsigned int i;
+   9   2          LED1 = LED2 = LED3 = 0;
+  10   2          for(i = 0; i < 1000; i++)
+  11   2          {
+  12   3            Control = LED[i / 100];
+  13   3            LED1 = 1;
+  14   3            LED1 = 0;
+  15   3            Control = LED[(i/10)%10];
+  16   3            LED2 = 1;
+  17   3            LED2 = 0;
+  18   3            Control = LED[i%10];
+  19   3            LED3 = 1;
+  20   3            LED3 = 0;
+  21   3            Sleep_ms(50);
+  22   3          }
+  23   2        }
+  24   1      }
+  25          
+  26          
+  27          #if (FREQ_OSC == 12000000)
+  28            void Sleep_ms(unsigned int t)
+  29            {
+  30   1          unsigned int a,b;
+  31   1          for(a = 0; a < t; a++)
+  32   1          {
+  33   2            for(b = 0; b < 123; b++);
+  34   2          }
+  35   1        }
+  36            
+  37          #elif (FREQ_OSC == 11059200)
+                void Sleep_ms(unsigned int t)
+                {
+                  unsigned int a,b;
+                  for(a = 0; a < t; a++)
+                  {
+                    for(b = 0, b < 96; b++);
+                  }
+                }
+              
+              #elif (FREQ_OSC == 40000000)
+                void SLeep_ms(unsigned int t)
+                {
+                  unsigned int a,b;
+                  for(a = 0; a < t; a++)
+                  {
+                    for(b = 0; b < 165; b++);
+                  }
+C51 COMPILER V9.60.0.0   IC_74573                                                          05/26/2021 10:13:08 PAGE 2   
+
+                }
+              
+              #else
+                #error " KHONG TON TAI HAM SLEEP_MS NAO THOA MAN !! "
+              
+              #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    164    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
