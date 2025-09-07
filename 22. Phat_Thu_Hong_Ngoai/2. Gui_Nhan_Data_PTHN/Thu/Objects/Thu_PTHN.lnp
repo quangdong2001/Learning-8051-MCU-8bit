@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\Thu_PTHN" 
+PRINT(".\Listings\Thu_PTHN.m51") RAMSIZE(256) 
