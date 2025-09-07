@@ -1,0 +1,307 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/21/2021  22:44:55  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\LM335_ADC0808 PRINT (.\Listings\LM335_ADC0808.m51) RAMSIZE (
+>> 256)
+
+
+MEMORY MODEL: SMALL WITH FLOATING POINT ARITHMETIC
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FPMUL)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FCAST)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?CASTF)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FPGETOPN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?LNEG)
+
+
+LINK MAP OF MODULE:  .\Objects\LM335_ADC0808 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000AH     UNIT         _DATA_GROUP_
+            IDATA   0012H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0200H     UNIT         ?C?LIB_CODE
+            CODE    0203H     0054H     UNIT         ?PR?MAIN?MAIN
+            CODE    0257H     0025H     UNIT         ?PR?_SEND_CMP?MAIN
+            CODE    027CH     0024H     UNIT         ?PR?_ADC0808_READ?MAIN
+            CODE    02A0H     0023H     UNIT         ?PR?_SEND_DATA_BLOCK?MAIN
+            CODE    02C3H     0021H     UNIT         ?PR?_SEND_DATA_BLOCK_LOCATE?MAIN
+            CODE    02E4H     0020H     UNIT         ?PR?_SLEEP_MS?MAIN
+            CODE    0304H     001EH     UNIT         ?PR?LCD_INIT?MAIN
+            CODE    0322H     001BH     UNIT         ?PR?_SEND_DATA_LOCATE?MAIN
+            CODE    033DH     000FH     UNIT         ?PR?_SEND_DATA?MAIN
+            CODE    034CH     000FH     UNIT         ?CO?MAIN
+            CODE    035BH     000CH     UNIT         ?C_C51STARTUP
+            CODE    0367H     0007H     UNIT         ?PR?ADC0808_INIT?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\LM335_ADC0808 (MAIN)
+
+
+SEGMENT                                    DATA_GROUP 
+  +--> CALLED SEGMENT                    START    LENGTH
+--------------------------------------------------------
+?C_C51STARTUP                            -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                            0008H    0003H
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/21/2021  22:44:55  PAGE 2
+
+
+  +--> ?PR?LCD_INIT?MAIN
+  +--> ?CO?MAIN
+  +--> ?PR?_SEND_DATA_BLOCK_LOCATE?MAIN
+  +--> ?PR?ADC0808_INIT?MAIN
+  +--> ?PR?_ADC0808_READ?MAIN
+  +--> ?PR?_SEND_DATA_LOCATE?MAIN
+  +--> ?PR?_SEND_DATA?MAIN
+
+?PR?LCD_INIT?MAIN                        -----    -----
+  +--> ?PR?_SEND_CMP?MAIN
+
+?PR?_SEND_CMP?MAIN                       -----    -----
+  +--> ?PR?_SLEEP_MS?MAIN
+
+?PR?_SEND_DATA_BLOCK_LOCATE?MAIN         000BH    0003H
+  +--> ?PR?_SEND_CMP?MAIN
+  +--> ?PR?_SEND_DATA_BLOCK?MAIN
+
+?PR?_SEND_DATA_BLOCK?MAIN                000EH    0004H
+  +--> ?PR?_SEND_DATA?MAIN
+
+?PR?_SEND_DATA?MAIN                      -----    -----
+  +--> ?PR?_SLEEP_MS?MAIN
+
+?PR?_SEND_DATA_LOCATE?MAIN               -----    -----
+  +--> ?PR?_SEND_CMP?MAIN
+  +--> ?PR?_SEND_DATA?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\LM335_ADC0808 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:0090H.0       PUBLIC        ADC0808_START
+  C:025EH         PUBLIC        _Send_Cmp
+  B:0090H.2       PUBLIC        ADC0808_OE
+  C:0367H         PUBLIC        ADC0808_Init
+  C:0322H         PUBLIC        _Send_Data_Locate
+  B:00A0H.0       PUBLIC        RS
+  C:0203H         PUBLIC        main
+  C:02A0H         PUBLIC        _Send_Data_Block
+  C:02E4H         PUBLIC        _Sleep_ms
+  B:00A0H.1       PUBLIC        E
+  C:0304H         PUBLIC        LCD_Init
+  B:00A0H.7       PUBLIC        ADC0808_ALE
+  B:0090H.1       PUBLIC        ADC0808_EOC
+  B:00A0H.4       PUBLIC        ADC0808_ADD_A
+  B:00A0H.5       PUBLIC        ADC0808_ADD_B
+  B:00A0H.6       PUBLIC        ADC0808_ADD_C
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/21/2021  22:44:55  PAGE 3
+
+
+  C:033DH         PUBLIC        _Send_Data
+  C:02C3H         PUBLIC        _Send_Data_Block_Locate
+  C:027CH         PUBLIC        _ADC0808_Read
+  -------         PROC          _SLEEP_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:02E4H         LINE#         4
+  C:02E4H         LINE#         5
+  C:02E4H         LINE#         7
+  C:02EEH         LINE#         8
+  C:02EEH         LINE#         9
+  C:02FCH         LINE#         10
+  C:0303H         LINE#         11
+  -------         ENDPROC       _SLEEP_MS
+  C:0257H         SYMBOL        L?0035
+  -------         PROC          L?0034
+  -------         ENDPROC       L?0034
+  C:0257H         SYMBOL        L?0035
+  -------         PROC          _SEND_CMP
+  D:0007H         SYMBOL        _struction
+  C:025EH         LINE#         19
+  C:025EH         LINE#         20
+  C:025EH         LINE#         21
+  C:0260H         LINE#         22
+  C:0262H         LINE#         23
+  C:0264H         LINE#         24
+  C:0266H         LINE#         25
+  C:0270H         LINE#         26
+  C:0270H         LINE#         27
+  C:0272H         LINE#         28
+  C:0274H         LINE#         30
+  C:027BH         LINE#         31
+  -------         ENDPROC       _SEND_CMP
+  -------         PROC          _SEND_DATA
+  D:0007H         SYMBOL        _data
+  C:033DH         LINE#         34
+  C:033DH         LINE#         35
+  C:033DH         LINE#         36
+  C:033FH         LINE#         37
+  C:0341H         LINE#         38
+  C:0343H         LINE#         39
+  C:0345H         LINE#         40
+  -------         ENDPROC       _SEND_DATA
+  -------         PROC          _SEND_DATA_BLOCK
+  D:000EH         SYMBOL        _data
+  -------         DO            
+  D:0011H         SYMBOL        i
+  -------         ENDDO         
+  C:02A0H         LINE#         44
+  C:02A6H         LINE#         45
+  C:02A6H         LINE#         46
+  C:02A9H         LINE#         47
+  C:02BBH         LINE#         48
+  C:02BBH         LINE#         49
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/21/2021  22:44:55  PAGE 4
+
+
+  C:02BEH         LINE#         50
+  C:02C0H         LINE#         51
+  C:02C2H         LINE#         52
+  -------         ENDPROC       _SEND_DATA_BLOCK
+  -------         PROC          _SEND_DATA_LOCATE
+  D:0006H         SYMBOL        row
+  D:0005H         SYMBOL        col
+  D:0001H         SYMBOL        _data
+  -------         DO            
+  D:0007H         SYMBOL        _locate
+  -------         ENDDO         
+  C:0322H         LINE#         55
+  C:0326H         LINE#         56
+  C:0326H         LINE#         58
+  C:0335H         LINE#         59
+  C:0338H         LINE#         60
+  -------         ENDPROC       _SEND_DATA_LOCATE
+  -------         PROC          _SEND_DATA_BLOCK_LOCATE
+  D:0007H         SYMBOL        row
+  D:0005H         SYMBOL        col
+  D:000BH         SYMBOL        _data
+  -------         DO            
+  D:0007H         SYMBOL        _locate
+  -------         ENDDO         
+  C:02C3H         LINE#         64
+  C:02C9H         LINE#         65
+  C:02C9H         LINE#         67
+  C:02D8H         LINE#         68
+  C:02DBH         LINE#         69
+  -------         ENDPROC       _SEND_DATA_BLOCK_LOCATE
+  -------         PROC          LCD_INIT
+  C:0304H         LINE#         73
+  C:0304H         LINE#         74
+  C:0304H         LINE#         75
+  C:0306H         LINE#         76
+  C:0309H         LINE#         77
+  C:030BH         LINE#         78
+  C:030EH         LINE#         79
+  C:0310H         LINE#         80
+  C:0313H         LINE#         82
+  C:0318H         LINE#         83
+  C:031DH         LINE#         84
+  -------         ENDPROC       LCD_INIT
+  -------         PROC          ADC0808_INIT
+  C:0367H         LINE#         99
+  C:0367H         LINE#         100
+  C:0367H         LINE#         101
+  C:0369H         LINE#         102
+  C:036BH         LINE#         103
+  C:036DH         LINE#         104
+  -------         ENDPROC       ADC0808_INIT
+  -------         PROC          _ADC0808_READ
+  D:0007H         SYMBOL        _address
+  -------         DO            
+  D:0006H         SYMBOL        _data
+  -------         ENDDO         
+  C:027CH         LINE#         107
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/21/2021  22:44:55  PAGE 5
+
+
+  C:027CH         LINE#         108
+  C:027CH         LINE#         111
+  C:0280H         LINE#         112
+  C:0285H         LINE#         113
+  C:0289H         LINE#         116
+  C:028BH         LINE#         117
+  C:028DH         LINE#         118
+  C:028FH         LINE#         119
+  C:0291H         LINE#         122
+  C:0294H         LINE#         123
+  C:0297H         LINE#         126
+  C:0299H         LINE#         127
+  C:029DH         LINE#         128
+  C:029FH         LINE#         129
+  C:029FH         LINE#         130
+  -------         ENDPROC       _ADC0808_READ
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        value
+  D:0009H         SYMBOL        flag
+  -------         ENDDO         
+  C:0203H         LINE#         134
+  C:0203H         LINE#         135
+  C:0203H         LINE#         138
+  C:0206H         LINE#         139
+  C:0213H         LINE#         140
+  C:0213H         LINE#         141
+  C:0213H         LINE#         142
+  C:0216H         LINE#         143
+  C:021FH         LINE#         144
+  C:0237H         LINE#         145
+  C:0247H         LINE#         146
+  C:0255H         LINE#         147
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?FPMUL
+  C:0003H         PUBLIC        ?C?FPMUL
+  -------         ENDMOD        ?C?FPMUL
+
+  -------         MODULE        ?C?FCAST
+  C:0113H         PUBLIC        ?C?FCASTC
+  C:010EH         PUBLIC        ?C?FCASTI
+  C:0109H         PUBLIC        ?C?FCASTL
+  -------         ENDMOD        ?C?FCAST
+
+  -------         MODULE        ?C?CASTF
+  C:0147H         PUBLIC        ?C?CASTF
+  -------         ENDMOD        ?C?CASTF
+
+  -------         MODULE        ?C?CLDOPTR
+  C:01C8H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?LNEG
+  C:01F5H         PUBLIC        ?C?LNEG
+  -------         ENDMOD        ?C?LNEG
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/21/2021  22:44:55  PAGE 6
+
+
+
+Program Size: data=19.0 xdata=0 code=878
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

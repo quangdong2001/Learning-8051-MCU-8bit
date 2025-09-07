@@ -1,0 +1,145 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              08/19/2021 22:26:50 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          
+   3          // Chan data cua LCD
+   4          #define Data P3
+   5          sbit RS = P2^1;
+   6          sbit E = P2^2;
+   7          
+   8          // Ham dung chuong trinh trong milisecond
+   9          void Sleep_ms(unsigned int t)
+  10          {
+  11   1        unsigned int i, j;
+  12   1        for(i = 0; i < t; i++)
+  13   1        {
+  14   2          for(j = 0; j < 123; j++);
+  15   2        }
+  16   1      }
+  17          
+  18          // Cac function cua LCD // 
+  19          
+  20          // Ham gui lenh ra LCD
+  21          
+  22          void Send_Cmp(unsigned char _struction)
+  23          {
+  24   1        RS = 0;
+  25   1        Data = _struction;
+  26   1        E = 0;
+  27   1        E = 1;
+  28   1        if(_struction <= 0x03)
+  29   1          Sleep_ms(2);
+  30   1        else
+  31   1          Sleep_ms(1);
+  32   1      }
+  33          
+  34          // Ham gui du lieu ra LCD 
+  35          void Send_Data(unsigned char _data)
+  36          {
+  37   1        RS = 1;
+  38   1        Data = _data;
+  39   1        E = 0;
+  40   1        E = 1;
+  41   1        Sleep_ms(1);
+  42   1      }
+  43          
+  44          // Ham gui chuoi ki tu ra LCD 
+  45          void Send_Data_Block(unsigned char *ptr)
+  46          {
+  47   1        unsigned char i = 0;
+  48   1        while(ptr[i] != 0)
+  49   1        {
+  50   2          Send_Data(ptr[i]);
+  51   2          i++;
+  52   2        }
+  53   1      }
+  54          
+C51 COMPILER V9.60.0.0   MAIN                                                              08/19/2021 22:26:50 PAGE 2   
+
+  55          // ham ghi ki tu ra vi tri xac dinh 
+  56          void Send_Data_Locate(unsigned char row, unsigned char col, unsigned char _data)
+  57          {
+  58   1        unsigned char _locate;
+  59   1        _locate = ((row == 1)? 0x80:0xC0) + col - 1;
+  60   1        Send_Cmp(_locate);
+  61   1        Send_Data(_data);
+  62   1      }
+  63          
+  64          // ham gui chuoi ki tu ra vi tri xac dinh cua LCD
+  65          void Send_Data_Block_Locate(unsigned char row, unsigned char col, unsigned char *p)
+  66          {
+  67   1        unsigned char _locate;
+  68   1        _locate = ((row == 1)? 0x80:0xC0) + col - 1;  
+  69   1        Send_Cmp(_locate);
+  70   1        Send_Data_Block(p);
+  71   1      }
+  72          
+  73          
+  74          // Ham khoi tao LCD 
+  75          void LCD_Initialize()
+  76          {
+  77   1        Sleep_ms(100); // Dung chuong trinh trong khoang 100ms de cho dien ap cap cho LCD rise to 2,5V;
+  78   1        Send_Cmp(0x30);
+  79   1        Sleep_ms(5);
+  80   1        Send_Cmp(0x30);   // Lenh gui theo yeu cau cua nha san xuat
+  81   1        Sleep_ms(1);
+  82   1        Send_Cmp(0x30);
+  83   1        Send_Cmp(0x38); // Chon che do 8bit, 2 dong co chu 5x7
+  84   1        Send_Cmp(0x00); // Xoa toan bo du lieu trong thanh ghi DDRAM
+  85   1        Send_Cmp(0x0C);
+  86   1      }
+  87          
+  88          void main()
+  89          {
+  90   1        unsigned int _data;
+  91   1        unsigned char value;
+  92   1        unsigned int flag = 255;
+  93   1        LCD_Initialize();
+  94   1        Send_Data_Block_Locate(1,1,"Voltage = ");
+  95   1        while(1)
+  96   1        {
+  97   2          P0 = flag;
+  98   2          if(P2_0 == 0)
+  99   2          {
+ 100   3            _data = P0;
+ 101   3            value = _data * (float)5*100/255;
+ 102   3            Send_Data_Locate(1,11,value/100 + 0x30);
+ 103   3            Send_Data('.');
+ 104   3            Send_Data((value%100) / 10 + 0x30);
+ 105   3            Send_Data(value % 10 );
+ 106   3            // P0 = 0x00;
+ 107   3          }
+ 108   2          else
+ 109   2          {
+ 110   3            flag--;
+ 111   3            if(flag == 0)
+ 112   3            {
+ 113   4              flag = 255;
+ 114   4            }
+ 115   3          }
+ 116   2        }
+C51 COMPILER V9.60.0.0   MAIN                                                              08/19/2021 22:26:50 PAGE 3   
+
+ 117   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    350    ----
+   CONSTANT SIZE    =     11    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      12
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
