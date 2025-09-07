@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\main.obj" 
+TO ".\Objects\Ngat_Ngoai_4_Button" 
+PRINT(".\Listings\Ngat_Ngoai_4_Button.m51") RAMSIZE(256) 

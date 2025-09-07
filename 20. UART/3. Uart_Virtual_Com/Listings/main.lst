@@ -1,0 +1,42 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              07/30/2021 23:28:06 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OMF2 OPTIMIZE(8,SPEED) BROWSE DEBUG PRINT(.\Listings\main.lst) TA
+                    -BS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include "D:\8051\20. UART\3. Uart_Virtual_Com\Uart_Virtual_Com.h"
+   2          #include <stdio.h>
+   3          void main()
+   4          {
+   5   1        Uart_Init();
+   6   1        
+   7   1        while(1)
+   8   1        {
+   9   2          Uart_Write_Text("Em Chao Anh Dong");
+  10   2          Uart_Write(13);
+  11   2          Sleep_ms(1000);
+  12   2          
+  13   2        }
+  14   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     26    ----
+   CONSTANT SIZE    =     17    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

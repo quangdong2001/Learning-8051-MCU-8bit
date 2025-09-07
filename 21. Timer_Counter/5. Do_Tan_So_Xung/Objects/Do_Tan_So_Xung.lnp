@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\Do_Tan_So_Xung" 
+PRINT(".\Listings\Do_Tan_So_Xung.m51") RAMSIZE(256) 

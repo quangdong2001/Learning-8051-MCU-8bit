@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\Cach_Dieu_Che" 
+PRINT(".\Listings\Cach_Dieu_Che.m51") RAMSIZE(256) 

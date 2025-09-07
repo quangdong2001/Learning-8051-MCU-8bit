@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\UART_74HC165_Led" 
+PRINT(".\Listings\UART_74HC165_Led.m51") RAMSIZE(256) 

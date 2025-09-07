@@ -1,0 +1,250 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              07/29/2021 23:21:13 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OMF2 OPTIMIZE(8,SPEED) BROWSE DEBUG PRINT(.\Listings\main.lst) TA
+                    -BS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          
+   3          sbit SHCP = P2^0;
+   4          sbit DS = P2^1;
+   5          sbit STCP = P2^3;
+   6          
+   7          // Ham gui du lieu tu vi dieu khien ra cho 74HC595
+   8          
+   9          void Send_Data(unsigned char _data)
+  10          {
+  11   1        unsigned char i;
+  12   1        for(i = 0; i < 8; i++)
+  13   1        {
+  14   2          DS = _data & (0x80 >> i);
+  15   2          SHCP = 0;
+  16   2          SHCP = 1;
+  17   2        }
+  18   1        STCP = 0;
+  19   1        STCP = 1;
+  20   1      }
+  21          
+  22          unsigned char code Cot[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
+  23            
+  24          unsigned char code Text[26][8] = {
+  25                                        0xFF, 0xC0, 0x80, 0xB7, 0xB7, 0x80, 0xC0, 0xFF,     // A
+  26                                        0xFF, 0x80, 0x80, 0xB6, 0xB6, 0x80, 0xC9, 0xFF,     // B 
+  27                                        0xFF, 0xC1, 0x80, 0xBE, 0xBE, 0x9C, 0xDD, 0xFF,     // C
+  28                                        0xFF, 0x80, 0x80, 0xBE, 0xBE, 0x80, 0xC1, 0xFF,     // D
+  29                                        0xFF, 0x80, 0x80, 0xB6, 0xB6, 0xBE, 0xBE, 0xFF,     // E
+  30                                        0xFF, 0x80, 0x80, 0xB7, 0xB7, 0xBF, 0xBF, 0xFF,     // F
+  31                                        0xFF, 0xC1, 0x80, 0xBE, 0xBA, 0x98, 0xD9, 0xFF,     // G
+  32                                        0xFF, 0x80, 0x80, 0xF7, 0xF7, 0x80, 0x80, 0xFF,     // H
+  33                                        0xFF, 0xFF, 0xBE, 0x80, 0x80, 0xBE, 0xFF, 0xFF,     // I
+  34                                        0xFF, 0xF9, 0xF8, 0xBE, 0x80, 0x81, 0xBF, 0xFF,     // J
+  35                                        0xFF, 0x80, 0x80, 0xE3, 0xC9, 0x9C, 0xBE, 0xFF,     // K
+  36                                        0xFF, 0x80, 0x80, 0xFE, 0xFE, 0xFE, 0xFE, 0xFF,     // L
+  37                                        0xFF, 0x80, 0x80, 0xCF, 0xE7, 0xCF, 0x80, 0x80,     // M
+  38                                        0xFF, 0x80, 0x80, 0xCF, 0xE7, 0xF3, 0x80, 0x80,     // N
+  39                                        0xFF, 0xC1, 0x80, 0xBE, 0xBE, 0x80, 0xC1, 0xFF,     // O
+  40                                        0xFF, 0x80, 0x80, 0xBB, 0xBB, 0x83, 0xC7, 0xFF,     // P
+  41                                        0xFF, 0xC3, 0x81, 0xBD, 0xBD, 0x80, 0xC2, 0xFF,     // Q
+  42                                        0xFF, 0x80, 0x80, 0xB3, 0xB1, 0x84, 0xCE, 0xFF,     // R
+  43                                        0xFF, 0xCD, 0x84, 0xB6, 0xB6, 0x90, 0xD9, 0xFF,     // S
+  44                                        0xFF, 0x9F, 0xBF, 0x80, 0x80, 0xBF, 0x9F, 0xFF,     // T
+  45                                        0xFF, 0x81, 0x80, 0xFE, 0xFE, 0x80, 0x80, 0xFF,     // U
+  46                                        0xFF, 0x83, 0x81, 0xFC, 0xFC, 0x81, 0x83, 0xFF,     // V
+  47                                        0xFF, 0x80, 0x80, 0xF9, 0xF3, 0xF9, 0x80, 0x80,     // W
+  48                                        0xFF, 0x9C, 0x88, 0xE3, 0xF7, 0xE3, 0x88, 0x9C,     // X
+  49                                        0xFF, 0x8F, 0x87, 0xF0, 0xF0, 0x87, 0x8F, 0xFF,     // Y
+  50                                        0xFF, 0xBC, 0xB8, 0xB2, 0xA6, 0x8E, 0x9E, 0xFF,     // Z
+  51                                        };
+  52            
+  53          unsigned char code Number[10][8] = {
+  54                                        0xFF, 0xC1, 0x80, 0xAE, 0xB6, 0x80, 0xC1, 0xFF,     // 0
+C51 COMPILER V9.60.0.0   MAIN                                                              07/29/2021 23:21:13 PAGE 2   
+
+  55                                        0xFF, 0xFE, 0xEE, 0x80, 0x80, 0xFE, 0xFE, 0xFF,     // 1
+  56                                        0xFF, 0xDC, 0x98, 0xBA, 0xB6, 0x86, 0xCE, 0xFF,     // 2
+  57                                        0xFF, 0xDD, 0x9C, 0xB6, 0xB6, 0x80, 0xC9, 0xFF,     // 3
+  58                                        0xFF, 0xF3, 0xEB, 0xDB, 0x80, 0x80, 0xFB, 0xFF,     // 4
+  59                                        0xFF, 0x8D, 0x8C, 0xAE, 0xAE, 0xA0, 0xB1, 0xFF,     // 5
+  60                                        0xFF, 0xC1, 0x80, 0xB6, 0xB6, 0x90, 0xD9, 0xFF,     // 6
+  61                                        0xFF, 0x9F, 0x9F, 0xB8, 0xA0, 0x87, 0x9F, 0xFF,     // 7
+  62                                        0xFF, 0xC9, 0x80, 0xB6, 0xB6, 0x80, 0xC9, 0xFF,     // 8
+  63                                        0xFF, 0xCD, 0x84, 0xB6, 0xB6, 0x80, 0xC1, 0xFF,     // 9
+  64                                             };
+  65             
+  66          // Dung chuong trinh trong ? milisecond
+  67          void Sleep_ms(unsigned int t)
+  68          {
+  69   1        unsigned int i, j;
+  70   1        for(i = 0; i < t; i++)
+  71   1        {
+  72   2          for(j = 0; j <123; j++);
+  73   2        }
+  74   1      }
+  75          
+  76          // Cau hinh cho truyen thong noi tiep 
+  77          
+  78          void Uart_Init()
+  79          {
+  80   1        // Chon timer1 che do 8bit tu nap lai 
+  81   1        TMOD &= 0x0F;
+  82   1        TMOD |= 0x20;
+  83   1        
+  84   1        // Chon che do truyen not tiep 8bit toc do baud duoc cai boi timer1 
+  85   1        SM0 = 0;
+  86   1        SM1 = 1;
+  87   1        
+  88   1        // Chon che do nhan di lieu 
+  89   1        REN = 1;
+  90   1        
+  91   1        // Nap thanh ghi TH de cai dat toc do Baud
+  92   1        TH1 = 0xFD;
+  93   1        
+  94   1        // Khoi dong timer1;
+  95   1        TR1 = 1;
+  96   1        
+  97   1        // Gan TI = 1 de thong bao san sang truyen du lieu di
+  98   1        TI = 1;
+  99   1        
+ 100   1      }
+ 101          
+ 102          // Ham gui du lieu tu vi dieu khien ra cho thiet bi ngoai 
+ 103          
+ 104          void Uart_Write(unsigned char _data)
+ 105          {
+ 106   1        while(TI == 0);
+ 107   1        TI = 0;
+ 108   1        SBUF = _data;
+ 109   1      }
+ 110          
+ 111          // Ham gui chuoi ki tu
+ 112          void Uart_Write_Text(unsigned char *p)
+ 113          {
+ 114   1        unsigned char i = 0;
+ 115   1        while(p[i] != 0)
+ 116   1        {
+C51 COMPILER V9.60.0.0   MAIN                                                              07/29/2021 23:21:13 PAGE 3   
+
+ 117   2          Uart_Write(p[i]);
+ 118   2          i++;
+ 119   2        }
+ 120   1      }
+ 121          
+ 122          // Ham kiem tra xem co du lieu duoc gui tu ngoai vao trong vi dieu khien khong 
+ 123          unsigned char Uart_Ready()
+ 124          {
+ 125   1        return RI;
+ 126   1      }
+ 127          
+ 128          // Ham lay du lieu tu ben ngoai vao cho vi dieu khien 
+ 129          unsigned char Uart_Read()
+ 130          {
+ 131   1        RI = 0;
+ 132   1        return SBUF;
+ 133   1      }
+ 134          
+ 135          void Uart_Read_Matrix()
+ 136          {
+ 137   1        while(1)
+ 138   1        {
+ 139   2          unsigned char i, _data;
+ 140   2          if(Uart_Ready())
+ 141   2          {
+ 142   3            _data = Uart_Read();
+ 143   3            if((_data >= 48) && (_data <= 57))
+ 144   3            {
+ 145   4              while(Uart_Ready() == 0)
+ 146   4              {
+ 147   5                for(i = 0; i < 8; i++)
+ 148   5                {
+ 149   6                  Send_Data(Number[_data - 48][i]);
+ 150   6                  P0 = Cot[i];
+ 151   6                  Sleep_ms(1);
+ 152   6                  P0 = 0x00;
+ 153   6                }
+ 154   5              }
+ 155   4            }
+ 156   3            else if((_data >= 65) && (_data <= 90))
+ 157   3            {
+ 158   4              while(Uart_Ready() == 0)
+ 159   4              {
+ 160   5                for(i = 0; i < 8; i++)
+ 161   5                {
+ 162   6                  Send_Data(Text[_data - 65][i]);
+ 163   6                  P0 = Cot[i];
+ 164   6                  Sleep_ms(1);
+ 165   6                  P0 = 0x00;
+ 166   6                }
+ 167   5              }
+ 168   4            }
+ 169   3            else if((_data >= 97) &&(_data <= 122))
+ 170   3            {
+ 171   4              while(Uart_Ready() == 0)
+ 172   4              {
+ 173   5                for(i = 0; i < 8; i++)
+ 174   5                {
+ 175   6                  Send_Data(Text[_data - 97][i]);
+ 176   6                  P0 = Cot[i];
+ 177   6                  Sleep_ms(1);
+ 178   6                  P0 = 0x00;
+C51 COMPILER V9.60.0.0   MAIN                                                              07/29/2021 23:21:13 PAGE 4   
+
+ 179   6                }
+ 180   5              }
+ 181   4            }
+ 182   3          }
+ 183   2        }
+ 184   1      }
+ 185          
+ 186          
+ 187          void main()
+ 188          {
+ 189   1        Uart_Init();
+ 190   1        Uart_Read_Matrix();
+ 191   1        
+ 192   1      }
+ 193          
+ 194          
+ 195          
+ 196          
+ 197          
+ 198          
+ 199          
+ 200          
+ 201          
+ 202          
+ 203          
+ 204          
+ 205          
+ 206          
+ 207          
+ 208          
+ 209          
+ 210          
+ 211          
+ 212          
+ 213          
+ 214          
+ 215          
+ 216          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    413    ----
+   CONSTANT SIZE    =    296    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,160 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              08/04/2021 22:55:37 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          
+   3          #define Data P0
+   4          sbit RS = P2^0;
+   5          sbit E = P2^1;
+   6          
+   7          // Ham dung chuong trinh trong ? milisecond
+   8          void Sleep_ms(unsigned int t)
+   9          {
+  10   1        unsigned int i, j;
+  11   1        for(i = 0; i < t; i++)
+  12   1        {
+  13   2          for(j = 0; j < 123; j++);
+  14   2        }
+  15   1      }
+  16          
+  17          
+  18          // Ham gui lenh ra LCD
+  19          void Send_Cmd(unsigned char _code)
+  20          {
+  21   1        RS = 0;
+  22   1        Data = _code;
+  23   1        E = 1;
+  24   1        E = 0;
+  25   1        if(_code <= 0x02)
+  26   1          Sleep_ms(2);
+  27   1        else
+  28   1          Sleep_ms(1);
+  29   1      }
+  30          
+  31          
+  32          // Ham khoi tao LCD
+  33          void LCD_Init()
+  34          {
+  35   1        Sleep_ms(100); // De cho dien ap tang len toi 5v
+  36   1        Send_Cmd(0x30);
+  37   1        Sleep_ms(5);
+  38   1        Send_Cmd(0x30);
+  39   1        Sleep_ms(1);
+  40   1        Send_Cmd(0x30);
+  41   1        Sleep_ms(1);
+  42   1        // hien thi 2 dong co chu 5x7
+  43   1        Send_Cmd(0x38);
+  44   1        // Xoa du lieu trong DDRAM
+  45   1        Send_Cmd(0x01);
+  46   1        // Bat hien thi tat con tro
+  47   1        Send_Cmd(0x0C);
+  48   1      }
+  49          
+  50          
+  51          
+  52          // Ham gui ki tu ra cho LCD 
+  53          void Send_Text(unsigned char _text)
+  54          {
+C51 COMPILER V9.60.0.0   MAIN                                                              08/04/2021 22:55:37 PAGE 2   
+
+  55   1        RS = 1;
+  56   1        Data = _text;
+  57   1        E = 1;
+  58   1        E = 0;
+  59   1        Sleep_ms(1);
+  60   1      }
+  61          
+  62          // Ham gui chuoi ki tu ra ban phim 
+  63          void Send_Text_Block(unsigned char *_text)
+  64          {
+  65   1        unsigned char i = 0;
+  66   1        while(_text[i] != 0)
+  67   1        {
+  68   2          Send_Text(_text[i]);
+  69   2          i++;
+  70   2        }
+  71   1      }
+  72          
+  73          // Gui ki tu ra vi tri xac dinh trong bo nho DDRAM
+  74          void Send_Data_Local(unsigned char row, unsigned char col, unsigned char _data)
+  75          {
+  76   1        unsigned char _local;
+  77   1        _local = ((row == 1)?0x80 : 0xC0) + col - 1;
+  78   1        Send_Cmd(_local);
+  79   1        Send_Text(_data);
+  80   1      }
+  81          
+  82          // Gui chuoi ki tu ra vi tri xac dinh trong LCD 
+  83          void Send_Data_Local_Block(unsigned char row, unsigned char col, unsigned char *_data)
+  84          {
+  85   1        unsigned char _local;
+  86   1        _local = ((row == 1)?0x80 : 0xC0) + col - 1;
+  87   1        Send_Cmd(_local);
+  88   1        Send_Text_Block(_data);
+  89   1      }
+  90          void main()
+  91          {
+  92   1        unsigned int _data, T, F;
+  93   1        // thiet lap timer 0 che de 16bit 
+  94   1        LCD_Init();
+  95   1        TMOD &= 0xF0;
+  96   1        TMOD |= 0x09;
+  97   1        
+  98   1        Send_Data_Local_Block(1, 1, "T = ");
+  99   1        Send_Data_Local_Block(2, 1, "F = ");
+ 100   1        
+ 101   1          
+ 102   1        while(1)
+ 103   1        {
+ 104   2          TL0 = 0x00;
+ 105   2          TH0 = 0x00;
+ 106   2          
+ 107   2          while(INT0);
+ 108   2          while(!INT0);
+ 109   2          TR0 = 1;
+ 110   2          while(INT0);
+ 111   2          TR0 = 0;
+ 112   2          
+ 113   2          _data = TH0;
+ 114   2          _data <<= 8;
+ 115   2          _data |= TL0;
+ 116   2          
+C51 COMPILER V9.60.0.0   MAIN                                                              08/04/2021 22:55:37 PAGE 3   
+
+ 117   2          T = _data * 2;
+ 118   2          Send_Data_Local(1, 5, T / 10000 + 0x30);
+ 119   2          Send_Text((T % 10000) / 1000 + 0x30);
+ 120   2          Send_Text((T % 1000) / 100 + 0x30);
+ 121   2          Send_Text((T % 100) / 10 + 0x30);
+ 122   2          Send_Text((T % 10) + 0x30);
+ 123   2          
+ 124   2          F = 1000000 / T;
+ 125   2          Send_Data_Local(2, 5, F / 10000 + 0x30);
+ 126   2          Send_Text((F % 10000) / 1000 + 0x30);
+ 127   2          Send_Text((F % 1000) / 100 + 0x30);
+ 128   2          Send_Text((F % 100) / 10 + 0x30);
+ 129   2          Send_Text((F % 10) + 0x30);
+ 130   2        }
+ 131   1        
+ 132   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    510    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      13
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

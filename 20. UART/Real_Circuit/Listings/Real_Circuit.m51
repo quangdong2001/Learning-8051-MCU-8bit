@@ -1,0 +1,245 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    07/29/2021  15:02:54  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\Real_Circuit PRINT (.\Listings\Real_Circuit.m51) RAMSIZE (25
+>> 6)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\Real_Circuit (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         _DATA_GROUP_
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0128H     UNIT         ?CO?MAIN
+            CODE    012BH     00DBH     UNIT         ?PR?UART_READ_MATRIX?MAIN
+            CODE    0206H     003FH     UNIT         ?PR?_SLEEP_MS?MAIN
+            CODE    0245H     0036H     UNIT         ?PR?_SEND_DATA?MAIN
+            CODE    027BH     0014H     UNIT         ?PR?UART_INIT?MAIN
+            CODE    028FH     000CH     UNIT         ?C_C51STARTUP
+            CODE    029BH     0008H     UNIT         ?PR?_UART_WRITE?MAIN
+            CODE    02A3H     0006H     UNIT         ?PR?UART_READY?MAIN
+            CODE    02A9H     0005H     UNIT         ?PR?UART_READ?MAIN
+            CODE    02AEH     0003H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Real_Circuit (MAIN)
+
+
+SEGMENT                             DATA_GROUP 
+  +--> CALLED SEGMENT             START    LENGTH
+-------------------------------------------------
+?C_C51STARTUP                     -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                     -----    -----
+  +--> ?PR?UART_READ_MATRIX?MAIN
+
+?PR?UART_READ_MATRIX?MAIN         0008H    0002H
+  +--> ?PR?UART_READY?MAIN
+  +--> ?PR?UART_READ?MAIN
+  +--> ?CO?MAIN
+  +--> ?PR?_SLEEP_MS?MAIN
+
+?PR?_SLEEP_MS?MAIN                -----    -----
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/29/2021  15:02:54  PAGE 2
+
+
+  +--> ?PR?_SEND_DATA?MAIN
+  +--> ?CO?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Real_Circuit (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  C:029BH         PUBLIC        _Uart_Write
+  C:027BH         PUBLIC        Uart_Init
+  B:00A0H.1       PUBLIC        DS
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  C:02AEH         PUBLIC        main
+  C:000BH         PUBLIC        Text
+  C:0003H         PUBLIC        Cot
+  B:00A0H.0       PUBLIC        SHCP
+  D:0099H         PUBLIC        SBUF
+  D:0089H         PUBLIC        TMOD
+  B:00A0H.3       PUBLIC        STCP
+  C:0225H         PUBLIC        _Sleep_ms
+  D:008DH         PUBLIC        TH1
+  B:0098H.7       PUBLIC        SM0
+  B:0098H.6       PUBLIC        SM1
+  C:012BH         PUBLIC        Uart_Read_Matrix
+  B:0088H.6       PUBLIC        TR1
+  B:0098H.4       PUBLIC        REN
+  C:0245H         PUBLIC        _Send_Data
+  C:00DBH         PUBLIC        Number
+  C:02A3H         PUBLIC        Uart_Ready
+  C:02A9H         PUBLIC        Uart_Read
+  -------         PROC          _SEND_DATA
+  D:0005H         SYMBOL        _data
+  -------         DO            
+  D:0003H         SYMBOL        i
+  -------         ENDDO         
+  C:0245H         LINE#         9
+  C:0247H         LINE#         10
+  C:0247H         LINE#         12
+  C:0253H         LINE#         13
+  C:0253H         LINE#         14
+  C:026FH         LINE#         15
+  C:0271H         LINE#         16
+  C:0273H         LINE#         17
+  C:0276H         LINE#         18
+  C:0278H         LINE#         19
+  C:027AH         LINE#         20
+  -------         ENDPROC       _SEND_DATA
+  C:0206H         SYMBOL        L?0048
+  -------         PROC          L?0047
+  -------         ENDPROC       L?0047
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/29/2021  15:02:54  PAGE 3
+
+
+  C:0206H         SYMBOL        L?0048
+  -------         PROC          _SLEEP_MS
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0225H         LINE#         67
+  C:0225H         LINE#         68
+  C:0225H         LINE#         70
+  C:022FH         LINE#         71
+  C:022FH         LINE#         72
+  C:023DH         LINE#         73
+  C:0244H         LINE#         74
+  -------         ENDPROC       _SLEEP_MS
+  -------         PROC          UART_INIT
+  C:027BH         LINE#         78
+  C:027BH         LINE#         79
+  C:027BH         LINE#         81
+  C:027EH         LINE#         82
+  C:0281H         LINE#         85
+  C:0283H         LINE#         86
+  C:0285H         LINE#         89
+  C:0287H         LINE#         92
+  C:028AH         LINE#         95
+  C:028CH         LINE#         98
+  C:028EH         LINE#         100
+  -------         ENDPROC       UART_INIT
+  -------         PROC          _UART_WRITE
+  D:0007H         SYMBOL        _data
+  C:029BH         LINE#         104
+  C:029BH         LINE#         105
+  C:029BH         LINE#         106
+  C:029EH         LINE#         107
+  C:02A0H         LINE#         108
+  C:02A2H         LINE#         109
+  -------         ENDPROC       _UART_WRITE
+  -------         PROC          UART_READY
+  C:02A3H         LINE#         112
+  C:02A3H         LINE#         113
+  C:02A3H         LINE#         114
+  C:02A8H         LINE#         115
+  -------         ENDPROC       UART_READY
+  -------         PROC          UART_READ
+  C:02A9H         LINE#         118
+  C:02A9H         LINE#         119
+  C:02A9H         LINE#         120
+  C:02ABH         LINE#         121
+  C:02ADH         LINE#         122
+  -------         ENDPROC       UART_READ
+  -------         PROC          UART_READ_MATRIX
+  -------         DO            
+  D:0008H         SYMBOL        i
+  D:0009H         SYMBOL        _data
+  -------         ENDDO         
+  C:012BH         LINE#         124
+  C:012BH         LINE#         125
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/29/2021  15:02:54  PAGE 4
+
+
+  C:012BH         LINE#         126
+  C:012BH         LINE#         127
+  C:012BH         LINE#         129
+  C:0131H         LINE#         130
+  C:0131H         LINE#         131
+  C:0136H         LINE#         132
+  C:014CH         LINE#         133
+  C:014CH         LINE#         134
+  C:0152H         LINE#         135
+  C:0152H         LINE#         136
+  C:015FH         LINE#         137
+  C:015FH         LINE#         138
+  C:016DH         LINE#         139
+  C:016DH         LINE#         140
+  C:0170H         LINE#         141
+  C:0173H         LINE#         142
+  C:0177H         LINE#         143
+  C:0177H         LINE#         144
+  C:0177H         LINE#         145
+  C:018FH         LINE#         146
+  C:018FH         LINE#         147
+  C:0195H         LINE#         148
+  C:0195H         LINE#         149
+  C:01A2H         LINE#         150
+  C:01A2H         LINE#         151
+  C:01B0H         LINE#         152
+  C:01B0H         LINE#         153
+  C:01B3H         LINE#         154
+  C:01B6H         LINE#         155
+  C:01BAH         LINE#         156
+  C:01BAH         LINE#         157
+  C:01BAH         LINE#         158
+  C:01D8H         LINE#         159
+  C:01D8H         LINE#         160
+  C:01E1H         LINE#         161
+  C:01E1H         LINE#         162
+  C:01EEH         LINE#         163
+  C:01EEH         LINE#         164
+  C:01FCH         LINE#         165
+  C:01FCH         LINE#         166
+  C:01FFH         LINE#         167
+  C:0202H         LINE#         168
+  -------         ENDPROC       UART_READ_MATRIX
+  -------         PROC          MAIN
+  C:02AEH         LINE#         176
+  C:02AEH         LINE#         177
+  C:02AEH         LINE#         178
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?UART_INIT?MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART_WRITE?MAIN
+
+Program Size: data=11.0 xdata=0 code=689
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/29/2021  15:02:54  PAGE 5
+
+
+LINK/LOCATE RUN COMPLETE.  2 WARNING(S),  0 ERROR(S)

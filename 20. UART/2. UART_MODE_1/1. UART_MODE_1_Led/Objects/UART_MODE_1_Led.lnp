@@ -1,0 +1,4 @@
+".\Objects\main.obj" 
+TO ".\Objects\UART_MODE_1_Led" 
+
+PRINT(".\Listings\UART_MODE_1_Led.map") ru 

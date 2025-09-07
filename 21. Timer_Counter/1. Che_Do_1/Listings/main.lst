@@ -1,0 +1,59 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              07/31/2021 15:37:30 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          
+   3          void Tao_Tre_Timer(unsigned int t)
+   4          {
+   5   1        do
+   6   1        {
+   7   2          // Nap gia tri cho thanh ghi de tao do tro 1ms
+   8   2          // tan so bo dinh thoi dua vao tan so thach anh
+   9   2          // trong 8051 co bo chia 12 nen tan so bo dem = 1Mhz ==>> Chu ki cua bo dinh thoi la 1us
+  10   2          // Gia tri can nap = 65536 - (Thoi gian can tre / 1us)
+  11   2          // 1ms ==>> Gia tri can nap se la 65536 - (1000/1) ==>> Ma Hexa la FC18H
+  12   2          // == >>
+  13   2          TL0 = 0x18;
+  14   2          TH0 = 0xFC;
+  15   2          TR0 = 1;
+  16   2        
+  17   2          while(TF0 == 0);
+  18   2          TR0 = 0;
+  19   2          TF0 = 0;
+  20   2          t--;
+  21   2        }while(t != 0);
+  22   1      }
+  23          void main()
+  24          {
+  25   1        
+  26   1        // chon timee0 che do tao tre va khong bang cac bit TR0, TR1;
+  27   1        TMOD &= 0xF0;
+  28   1        TMOD |= 0x01;
+  29   1        
+  30   1        while(1)
+  31   1        {
+  32   2          P1_1 = !P1_1;
+  33   2          Tao_Tre_Timer(1000);
+  34   2        }
+  35   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     42    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,59 @@
+C51 COMPILER V9.60.0.0   UART_MODE_0_7SEG                                                  07/19/2021 17:00:54 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE UART_MODE_0_7SEG
+OBJECT MODULE PLACED IN .\Objects\UART_MODE_0_7Seg.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE UART_MODE_0_7Seg.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\L
+                    -istings\UART_MODE_0_7Seg.lst) TABS(2) OBJECT(.\Objects\UART_MODE_0_7Seg.obj)
+
+line level    source
+
+   1          #include "UART_MODE_0_7Seg.h"
+   2          
+   3          unsigned char code _Data[] = {0x03, 0x9F, 0x25, 0x0D, 0x99, 0x49, 0x41, 0x1F, 0x01, 0x09};
+   4          
+   5          void Sleep_ms(unsigned int t)
+   6          {
+   7   1        unsigned int i, j;
+   8   1        for(i = 0 ; i < t; i++)
+   9   1        {
+  10   2          for(j = 0; j < 123; j++);
+  11   2        }
+  12   1      }
+  13          
+  14          void UART_MODE_0(unsigned char _data)
+  15          {
+  16   1        SM0 = 0;
+  17   1        SM1 = 0;
+  18   1        SBUF = _data;
+  19   1        while(TI == 0);
+  20   1        TI = 0;
+  21   1        
+  22   1        P3_2 = 0;
+  23   1        P3_2 = 1;
+  24   1      }
+  25          
+  26          void Effect()
+  27          {
+  28   1        unsigned char i;
+  29   1        for(i = 0; i <= 9; i++)
+  30   1        {
+  31   2          UART_MODE_0(_Data[i]);
+  32   2          Sleep_ms(1000);
+  33   2        }
+  34   1        
+  35   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     80    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
