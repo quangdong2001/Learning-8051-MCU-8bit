@@ -1,0 +1,33 @@
+0x01 : Xóa toàn bộ nội dung đang hiển thị trên màn hình  // 1.52ms
+0x02 : Dịch chuyển con trỏ về đầu màn hình               // 1.52ms
+0x06 : Tự động dịch con trỏ đến vị trí tiếp theo         // 37Ms
+0x0C : Bật hiển thị và tắt con trỏ                       // 37Ms
+0x0E : Bật hiển thị và bật con trỏ                       // 37Ms
+0x80 : Dịch con trỏ về đầu dòng 1                        // 37Ms
+0xC0 : Dịch con trỏ về đầu dòng 2                        // 37Ms
+0x38 : Giao tiếp 8 bit hiển thị 2 dòng cỡ chứ 5x7        // 37Ms
+0x28 : Giao tiếp 4 bit hiển thị 2 dòng cơ chữ 5x7        // 37Ms
+0x18 : Dịch toàn bộ nội dung hiển thị sang trái          // 37Ms
+0x1C : Dịch toàn bộ nội dung sang phải 
+0x02, 0x03 : Đưa nội dung hiển thị về vị trí ban đầu 
+
+// Xuất kí tự ra vị trí bất kì 
+Locate = (row == 1?0x80 :0xC0) + col -1 
+
+
+
+//  KHỞI TẠO LCD BAN ĐẦU 
+void Initialize_LCD()
+{
+	Sleep_ms(100);
+	Send_Cmd(0x30);
+	Sleep_ms(5);
+	Send_Cmd(0x30);
+	Sleep_ms(1);
+	Send_Cmd(0x30);
+	Send_Cmd(0x38);
+	Send_Cmd(0x01);
+	Sleep_ms(2);
+	Send_Cmd(0x0C);
+	Sleep_ms(1);
+}

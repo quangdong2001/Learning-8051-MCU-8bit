@@ -1,0 +1,166 @@
+Lệnh                Byte   Chu kì máy
+Mov A,Rn            2       1
+Mov A,direct        2       1
+Mov A,@Ri           1       1
+Mov A,#data         2       1
+Mov Rn,A            1       1
+Mov Rn,direct       2       1
+Mov Rn,#data        2       1
+Mov direct,A        2       1
+Mov direct,Rn       2       1
+Mov direct,direct   3       1
+Mov direct,#data    3       2
+Mov direct,@Ri      2       2
+Mov @Ri,A           1       1
+Mov @Ri,direct      2       2
+Mov @Ri,#data       2       1
+Mov DPTR,#data16    3       2
+
+
+XCH A,direct        2       1
+XCH A,Rn            1       1
+XCH A,@Ri           1       1
+XCHD A,@A+DPTR      1       2
+
+ 
+Add A,direct        2       1
+Add A,@Ri           1       1
+Add A,#data         2       1
+AddC A,Rn           1       1
+AddC A,direct       2       1
+AddC A,@Ri          1       1
+AddC A,#data        2       1
+
+
+SubB A,Rn           1       1
+SubB A,@Ri          1       1
+SubB A,#data        2       1
+
+
+Inc A               1       1
+Inc Rn              1       1
+Inc direct          2       1
+Inc @Ri             1       1
+Inc DPTR            1       2 
+
+
+Dec A               1       1 
+Dec Rn              1       1
+Dec direct          1       1
+Dec @Ri             1       1
+
+
+Mul AB              1       4
+Div AB              1       4
+
+DA A                1       4
+
+
+ANL A,Rn            1       1
+ANL A,direct        2       1
+ANL A,@Ri           1       1
+ANL A,#data         2       1
+ANL direct,A        2       1
+ANL direct,#data    2       1
+
+
+ORL A,Rn            1       1
+ORL A,direct        2       1
+ORL A,@Ri           1       1
+ORL A,#data         2       1
+ORL direct,A        2       1
+ORL direct,#data    3       2
+
+
+XRL A,Rn            1       1
+XRL A,direct        2       1
+XRL A,@Ri           1       1
+XRL A,#data         2       1
+XRL direct,A        2       1
+XRL direct,#data    3       2
+
+
+CPL A               1       1
+CLR A               1       1
+RL A                1       1
+RLC A               1       1
+RR A                1       1
+RRC A               1       1
+SWAP A              1       1 
+
+
+
+ACall addr11        2       2 
+ACall addr16        3       2
+
+Ret                 1       2
+Reti                1       2
+
+AJMP addr11         2       2
+AJMP addr16         3       2
+SJMP rel            2       2
+JMP @A+DPTR         2       2
+JZ rel              2       2
+JNZ rel             2       2
+JC rel              2       2
+JNC rel             2       2 
+JB bit,rel          3       2
+JNC bit,rel         3       2
+JBC bit,rel         3       2
+CJNE A,direct,rel   3       2
+CJNE A,#data,rel    3       2
+CJNE Rn,#data,rel   3       2
+CJNE @Ri,#data,rel  3       2 
+
+DJNZ Rn,rel         2       2
+DJNZ direct,rel     3       2
+NOP                 1       1  (Delay 1 chu kì máy)
+
+
+CLR C               1       1
+CLR bit             2       1
+SetB C              1       1
+SetB bit            2       1
+CPL C               1       1 
+SPL bit             2       1
+ANL C,bit           2       1
+ANL C,/bit          2       1
+
+ORL C,bit           2       2
+ORL C,/bit          2       2
+Mov C,bit           2       1
+Mov bit,C           2       2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
