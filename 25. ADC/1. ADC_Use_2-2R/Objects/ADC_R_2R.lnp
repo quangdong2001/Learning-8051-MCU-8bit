@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\ADC_R_2R" 
+PRINT(".\Listings\ADC_R_2R.m51") RAMSIZE(256) 

@@ -1,0 +1,184 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              08/20/2021 15:05:28 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          
+   3          // Ham dung chuong trinh trong ?milisecond
+   4          void Sleep_ms(unsigned int t)
+   5          {
+   6   1        unsigned int i, j;
+   7   1        for(i = 0; i < t; i++)
+   8   1        {
+   9   2          for(j = 0; j < 123; j++);
+  10   2        }
+  11   1      }
+  12          
+  13          // Khai bao cac bit cua LCD
+  14          #define Data P0
+  15          sbit RS = P2^0;
+  16          sbit E = P2^1;
+  17          //...............................................................CAC HAM CUA LCD..........................
+             -......................................//
+  18          // Ham gui lenh ra cho LCD
+  19          void Send_Cmp(unsigned char _struction)
+  20          {
+  21   1        RS = 0;
+  22   1        Data = _struction;
+  23   1        E = 0;
+  24   1        E = 1;
+  25   1        if( _struction <= 0x03)
+  26   1        {
+  27   2          Sleep_ms(2);
+  28   2        }
+  29   1        else
+  30   1          Sleep_ms(1);
+  31   1      }
+  32          // Ham gui ki tu ra cho LCD
+  33          void Send_Data(unsigned char _data)
+  34          {
+  35   1        RS = 1;
+  36   1        Data = _data;
+  37   1        E = 0; 
+  38   1        E = 1;
+  39   1        Sleep_ms(1);
+  40   1      }
+  41          
+  42          // Ham gui chuoi ki tu ra cho LCD
+  43          void Send_Data_Block(unsigned char *_data)
+  44          {
+  45   1        unsigned char i = 0;
+  46   1        while(_data[i] != 0)
+  47   1        {
+  48   2          Send_Data(_data[i]);
+  49   2          i++;
+  50   2        }
+  51   1      }
+  52          
+  53          // Ham gui ki tu ra vi tri xac dinh trong LCD 
+C51 COMPILER V9.60.0.0   MAIN                                                              08/20/2021 15:05:28 PAGE 2   
+
+  54          void Send_Data_Locate(unsigned char row, unsigned char col, unsigned char _data)
+  55          {
+  56   1        unsigned char _locate;
+  57   1        _locate = ((row == 1)? 0x80:0xC0) + col - 1;
+  58   1        Send_Cmp(_locate);
+  59   1        Send_Data(_data);
+  60   1      }
+  61          
+  62          // Ham gui chuoi ki tu ra vi tri xac dinh trong lCD
+  63          void Send_Data_Block_Locate(unsigned char row, unsigned char col, unsigned char *p)
+  64          {
+  65   1        unsigned char _locate;
+  66   1        _locate = ((row == 1)? 0x80:0xC0) + col - 1;
+  67   1        Send_Cmp(_locate);
+  68   1        Send_Data_Block(p);
+  69   1      }
+  70          
+  71          // Ham khoi tao LCD 
+  72          void LCD_Init()
+  73          {
+  74   1        Sleep_ms(100);    // doi khoang 100ms de cho dien ap tang toi 4,5V;
+  75   1        Send_Cmp(0x30);
+  76   1        Sleep_ms(5);
+  77   1        Send_Cmp(0x30);
+  78   1        Sleep_ms(1);
+  79   1        Send_Cmp(0x30);
+  80   1        
+  81   1        Send_Cmp(0x00); // Xoa toan bo du lieu trong bo nho DDRAM
+  82   1        Send_Cmp(0x0C); // Hien thi LCD tat con tro;
+  83   1        Send_Cmp(0x38); // Chon che do 8bit, hien thi 2 hang, co chu 5x7;
+  84   1        
+  85   1      }
+  86          
+  87          
+  88          
+  89          //..................................................................HAM XU LI CUA ADC0808.................
+             -.......................................//
+  90          
+  91          //Khai bao pin of ADC0808
+  92          sbit ADC0808_ADD_A = P1^0;
+  93          sbit ADC0808_ADD_B = P1^1;
+  94          sbit ADC0808_ADD_C = P1^2;
+  95          sbit ADC0808_ALE   = P1^3;
+  96          sbit ADC0808_START = P1^4;
+  97          sbit ADC0808_EOC   = P1^5;
+  98          sbit ADC0808_OE    = P1^6;
+  99          
+ 100          // Ham khoi tao ADC0808;
+ 101          void ADC0808_Init()
+ 102          {
+ 103   1        ADC0808_START = 0;
+ 104   1        ADC0808_ALE   = 0;
+ 105   1        ADC0808_OE    = 0;
+ 106   1      }
+ 107          
+ 108          
+ 109          // Ham convert du lieu tu ADC0808
+ 110          
+ 111          unsigned char ADC0808_Read(unsigned char _address)
+ 112          {
+ 113   1        // khai bao bien de luu tru du lieu
+ 114   1        unsigned char _data;
+C51 COMPILER V9.60.0.0   MAIN                                                              08/20/2021 15:05:28 PAGE 3   
+
+ 115   1        // Chon dia chi de convert;
+ 116   1        ADC0808_ADD_A = _address & 0x01;
+ 117   1        ADC0808_ADD_B = _address & 0x02;
+ 118   1        ADC0808_ADD_C = _address & 0x04;
+ 119   1          
+ 120   1        // Tao xung bat dau cung nhu chot du lieu 
+ 121   1        ADC0808_ALE = 1;
+ 122   1        ADC0808_START = 1;
+ 123   1        ADC0808_ALE = 0;
+ 124   1        ADC0808_START = 0;
+ 125   1        
+ 126   1        // doi cho den khi nao du lieu de duoc convert;
+ 127   1        while(ADC0808_EOC);
+ 128   1        while(!ADC0808_EOC);
+ 129   1        
+ 130   1        // Dua chan cho phep len muc cao, lay du lieu xong se dau xuong muc thap;
+ 131   1        ADC0808_OE = 1;
+ 132   1        _data = P3;
+ 133   1        ADC0808_OE = 0;
+ 134   1        return _data;
+ 135   1      }
+ 136          
+ 137          
+ 138          
+ 139          void main()
+ 140          {
+ 141   1        
+ 142   1        unsigned value;
+ 143   1        LCD_Init();
+ 144   1        ADC0808_Init();
+ 145   1        Send_Data_Block_Locate(1,1,"Voltage = ");
+ 146   1        while(1)
+ 147   1        {
+ 148   2          value = ADC0808_Read(0) * (float)5*100/256;
+ 149   2          Send_Data_Locate(1,11,value/100 + 0x30);
+ 150   2          Send_Data('.');
+ 151   2          Send_Data((value % 100) / 10 + 0x30);
+ 152   2          Send_Data(value % 10 + 0x30);
+ 153   2        }
+ 154   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    381    ----
+   CONSTANT SIZE    =     11    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

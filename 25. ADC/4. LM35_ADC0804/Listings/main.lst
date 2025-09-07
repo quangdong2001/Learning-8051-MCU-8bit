@@ -1,0 +1,275 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              08/21/2021 16:38:59 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          
+   3          // Ham dung chuong trinh trong ? milisecond
+   4          void Sleep_ms(unsigned int t)
+   5          {
+   6   1        unsigned int i , j;
+   7   1        for(i = 0; i < t; i++)
+   8   1        {
+   9   2          for(j = 0; j < 123; j++);
+  10   2        }
+  11   1      }
+  12          
+  13          //........................................Cac Function cho LCD.........................................../
+             -/
+  14          
+  15          sbit RS = P2^4;
+  16          sbit E =  P2^5;
+  17          #define Data P0
+  18          
+  19          // Ham gui lenh
+  20          void Send_Cmp(unsigned char _struction)
+  21          {
+  22   1        RS = 0;
+  23   1        Data = _struction;
+  24   1        E = 0;
+  25   1        E = 1;
+  26   1        if(_struction <= 0x03)
+  27   1        {
+  28   2          Sleep_ms(2);
+  29   2        }
+  30   1        else
+  31   1          Sleep_ms(1);
+  32   1      }
+  33          
+  34          // Ham gui du lieu
+  35          void Send_Data(unsigned char _data)
+  36          {
+  37   1        RS = 1;
+  38   1        Data = _data;
+  39   1        E = 0;
+  40   1        E = 1;
+  41   1        Sleep_ms(1);
+  42   1      }
+  43          
+  44          // Ham gui chuoi ra LCD
+  45          void Send_Data_Block(unsigned char *p)
+  46          {
+  47   1        unsigned char i = 0;
+  48   1        while(p[i] != 0)
+  49   1        {
+  50   2          Send_Data(p[i]);
+  51   2          i++;
+  52   2        }
+  53   1      }
+C51 COMPILER V9.60.0.0   MAIN                                                              08/21/2021 16:38:59 PAGE 2   
+
+  54          
+  55          // Ham gui ki tu ra vi tri xac dinh trong lCD;
+  56          void Send_Data_Locate(unsigned char row, unsigned char col, unsigned char _data)
+  57          {
+  58   1        unsigned char _locate;
+  59   1        _locate = ((row == 1)? 0x80:0xC0) + col - 1;
+  60   1        Send_Cmp(_locate);
+  61   1        Send_Data(_data);
+  62   1      }
+  63          
+  64          // Ham gui chuoi ki tu ra vi tri xac dinh trong LCD;
+  65          void Send_Data_Block_Locate(unsigned char row, unsigned char col, unsigned char *_data)
+  66          {
+  67   1        unsigned char _locate;
+  68   1        _locate = ((row == 1)? 0x80:0xC0) + col - 1;
+  69   1        Send_Cmp(_locate);
+  70   1        Send_Data_Block(_data);
+  71   1      }
+  72          
+  73          // Ham khoi tao LCD 
+  74          void LCD_Init()
+  75          {
+  76   1        Sleep_ms(100); // cho cho den khi dien ap LCD tang toi 4,5v
+  77   1        Send_Cmp(0x30);
+  78   1        Sleep_ms(5);
+  79   1        Send_Cmp(0x30);  // Lenh yeu cau tu nha san xuat;
+  80   1        Sleep_ms(1);
+  81   1        Send_Cmp(0x30);
+  82   1        
+  83   1        Send_Cmp(0x00); // Xoa toan bo noi dung trong thanh ghi DDRAM
+  84   1        Send_Cmp(0x0C); // Hien thi LCD tat hien thi con tro
+  85   1        Send_Cmp(0x38); // Chon che do 8bit hien thi 2 hang co chu 5x7
+  86   1      }
+  87          
+  88          
+  89          //................................................CAC FUNCTION CUA DS1307.................................
+             -.......//
+  90          
+  91          sbit SCL = P1^1;
+  92          sbit SDA = P1^0;
+  93          
+  94          #define Second 0x00
+  95          #define Minute 0x01
+  96          #define Hour   0x02
+  97          #define Day    0x03
+  98          #define Date   0x04
+  99          #define Month  0x05
+ 100          #define Year   0x06
+ 101          
+ 102          // DS1307 giao tiep voi vi dieu khien at89s52 bang chuan giao tiep I2C //
+ 103          
+ 104          // Ham bat dau giao tiêp I2C
+ 105          void Start_I2C()
+ 106          {
+ 107   1        SCL = 1;
+ 108   1        SDA = 1;
+ 109   1        SDA = 0;
+ 110   1        SCL = 0;
+ 111   1      }
+ 112          
+ 113          // Ham dung giao tiep I2C
+ 114          void Stop_I2C()
+C51 COMPILER V9.60.0.0   MAIN                                                              08/21/2021 16:38:59 PAGE 3   
+
+ 115          {
+ 116   1        SCL = 1;
+ 117   1        SDA = 0;
+ 118   1        SDA = 1;
+ 119   1      }
+ 120          
+ 121          // Gui du lieu vao dia chi
+ 122          void Write_I2C(unsigned char _data)
+ 123          {
+ 124   1        unsigned char i;
+ 125   1        for(i = 0; i < 8; i++)
+ 126   1        {
+ 127   2          SDA = _data & (0x80 >> i);
+ 128   2          SCL = 1;
+ 129   2          SCL = 0;
+ 130   2        }
+ 131   1        SCL = 1;
+ 132   1        SCL = 0;
+ 133   1      }
+ 134          
+ 135          // Doc du lieu
+ 136          unsigned char Read_I2C()
+ 137          {
+ 138   1        bit _flag;
+ 139   1        unsigned char _data = 0x00;
+ 140   1        unsigned char i;
+ 141   1        for(i = 0; i < 8; i++)
+ 142   1        {
+ 143   2          SCL = 1;
+ 144   2          _flag = SDA;
+ 145   2          _data <<= 1;
+ 146   2          _data |= _flag;
+ 147   2          SCL = 0;
+ 148   2        }
+ 149   1        return _data;
+ 150   1      }
+ 151          
+ 152          
+ 153          // Ham gui du lieu vao dia chi cua DS1307
+ 154          
+ 155          void Write_DS1307(unsigned char _address, unsigned char _data)
+ 156          {
+ 157   1        unsigned char data_convert;
+ 158   1        data_convert = (_data / 10) * 16 + (_data % 10);
+ 159   1        Start_I2C();
+ 160   1        Write_I2C(0xD0);
+ 161   1        Write_I2C(_address);
+ 162   1        Write_I2C(data_convert);
+ 163   1        Stop_I2C();
+ 164   1      }
+ 165          
+ 166          // Ham doc du lieu tu DS1307
+ 167          unsigned char Read_DS1307(unsigned char _address)
+ 168          {
+ 169   1        unsigned char _data, data_convert;
+ 170   1        Start_I2C();
+ 171   1        Write_I2C(0xD0);
+ 172   1        Write_I2C(_address);
+ 173   1        Start_I2C();
+ 174   1        Write_I2C(0xD1);
+ 175   1        _data = Read_I2C();
+ 176   1        Stop_I2C();
+C51 COMPILER V9.60.0.0   MAIN                                                              08/21/2021 16:38:59 PAGE 4   
+
+ 177   1        data_convert = (_data / 16) * 10 + (_data % 16);
+ 178   1        return data_convert;
+ 179   1      }
+ 180          
+ 181          
+ 182          //.....................................................CAC FUNCTION CUA ADC0804...........................
+             -.......................................//
+ 183          
+ 184          sbit ADC0804_CS = P2^0;
+ 185          sbit ADC0804_RD = P2^1;
+ 186          sbit ADC0804_WR = P2^2;
+ 187          sbit ADC0804_INTR = P2^3;
+ 188          
+ 189          unsigned char Read_ADC0804()
+ 190          {
+ 191   1        
+ 192   1        unsigned int _data;
+ 193   1        // Chon chip
+ 194   1        ADC0804_CS = 0;
+ 195   1        // Tao xung convert
+ 196   1        ADC0804_WR = 0;
+ 197   1        ADC0804_WR = 1;
+ 198   1        // Cho cho den khi convert xong
+ 199   1        while(ADC0804_INTR);
+ 200   1        
+ 201   1        ADC0804_RD = 0;
+ 202   1        _data = P3;
+ 203   1        ADC0804_RD = 1;
+ 204   1        return _data;
+ 205   1        
+ 206   1      }
+ 207          
+ 208          
+ 209          
+ 210          
+ 211          
+ 212          void main()
+ 213          {
+ 214   1        unsigned char _second, _minute, _hour;
+ 215   1        unsigned int flag;
+ 216   1        unsigned char _temperature;
+ 217   1        LCD_Init();
+ 218   1        Send_Data_Block_Locate(1,1,"TIME : ");
+ 219   1        Send_Data_Block_Locate(2,1,"TEMPERATURE : ");
+ 220   1        while(1)
+ 221   1        {
+ 222   2          _second = Read_DS1307(Second);
+ 223   2          _minute = Read_DS1307(Minute);
+ 224   2          _hour   = Read_DS1307(Hour);
+ 225   2          Send_Data_Locate(1,8,_hour / 10 + 0x30);
+ 226   2          Send_Data(_hour % 10 + 0x30);
+ 227   2          Send_Data(':');
+ 228   2          Send_Data(_minute / 10 + 0x30);
+ 229   2          Send_Data(_minute % 10 + 0x30);
+ 230   2          Send_Data(':');
+ 231   2          Send_Data(_second / 10 + 0x30);
+ 232   2          Send_Data(_second % 10 + 0x30);
+ 233   2          
+ 234   2          flag = Read_ADC0804();
+ 235   2          _temperature = (flag * 1.961) + 0.5;
+ 236   2          Send_Data_Locate(2,15,_temperature / 10 + 0x30);
+ 237   2          Send_Data(_temperature % 10 + 0x30);
+C51 COMPILER V9.60.0.0   MAIN                                                              08/21/2021 16:38:59 PAGE 5   
+
+ 238   2        }
+ 239   1        
+ 240   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    587    ----
+   CONSTANT SIZE    =     23    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      13
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

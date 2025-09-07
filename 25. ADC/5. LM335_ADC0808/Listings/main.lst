@@ -1,0 +1,184 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              08/21/2021 22:44:55 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          
+   3          // Ham dung chuong trinh trong ?milisecond 
+   4          void Sleep_ms(unsigned int t)
+   5          {
+   6   1        unsigned int i, j;
+   7   1        for(i = 0; i < t; i++)
+   8   1        {
+   9   2          for(j = 0; j < 123; j++);
+  10   2        }
+  11   1      }
+  12          
+  13          //...............................................CAC FUNCTION OF LCD......................................
+             -..........//
+  14          sbit RS = P2^0;
+  15          sbit E = P2^1;
+  16          #define Data P0
+  17          
+  18          // Ham gui lenh ra cho LCD
+  19          void Send_Cmp(unsigned char _struction)
+  20          {
+  21   1        RS = 0;
+  22   1        Data = _struction;
+  23   1        E = 0;
+  24   1        E = 1;
+  25   1        if(_struction <= 0x03)
+  26   1        {
+  27   2          Sleep_ms(2);
+  28   2        }
+  29   1        else 
+  30   1          Sleep_ms(1);
+  31   1      }
+  32          
+  33          // Ham gui ki tu ra cho LCD 
+  34          void Send_Data(unsigned char _data)
+  35          {
+  36   1        RS = 1;
+  37   1        Data = _data;
+  38   1        E = 0;
+  39   1        E = 1;
+  40   1        Sleep_ms(1);
+  41   1      }
+  42          
+  43          // Ham gui chuoi ki tu ra cho LCD 
+  44          void Send_Data_Block(unsigned char *_data)
+  45          {
+  46   1        unsigned char i = 0;
+  47   1        while(_data[i] != 0)
+  48   1        {
+  49   2          Send_Data(_data[i]);
+  50   2          i++;
+  51   2        }
+  52   1      }
+  53          
+C51 COMPILER V9.60.0.0   MAIN                                                              08/21/2021 22:44:55 PAGE 2   
+
+  54          // Ham gui ki tu ra vi tri xac dinh trong LCD
+  55          void Send_Data_Locate(unsigned char row, unsigned char col, unsigned char _data)
+  56          {
+  57   1        unsigned char _locate;
+  58   1        _locate = ((row == 1)? 0x80:0xC0) + col - 1;
+  59   1        Send_Cmp(_locate);
+  60   1        Send_Data(_data);
+  61   1      }
+  62          
+  63          // Ham gui chuoi ki tu ra vi tri xac dinh cua LCD
+  64          void Send_Data_Block_Locate(unsigned char row, unsigned char col, unsigned char *_data)
+  65          {
+  66   1        unsigned char _locate;
+  67   1        _locate = ((row == 1)? 0x80:0xC0) + col - 1;
+  68   1        Send_Cmp(_locate);
+  69   1        Send_Data_Block(_data);
+  70   1      }
+  71          
+  72          // Lenh khoi tao LCD
+  73          void LCD_Init()
+  74          {
+  75   1        Sleep_ms(100); // Delay in order to wait voltage rise to 4,5V
+  76   1        Send_Cmp(0x30);
+  77   1        Sleep_ms(5);
+  78   1        Send_Cmp(0x30);
+  79   1        Sleep_ms(1);
+  80   1        Send_Cmp(0x30);
+  81   1        
+  82   1        Send_Cmp(0x00); // Delete all data in DDRAM Registors
+  83   1        Send_Cmp(0x0C); // Display LCD and Delete display pointer
+  84   1        Send_Cmp(0x38); // Communicate 8bit, display 2 line and 5x7 font 
+  85   1      }
+  86          
+  87          
+  88          //............................................FUNCTIONS OF ADC0808........................................
+             -.......//
+  89          
+  90          sbit ADC0808_ADD_A = P2^4;
+  91          sbit ADC0808_ADD_B = P2^5;
+  92          sbit ADC0808_ADD_C = P2^6;
+  93          sbit ADC0808_ALE = P2^7;
+  94          sbit ADC0808_START = P1^0; 
+  95          sbit ADC0808_EOC = P1^1;
+  96          sbit ADC0808_OE = P1^2;
+  97          
+  98          // Function initialize ADC0808;
+  99          void ADC0808_Init()
+ 100          {
+ 101   1        ADC0808_START = 0;
+ 102   1        ADC0808_ALE = 0;
+ 103   1        ADC0808_OE = 0;
+ 104   1      }
+ 105          
+ 106          // Function converts _data into voltage from ADC0808
+ 107          unsigned int ADC0808_Read(unsigned char _address)  // address is gate that need convert;
+ 108          {
+ 109   1        unsigned int _data;
+ 110   1        // the first, we need choose gate to convert;
+ 111   1        ADC0808_ADD_A = _address & (0x01);
+ 112   1        ADC0808_ADD_B = _address & (0x02);
+ 113   1        ADC0808_ADD_C = _address & (0x04);
+ 114   1        
+C51 COMPILER V9.60.0.0   MAIN                                                              08/21/2021 22:44:55 PAGE 3   
+
+ 115   1        // Initialize fisrt and Ale address
+ 116   1        ADC0808_ALE = 1;
+ 117   1        ADC0808_START = 1;
+ 118   1        ADC0808_ALE = 0;
+ 119   1        ADC0808_START = 0;
+ 120   1        
+ 121   1        // Wait in order to convert process complete
+ 122   1        while(ADC0808_EOC);
+ 123   1        while(!ADC0808_EOC);
+ 124   1        
+ 125   1        // Read data that converted from Port 3
+ 126   1        ADC0808_OE = 1;
+ 127   1        _data = P3;
+ 128   1        ADC0808_OE = 0;
+ 129   1        return _data;
+ 130   1      }
+ 131          
+ 132          
+ 133          
+ 134          void main()
+ 135          {
+ 136   1        unsigned char value;
+ 137   1        unsigned int flag;
+ 138   1        LCD_Init();
+ 139   1        Send_Data_Block_Locate(1,1,"Temperature : ");
+ 140   1        while(1)
+ 141   1        {
+ 142   2          ADC0808_Init();
+ 143   2          flag = ADC0808_Read(0x00);
+ 144   2          value = (flag * 0.391) + 0,5;
+ 145   2          Send_Data_Locate(1,15,value / 10 + 0x30);
+ 146   2          Send_Data(value % 10 + 0x30);
+ 147   2        }
+ 148   1        
+ 149   1      
+ 150   1        
+ 151   1        
+ 152   1        
+ 153   1        
+ 154   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    336    ----
+   CONSTANT SIZE    =     15    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      10
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
