@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\Che_Do_1_Led" 
+PRINT(".\Listings\Che_Do_1_Led.m51") RAMSIZE(256) 

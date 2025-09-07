@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\Tao_Xung_Clock" 
+PRINT(".\Listings\Tao_Xung_Clock.m51") RAMSIZE(256) 

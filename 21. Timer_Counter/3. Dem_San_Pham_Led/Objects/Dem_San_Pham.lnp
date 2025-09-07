@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\Dem_San_Pham" 
+PRINT(".\Listings\Dem_San_Pham.m51") RAMSIZE(256) 
